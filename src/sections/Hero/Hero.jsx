@@ -1,5 +1,5 @@
 import styles from './HeroStyles.module.css';
-import heroImg from '../../assets/Design uten navn.png';
+import heroImg from '../../assets/myphoto.jpg';
 import sun from '../../assets/sun.svg';
 import moon from '../../assets/moon.svg';
 import twitterLight from '../../assets/twitter-light.svg';
@@ -53,11 +53,15 @@ function Hero() {
           </a>
         </span>
         <p className={styles.description}>
-          I am a Master's student in Computer Science, focused on machine learning and data science. With 2+
-          years of experience as a backend developer and 6 months as a machine learning engineer, I also have
-          brief experience as a blockchain engineer. <br/>
-          My passion lies in machine learning research, aiming to
-          build applications that leverage ML models to solve real-world problems.
+          {/*I am a Master's student in Computer Science, focused on machine learning and data science. With 2+*/}
+          {/*years of experience as a backend developer and 6 months as a machine learning engineer, I also have*/}
+          {/*brief experience as a blockchain engineer. <br/>*/}
+          {/*My passion lies in machine learning research, aiming to*/}
+          {/*build applications that leverage ML models to solve real-world problems.*/}
+          Focused on machine learning and data science, with over 2 years of experience as a backend developer and
+          6 months as a machine learning engineer. I also have brief experience as a blockchain engineer. My passion
+          lies in machine learning research, aiming to build applications that leverage ML models to solve real-world
+          problems.
         </p>
         <a href={CV} download>
           <button className="hover">Resume</button>
