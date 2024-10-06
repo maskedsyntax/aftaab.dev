@@ -28,13 +28,15 @@
     align-items: center;
     padding: 0.5em 1em;
     margin: 0.5em;
-    border-radius: 20px; /* Rounded corners */
-    background-color: #e0e0e0; /* Adjust as per design */
+    border-radius: 10px; /* Rounded corners */
+    /*background-color: #e0e0e0; !* Adjust as per design *!*/
+    background-color: var(--skills-btn-color); /* Adjust as per design */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-weight: bold;
 }
 
-.badge-text {
+.badgetext {
+    color: var(--btn-text-color);
     margin: 0;
 }
 

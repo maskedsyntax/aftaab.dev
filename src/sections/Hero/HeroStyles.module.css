@@ -34,8 +34,8 @@
     }
 
     button {
-        /*background-color: var(--btn-color);*/
-        background-color: #000;
+        background-color: var(--btn-color);
+        /*background-color: #000;*/
         color: var(--btn-text-color);
         border: none;
         border-radius: 10px;
