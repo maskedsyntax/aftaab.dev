@@ -1,0 +1,29 @@
+import {PageTransition} from "@/components/page-transition";
+
+export default function AboutPage() {
+  return (
+      <PageTransition>
+        <div className="min-h-screen bg-background">
+          <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
+            <h1 className="text-3xl font-bold mb-8 text-center">About Me</h1>
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-4 relative inline-block">
+                About
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Since childhood, I have been passionate about computers, technology, and gaming. While
+                gaming sparked my interest in game development, I ultimately found my true passion in
+                programming through various <span className="font-medium text-foreground">projects</span>.
+                I particularly enjoy <span className="font-medium text-foreground">competitive programming</span> and
+                tackling complex problems. I love learning new technologies and building websites with the
+                latest tech stacks. Additionally, I take pride in my typing skills, often reaching speeds of over
+                200 words per minute.
+              </p>
+            </section>
+          </main>
+        </div>
+      </PageTransition>
+  )
+}
+
