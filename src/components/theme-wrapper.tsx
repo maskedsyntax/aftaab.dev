@@ -7,7 +7,7 @@ export function ThemeWrapper({children}: { children: React.ReactNode }) {
   const {theme} = useTheme(); // Get the current theme
 
   // Determine the class based on the theme
-  const themeClass = theme === "dark" ? "dark-theme" : "light-theme";
+  const themeClass = theme === "dark" ? "theme" : "theme";
 
   return (
     <div className={themeClass}>
