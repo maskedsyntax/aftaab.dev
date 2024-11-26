@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
 import Link from 'next/link'
 import {PageTransition} from "@/components/page-transition";
 import type {Metadata} from "next";
@@ -40,32 +40,32 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-      <PageTransition>
-        <div className="min-h-screen bg-background">
-          <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
-            <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
-            <div className="grid gap-6">
-              {blogPosts.map((post) => (
-                  <Card key={post.id}>
-                    <CardHeader>
-                      <CardTitle>{post.title}</CardTitle>
-                      <CardDescription>{post.date}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">{post.description}</p>
-                      <Link
-                          href={`/blog/${post.id}`}
-                          className="text-blue-500 hover:underline"
-                      >
-                        Read more
-                      </Link>
-                    </CardContent>
-                  </Card>
-              ))}
-            </div>
-          </main>
-        </div>
-      </PageTransition>
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
+          <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
+          <div className="grid gap-6">
+            {blogPosts.map((post) => (
+              <Card key={post.id}>
+                <CardHeader>
+                  <CardTitle>{post.title}</CardTitle>
+                  <CardDescription>{post.date}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-4">{post.description}</p>
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Read more
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </main>
+      </div>
+    </PageTransition>
   )
 }
 

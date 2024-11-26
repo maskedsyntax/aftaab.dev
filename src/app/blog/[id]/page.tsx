@@ -1,5 +1,5 @@
 import Navbar from '@/components/navbar'
-import { notFound } from 'next/navigation'
+import {notFound} from 'next/navigation'
 
 interface BlogPost {
   id: string
@@ -26,7 +26,7 @@ const blogPosts: BlogPost[] = [
   }
 ]
 
-export default function BlogPost({ params }: { params: { id: string } }) {
+export default function BlogPost({params}: { params: { id: string } }) {
   const post = blogPosts.find(p => p.id === params.id)
 
   if (!post) {
@@ -35,13 +35,13 @@ export default function BlogPost({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <Navbar/>
       <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
         <article className="prose lg:prose-xl dark:prose-invert mx-auto">
           <h1>{post.title}</h1>
           <p className="text-muted-foreground">{post.date}</p>
           <p className="lead">{post.description}</p>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div dangerouslySetInnerHTML={{__html: post.content}}/>
         </article>
       </main>
     </div>
