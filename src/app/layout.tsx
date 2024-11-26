@@ -22,6 +22,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Aftaab\'s Portfolio',
   description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
+    icons: {
+        icon: "/favicons/favicon.ico", // Default favicon
+        shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
+        apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
+    },
 }
 
 export default function RootLayout({
