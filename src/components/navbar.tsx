@@ -13,6 +13,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function Navbar() {
     const { setTheme, theme } = useTheme()
     const pathname = usePathname()
+    console.log(theme)
 
     const routes = [
         { href: '/', label: 'Home' },

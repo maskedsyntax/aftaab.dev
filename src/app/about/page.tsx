@@ -1,4 +1,15 @@
 import {PageTransition} from "@/components/page-transition";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: 'About | Aftaab Siddiqui',
+  description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
+  icons: {
+    icon: "/favicons/favicon.ico", // Default favicon
+    shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
+    apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
+  },
+}
 
 export default function AboutPage() {
   return (

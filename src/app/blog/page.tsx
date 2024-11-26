@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from 'next/link'
 import {PageTransition} from "@/components/page-transition";
+import type {Metadata} from "next";
 
 interface BlogPost {
   id: string
@@ -26,6 +27,16 @@ const blogPosts: BlogPost[] = [
     content: "As AI continues to evolve, its impact on software development is becoming increasingly significant..."
   }
 ]
+
+export const metadata: Metadata = {
+  title: 'Blog | Aftaab Siddiqui',
+  description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
+  icons: {
+    icon: "/favicons/favicon.ico", // Default favicon
+    shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
+    apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
+  },
+}
 
 export default function BlogPage() {
   return (

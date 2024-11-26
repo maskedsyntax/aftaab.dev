@@ -72,14 +72,90 @@ body {
 }
 
 /* Fade-out effect for the main content */
-.fade-out-mask {
+/*.fade-out-mask {*/
+/*  position: relative;*/
+/*  z-index: 0; !* Ensure it is below the navbar *!*/
+/*  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);*/
+/*  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);*/
+/*  -webkit-mask-repeat: no-repeat;*/
+/*  mask-repeat: no-repeat;*/
+/*  -webkit-mask-size: 100% 100%;*/
+/*  mask-size: 100% 100%;*/
+/*  background-color: inherit; !* Keeps the background consistent *!*/
+/*}*/
+
+/*.fade-out-mask {*/
+/*  position: relative;*/
+/*}*/
+
+/*.fade-out-mask::after {*/
+/*  content: "";*/
+/*  position: fixed;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 10%; !* Adjust height for fade intensity *!*/
+/*  pointer-events: none;*/
+/*  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);*/
+/*  z-index: 20; !* Ensure it overlays the content *!*/
+/*  mix-blend-mode: normal; !* Ensure blending works well *!*/
+/*}*/
+
+/* Apply a fade-out or blur effect to content below the navbar */
+.page-content {
   position: relative;
-  z-index: 0; /* Ensure it is below the navbar */
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  background-color: inherit; /* Keeps the background consistent */
+}
+
+.page-content::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5%; /* Adjust height for fade intensity */
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  z-index: 0; /* Keep it behind the navbar */
+}
+
+/*@media (prefers-color-scheme: dark) {*/
+/*  .page-content::after {*/
+/*    background: linear-gradient(*/
+/*            to bottom,*/
+/*            rgba(0, 0, 0, 0) 0%,*/
+/*            rgba(0, 0, 0, 1) 100%*/
+/*    );*/
+/*  }*/
+/*}*/
+
+/* Light theme fade-out effect */
+.light-theme .page-content::after {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* Dark theme fade-out effect */
+.dark-theme .page-content::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+
+/*.page-content.light-theme::after {*/
+/*  background: linear-gradient(*/
+/*          to bottom,*/
+/*          rgba(255, 255, 255, 0) 0%,*/
+/*          rgba(255, 255, 255, 1) 100%*/
+/*  );*/
+/*}*/
+
+/*.page-content.dark-theme::after {*/
+/*  background: linear-gradient(*/
+/*          to bottom,*/
+/*          rgba(0, 0, 0, 0) 0%,*/
+/*          rgba(0, 0, 0, 1) 100%*/
+/*  );*/
+/*}*/
+
+.page-content-blur {
+  filter: blur(4px); /* Optional blur effect */
+  transform: translateZ(0); /* Ensure better performance for blur */
 }

@@ -1,57 +1,45 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+"use client";
+
 import "./globals.css";
 import { Inter } from 'next/font/google'
 import {ThemeProvider} from "@/components/themes";
 import Navbar from "@/components/navbar";
 import {AnimatePresence} from "framer-motion";
 import React from "react";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
+import {useTheme} from "next-themes";
+import {ThemeWrapper} from "@/components/theme-wrapper";
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Aftaab Siddiqui',
-  description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
-    icons: {
-        icon: "/favicons/favicon.ico", // Default favicon
-        shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
-        apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
-    },
-}
 
 export default function RootLayout({
                                      children,
                                    }: {
   children: React.ReactNode
 }) {
+    const {theme} = useTheme();
+    console.log("layout: ", theme);
   return (
       <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+            className={`${inter.className} light-theme`}
+      >
       <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
       >
-          <Navbar/>
-          {/*<div className="fade-out-mask">*/}
-              <AnimatePresence mode="wait">
-                  {children}
-              </AnimatePresence>
-          {/*</div>*/}
+          <ThemeWrapper>
+              <Navbar />
+              <div className="page-content">
+                  <AnimatePresence mode="wait">{children}</AnimatePresence>
+              </div>
+          </ThemeWrapper>
       </ThemeProvider>
       </body>
       </html>
 )
 }
+
+
+// className={`${inter.className} ${theme === "dark" ? "dark-theme" : "light-theme"}`}
