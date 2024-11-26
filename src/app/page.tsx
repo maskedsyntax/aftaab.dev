@@ -104,7 +104,7 @@ export default function Home() {
             </p>
           </section>
 
-          <section className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
+          <section className="container mx-auto py-8 pt-24 max-w-4xl">
             <h1 className="text-3xl font-bold mb-8 text-center">My Latest Work</h1>
             <ProjectGrid/>
           </section>
