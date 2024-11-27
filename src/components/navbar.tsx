@@ -2,15 +2,14 @@
 
 import * as React from "react"
 import {useTheme} from "next-themes"
-import {Moon, Sun} from 'lucide-react'
 import {usePathname} from 'next/navigation'
-import Link from 'next/link'
-
-import {Button} from "@/components/ui/button"
-import {Separator} from "@/components/ui/separator"
-import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs"
 
 import {JetBrains_Mono} from 'next/font/google'
+import {Moon, Sun} from "lucide-react";
+import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import Link from "next/link";
+import {Separator} from "@/components/ui/separator";
+import {Button} from "@/components/ui/button";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
