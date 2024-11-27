@@ -10,6 +10,14 @@ import {Button} from "@/components/ui/button"
 import {Separator} from "@/components/ui/separator"
 import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs"
 
+import {JetBrains_Mono} from 'next/font/google'
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-montserrat',
+});
+
 export default function Navbar() {
   const {setTheme, theme} = useTheme()
   const pathname = usePathname()
@@ -28,7 +36,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-10`}>
+    <div className={`${jetBrainsMono.className} fixed bottom-4 left-1/2 -translate-x-1/2 z-10`}>
       <nav className="flex items-center gap-2 px-1 py-1 bg-background rounded-md border shadow-sm">
         <Tabs value={getActiveRoute(pathname)} className="w-full">
           <TabsList>
