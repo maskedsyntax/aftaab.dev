@@ -20,7 +20,6 @@ const jetBrainsMono = JetBrains_Mono({
 export default function Navbar() {
   const {setTheme, theme} = useTheme()
   const pathname = usePathname()
-  console.log(theme)
 
   const routes = [
     {href: '/', label: 'Home'},

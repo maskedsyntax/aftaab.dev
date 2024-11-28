@@ -40,14 +40,14 @@ export function ProjectCard({
           <Badge
             variant="default"
             className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
-            aschild="true"
+            asChild
           >
             <a href={websiteUrl} target="_blank" rel="noopener noreferrer">Website</a>
           </Badge>
           <Badge
             variant="default"
             className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
-            aschild="true"
+            asChild
           >
             <a href={repoUrl} target="_blank" rel="noopener noreferrer">Repository</a>
           </Badge>

@@ -9,6 +9,12 @@ interface BlogPost {
   content: string
 }
 
+interface PageProps {
+  params: Promise<{
+    id: string
+  }>
+}
+
 const blogPosts: BlogPost[] = [
   {
     id: "1",
@@ -26,8 +32,9 @@ const blogPosts: BlogPost[] = [
   }
 ]
 
-export default function BlogPost({params}: { params: { id: string } }) {
-  const post = blogPosts.find(p => p.id === params.id)
+export default async function BlogPost({params}: PageProps) {
+  const resolvedParams = await params;
+  const post = blogPosts.find(p => p.id === resolvedParams.id)
 
   if (!post) {
     notFound()

@@ -6,7 +6,6 @@ import {ThemeProvider} from "@/components/themes";
 import Navbar from "@/components/navbar";
 import {AnimatePresence} from "framer-motion";
 import React from "react";
-import {useTheme} from "next-themes";
 import {ThemeWrapper} from "@/components/theme-wrapper";
 
 // Example for importing multiple fonts
@@ -40,8 +39,6 @@ export default function RootLayout({
                                    }: {
   children: React.ReactNode
 }) {
-  const {theme} = useTheme();
-  console.log("layout: ", theme);
   return (
     <html lang="en" suppressHydrationWarning>
     <body
