@@ -1,5 +1,6 @@
 import Navbar from '@/components/navbar'
 import {notFound} from 'next/navigation'
+import {Heart} from "lucide-react";
 
 interface BlogPost {
   id: string
@@ -51,6 +52,16 @@ export default async function BlogPost({params}: PageProps) {
           <div dangerouslySetInnerHTML={{__html: post.content}}/>
         </article>
       </main>
+      <footer className="mt-20 pb-24 text-center">
+        <div className="flex items-center justify-center mb-2">
+          <span className="mr-1">Made with</span>
+          <Heart className="w-4 h-4 text-red-500 mx-1"/>
+          <span>by Aftaab Siddiqui</span>
+        </div>
+        <div className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Aftaab Siddiqui. All rights reserved.
+        </div>
+      </footer>
     </div>
   )
 }

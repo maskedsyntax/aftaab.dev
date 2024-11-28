@@ -1,6 +1,7 @@
 import {ProjectGrid} from '@/components/project-grid'
 import {PageTransition} from "@/components/page-transition";
 import type {Metadata} from "next";
+import {Heart} from "lucide-react";
 
 export const metadata: Metadata = {
   title: 'Projects | Aftaab Siddiqui',
@@ -20,6 +21,16 @@ export default function ProjectsPage() {
           <h1 className="text-3xl font-bold mb-8 text-center">My Projects</h1>
           <ProjectGrid/>
         </main>
+        <footer className="mt-20 pb-24 text-center">
+          <div className="flex items-center justify-center mb-2">
+            <span className="mr-1">Made with</span>
+            <Heart className="w-4 h-4 text-red-500 mx-1"/>
+            <span>by Aftaab Siddiqui</span>
+          </div>
+          <div className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Aftaab Siddiqui. All rights reserved.
+          </div>
+        </footer>
       </div>
     </PageTransition>
   )

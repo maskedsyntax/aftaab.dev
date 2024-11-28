@@ -3,10 +3,11 @@ import Link from 'next/link'
 import {Badge} from "@/components/ui/badge"
 import {PageTransition} from '@/components/page-transition'
 import {ProjectGrid} from "@/components/project-grid"
-import {Heart} from "lucide-react"
+import {AtSign, BookOpen, Code2, FileText, Github, Heart, Linkedin} from "lucide-react"
 import {FaGithub, FaLinkedin, FaTwitter} from "react-icons/fa";
 
 import type {Metadata} from "next"
+import {Button} from "@/components/ui/button";
 
 // import {JetBrains_Mono} from 'next/font/google'
 //
@@ -70,6 +71,14 @@ export default function Home() {
     },
   ];
 
+  const socialHandles = [
+    {name: 'GitHub', icon: Github, url: 'https://github.com/MaskedSyntax'},
+    {name: 'LeetCode', icon: Code2, url: 'https://leetcode.com/maskedsyntax'},
+    {name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/aftaabsiddiqui'},
+    {name: 'Threads', icon: AtSign, url: 'https://www.threads.net/@aftaab___'},
+    {name: 'Medium', icon: BookOpen, url: 'https://medium.com/@maskedsyntax'},
+  ]
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
@@ -103,13 +112,13 @@ export default function Home() {
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               I’ve always been fascinated by technology, and a Linux course in college kick-started my love for {' '}
-              <Link href="https://github.com/MaskedSyntax"
+              <Link href="https://github.com/MaskedSyntax" target="_blank"
                     className="font-medium text-blue-600 underline">
                 open source development
               </Link>
               . I enjoy solving problems, building tools,
               and diving into areas like {' '}
-              <Link href="https://leetcode.com/u/maskedsyntax/"
+              <Link href="https://leetcode.com/u/maskedsyntax/" target="_blank"
                     className="font-medium text-blue-600 underline">
                 DSA
               </Link>
@@ -162,79 +171,106 @@ export default function Home() {
             </div>
           </section>
 
-          {/*<section className="text-center">*/}
-          {/*  <p className="text-xl font-bold">*/}
-          {/*    Check out my{' '}*/}
-          {/*    <Link href="#" className="text-blue-500 hover:underline">*/}
-          {/*      resume*/}
+          {/*<section className="mb-12">*/}
+          {/*  <h2 className="text-2xl font-bold mb-4 relative inline-block">*/}
+          {/*    Resume*/}
+          {/*    <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>*/}
+          {/*  </h2>*/}
+          {/*  <p className="text-lg text-muted-foreground">*/}
+          {/*    Interested in my professional journey?{' '}*/}
+          {/*    <Link href="/assets/Resume_Aftaab_Siddiqui.pdf" target="_blank"*/}
+          {/*          className="font-medium text-blue-600 underline">*/}
+          {/*      View my resume*/}
           {/*    </Link>*/}
           {/*    .*/}
           {/*  </p>*/}
           {/*</section>*/}
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4 relative inline-block">
-              Resume
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
+          {/*<section className="text-center mt-20">*/}
+          {/*  <h2 className="text-4xl font-bold mb-3">*/}
+          {/*    My Resume*/}
+          {/*  </h2>*/}
+          {/*  <p className="text-lg text-muted-foreground mb-6">*/}
+          {/*    Interested in my professional journey? View my resume.*/}
+          {/*  </p>*/}
+          {/*  <Button asChild className="bg-black hover:bg-gray-800 text-white">*/}
+          {/*    <Link href="/assets/Resume_Aftaab_Siddiqui.pdf" target="_blank" rel="noopener noreferrer">*/}
+          {/*      <FileText className="mr-2 h-4 w-4"/>*/}
+          {/*      View Resume*/}
+          {/*    </Link>*/}
+          {/*  </Button>*/}
+          {/*</section>*/}
+
+          <section className="text-center mt-20">
+            <h2 className="text-4xl font-bold mb-3 text-foreground">
+              My Resume
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Interested in my professional journey?{' '}
-              <Link href="/resume.pdf" target="_blank" className="font-medium text-blue-600 underline">
-                View my resume
-              </Link>
-              .
+            <p className="text-lg text-muted-foreground mb-6">
+              Interested in my professional journey? View my resume.
             </p>
+            <Button asChild
+                    className="bg-black dark:bg-white hover:bg-gray-800 text-white dark:text-black dark:hover:bg-gray-200">
+              <Link href="/assets/Resume_Aftaab_Siddiqui.pdf" target="_blank" rel="noopener noreferrer">
+                <FileText className="mr-2 h-4 w-4"/>
+                View Resume
+              </Link>
+            </Button>
           </section>
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4 relative inline-block">
-              Social Handles
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
-            </h2>
-            <div className="flex flex-wrap gap-4">
-              {socialLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  className="flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-black dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-                >
-                  <span className="mr-2">{link.icon}</span>
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </section>
 
-          <section className="container mx-auto py-8 pt-24 max-w-4xl">
+          <section className="container mx-auto mt-20 max-w-4xl">
             <h1 className={`text-3xl font-bold mb-8 text-center`}>My Latest Work</h1>
             <ProjectGrid/>
           </section>
 
-          <section className="text-center pt-24 mb-24">
+          <section className="text-center mt-24 mb-24">
             <h2 className="text-4xl font-bold mb-3">
-              Check out my <Link href="/blog" className="text-blue-500 hover:underline">blog</Link>.
+              Explore My <Link href="/blog" className="text-blue-500 hover:underline">blog</Link>.
             </h2>
             <p className="text-lg text-muted-foreground">
-              I occasionally enjoy writing blogs, primarily about tech topics, but I also explore other
-              subjects.
+              Dive into my thoughts on technology, coding journeys, and the ever-evolving world of software development.
+              Occasionally, I also share insights on topics beyond tech.
             </p>
           </section>
 
-          <section className="text-center pt-12 mb-12">
+          <section className="text-center mb-24">
+            <h2 className="text-4xl font-bold mb-3">
+              Let’s Connect
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Explore my contributions, projects, and collaborations on these platforms:
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {socialHandles.map((handle) => (
+                <Button
+                  key={handle.name}
+                  variant="outline"
+                  asChild
+                  className="flex items-center space-x-2"
+                >
+                  <Link href={handle.url} target="_blank" rel="noopener noreferrer">
+                    <handle.icon className="w-4 h-4"/>
+                    <span>{handle.name}</span>
+                  </Link>
+                </Button>
+              ))}
+            </div>
+          </section>
+
+          <section className="text-center mb-12">
             {/*<div className="inline-block bg-black text-white px-3 py-1 rounded-full text-sm mb-4">*/}
             {/*  Contact*/}
             {/*</div>*/}
-            <h2 className="text-4xl font-bold mb-3">Get in touch</h2>
-            <p className="text-lg text-muted-foreground mb-2">Want to chat?</p>
+            <h2 className="text-4xl font-bold mb-3">Reach Out</h2>
+            <p className="text-lg text-muted-foreground mb-2">Have a project idea, feedback, or just want to say hi?</p>
             <p className="text-lg">
-              Just{' '}
+              Feel free to drop me an{' '}
               <Link href="mailto:aftaab@aftaab.xyz" className="text-blue-500 hover:underline">
-                email me
+                email
               </Link>
-              {' '}or{' '}
-              <Link href="https://x.com/MaskedSyntax" className="text-blue-500 hover:underline">
-                dm me on twitter
+              {' '} or connect with me on {' '}
+              <Link href="https://www.linkedin.com/in/aftaabsiddiqui" className="text-blue-500 hover:underline">
+                LinkedIn
               </Link>
               .
             </p>
@@ -242,7 +278,7 @@ export default function Home() {
 
         </main>
 
-        <footer className="mt-20 pb-24 text-center">
+        <footer className="pb-24 text-center">
           <div className="flex items-center justify-center mb-2">
             <span className="mr-1">Made with</span>
             <Heart className="w-4 h-4 text-red-500 mx-1"/>
