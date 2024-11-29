@@ -2,12 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {Badge} from "@/components/ui/badge"
 import {PageTransition} from '@/components/page-transition'
-import {ProjectGrid} from "@/components/project-grid"
 import {AtSign, BookOpen, Code2, FileText, Github, Heart, Linkedin} from "lucide-react"
 import {FaGithub, FaLinkedin, FaTwitter} from "react-icons/fa";
 
 import type {Metadata} from "next"
 import {Button} from "@/components/ui/button";
+import {FeaturedProjects} from "@/components/featured-projects";
 
 // import {JetBrains_Mono} from 'next/font/google'
 //
@@ -220,7 +220,12 @@ export default function Home() {
 
           <section className="container mx-auto mt-20 max-w-4xl">
             <h1 className={`text-3xl font-bold mb-8 text-center`}>My Latest Work</h1>
-            <ProjectGrid/>
+            <FeaturedProjects/>
+            <div className="text-center mt-8">
+              <Link href="/projects" className="text-xl text-blue-500 underline">
+                View all projects
+              </Link>
+            </div>
           </section>
 
           <section className="text-center mt-24 mb-24">
