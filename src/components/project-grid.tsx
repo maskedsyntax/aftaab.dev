@@ -2,69 +2,66 @@ import {ProjectCard} from './project-card'
 
 const projects = [
   {
-    name: "z'pple",
+    name: "GeneRx Mapper",
     dateRange: "Sept 2024 - Oct 2024",
-    description: "A peer-to-peer (P2P) file sharing application that utilizes WebRTC for seamless communication and features real-time chat functionality through Socket.IO.",
-    technologies: [
-      {name: "Next.js"},
-      {name: "WebRTC"},
-      {name: "Socket.IO"},
-      {name: "TypeScript"},
-      {name: "Node.js"},
-      {name: "Tailwind CSS"},
-      {name: "shadcn/ui"},
-      {name: "Vercel"},
-    ],
-    websiteUrl: "#",
-    repoUrl: "#"
-  },
-  {
-    name: "notez",
-    dateRange: "Aug 2024 - Sept 2024",
-    description: "An AI math solver that allows users to draw mathematical expressions on a blank canvas. It intelligently recognizes these drawings, solves the expressions, and converts them to LaTeX.",
-    technologies: [
-      {name: "Vue"},
-      {name: "React"},
-      {name: "TypeScript"},
-      {name: "Gemini Gen AI API"},
-      {name: "FastAPI"},
-      {name: "Tailwind CSS"},
-      {name: "Node.js"},
-      {name: "Vercel"},
-    ],
-    websiteUrl: "#",
-    repoUrl: "#"
-  },
-  {
-    name: "bugpa",
-    dateRange: "Dec 2023 - Jan 2024",
-    description: "A GPA calculator designed for college students, addressing the common issue of understanding the credit system. It provides a simple UI for quick SGPA calculation.",
-    technologies: [
-      {name: "Next.js"},
-      {name: "TypeScript"},
-      {name: "Node.js"},
-      {name: "Tailwind CSS"},
-      {name: "shadcn/ui"},
-      {name: "Vercel"},
-    ],
-    websiteUrl: "#",
-    repoUrl: "#"
-  },
-  {
-    name: "qaution",
-    dateRange: "Mar 2023 - May 2023",
-    description: "A platform that offers a comprehensive suite of cybersecurity services, including redirect tracking, SSL certificate verification, IP reputation checking, and more.",
+    description: "An AI-driven tool that analyzes gene expression data to predict drug responses for different gene profiles. GeneRx Mapper leverages machine learning algorithms to uncover relationships between genetic data and pharmaceutical outcomes, providing insights into personalized treatment.",
     technologies: [
       {name: "Python"},
-      {name: "FastAPI"},
-      {name: "Next.js"},
-      {name: "TypeScript"},
-      {name: "Tailwind CSS"},
-      {name: "Node.js"},
-      {name: "Vercel"},
+      {name: "Scikit-learn"},
+      {name: "Pandas"},
+      {name: "Numpy"},
+      {name: "Matplotlib"},
     ],
     websiteUrl: "#",
-    repoUrl: "#"
+    repoUrl: "https://github.com/MaskedSyntax/genes-drug-response-prediction"
+  },
+  {
+    name: "IntelliPath",
+    dateRange: "July 2024 - Aug 2024",
+    description: "A visualization tool for the A* pathfinding algorithm that allows users to explore the shortest route between two points. IntelliPath offers an interactive interface for selecting start and end locations, as well as obstacles, providing an intuitive demonstration of pathfinding in action.",
+    technologies: [
+      {name: "Python"},
+      {name: "Pygame"},
+      // {name: "TypeScript"},
+      // {name: "Gemini Gen AI API"},
+      // {name: "FastAPI"},
+      // {name: "Tailwind CSS"},
+      // {name: "Node.js"},
+      // {name: "Vercel"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/IntelliPath"
+  },
+  {
+    name: "ColorSnap",
+    dateRange: "March 2024 - April 2024",
+    description: "An interactive color detection tool that allows users to click on an image and instantly identify the closest matching color, along with the RGB and Hex values. ColorSnap uses OpenCV to read images and detect clicked points, and leverages a color dataset to determine the closest match with a high degree of accuracy.",
+    technologies: [
+      {name: "Python"},
+      {name: "OpenCV"},
+      {name: "Pandas"},
+      {name: "Numpy"},
+      {name: "Scikit-learn"},
+      {name: "Matplotlib"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/ColorSnap"
+  },
+  {
+    name: "DocuLens",
+    dateRange: "Nov 2023 - Dec 2023",
+    description: "A document scanning application that detects and captures documents in real time using computer vision techniques. DocuLens enhances document quality through advanced image processing, including edge detection, blurring, and correction, making the scanned documents clear and easy to read.",
+    technologies: [
+      {name: "Python"},
+      {name: "OpenCV"},
+      {name: "Numpy"},
+      // {name: "TypeScript"},
+      // {name: "Tailwind CSS"},
+      // {name: "Node.js"},
+      // {name: "Vercel"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/DocuLens"
   },
 ]
 
