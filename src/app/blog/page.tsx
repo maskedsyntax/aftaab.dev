@@ -43,7 +43,7 @@ export default function BlogPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
+        <main className="container mx-auto px-4 py-8 pt-16 max-w-4xl">
           <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
           <div className="grid gap-6">
             {blogPosts.map((post) => (

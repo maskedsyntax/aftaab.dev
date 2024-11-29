@@ -18,7 +18,7 @@ export default function ProjectsPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <main className="container mx-auto px-4 py-8 pt-24 max-w-4xl">
+        <main className="container mx-auto px-4 py-8 pt-16 max-w-4xl">
           <h1 className="text-3xl font-bold mb-8 text-center">Dive Into My Work</h1>
           <p className="text-lg text-muted-foreground mb-10 text-center">
             Here's a peek at some of the cool stuff I've built over the years! From AI experiments to handy tools and
