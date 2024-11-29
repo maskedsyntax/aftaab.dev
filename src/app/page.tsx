@@ -90,8 +90,10 @@ export default function Home() {
                 Hi, I'm Aftaab <span className="wave">👋</span>
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground">
-                Software engineer exploring low-level programming and AI, merging compilers, OS, and ML to build
-                innovative tools and master the craft.
+                {/*Software engineer exploring low-level programming and AI, merging compilers, OS, and ML to build*/}
+                {/*innovative tools and master the craft.*/}
+                Software engineer diving into low-level programming and AI, merging machine learning with engineering to
+                build innovative tools and master the craft.
               </p>
             </div>
             <div className="relative w-36 h-36 rounded-full overflow-hidden bg-muted">
