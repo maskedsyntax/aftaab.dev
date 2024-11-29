@@ -2,67 +2,106 @@ import {ProjectCard} from './project-card'
 
 const projects = [
   {
-    name: "GeneRx Mapper",
-    dateRange: "Sept 2024 - Oct 2024",
-    description: "An AI-driven tool that analyzes gene expression data to predict drug responses for different gene profiles. GeneRx Mapper leverages machine learning algorithms to uncover relationships between genetic data and pharmaceutical outcomes, providing insights into personalized treatment.",
+    name: "Splashy",
+    dateRange: "May 2024",
+    description: "An interactive drawing tool where users can write and draw freely on a blank canvas with different color options, similar to a basic notebook or simplified Paint app.",
     technologies: [
       {name: "Python"},
-      {name: "Scikit-learn"},
-      {name: "Pandas"},
-      {name: "Random Forest"},
-      {name: "Matplotlib"},
-      {name: "Feature Extraction"},
+      {name: "Tkinter"},
+      {name: "GUI"},
     ],
     websiteUrl: "#",
-    repoUrl: "https://github.com/MaskedSyntax/genes-drug-response-prediction"
+    repoUrl: "https://github.com/MaskedSyntax/Splashy"
   },
   {
-    name: "IntelliPath",
-    dateRange: "July 2024 - Aug 2024",
-    description: "A visualization tool for the A* pathfinding algorithm that allows users to explore the shortest route between two points. IntelliPath offers an interactive interface for selecting start and end locations, as well as obstacles, providing an intuitive demonstration of pathfinding in action.",
+    name: "ARM7 Assembler",
+    dateRange: "Nov 2024",
+    description: "A GUI-based assembler for ARM7 architecture, enabling users to write, simulate, and visualize ARM7 assembly instructions, covering arithmetic, logical, and data movement operations.",
+    technologies: [
+      {name: "Python"},
+      {name: "Tkinter"},
+      {name: "RegEx"},
+      {name: "GUI"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/ARM7-Assembler"
+  },
+  {
+    name: "Minesweeper",
+    dateRange: "Aug 2024",
+    description: "A classic Minesweeper game with multiple difficulty levels, featuring dynamic gameplay and an intuitive interface that challenges your logical skills to uncover all non-mined cells.",
+    technologies: [
+      {name: "C++"},
+      {name: "STL"},
+      {name: "CLI"},
+      {name: "Recursion"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/Minesweeper"
+  },
+  {
+    name: "Youtube Audio Downloader",
+    dateRange: "Oct 2024",
+    description: "A command-line tool to download audio directly from YouTube videos, allowing users to easily convert, customize, and save YouTube content as high-quality audio files.",
+    technologies: [
+      {name: "Python"},
+      {name: "Pytube"},
+      {name: "ffmpeg"},
+      {name: "argparse"},
+      {name: "CLI"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/youtube-audio-downloader"
+  },
+  {
+    name: "Crop Wars",
+    dateRange: "Jan 2023",
+    description: "An action-packed game where players protect crops from acid rain and enemy clouds using lasers. Move, shoot, and strategize to keep your crops safe!",
     technologies: [
       {name: "Python"},
       {name: "Pygame"},
-      {name: "PriorityQueue"},
-      {name: "Math Functions"},
-      // {name: "FastAPI"},
-      // {name: "Tailwind CSS"},
-      // {name: "Node.js"},
-      // {name: "Vercel"},
+      {name: "Game Development"},
     ],
     websiteUrl: "#",
-    repoUrl: "https://github.com/MaskedSyntax/IntelliPath"
+    repoUrl: "https://github.com/MaskedSyntax/CropWars"
   },
   {
-    name: "ColorSnap",
-    dateRange: "March 2024 - April 2024",
-    description: "An interactive color detection tool that allows users to click on an image and instantly identify the closest matching color, along with the RGB and Hex values. ColorSnap uses OpenCV to read images and detect clicked points, and leverages a color dataset to determine the closest match with a high degree of accuracy.",
+    name: "2 Stage OpAmp Analysis",
+    dateRange: "Jan 2022 - Mar 2022",
+    description: "A web app for analyzing two-stage operational amplifier aspect ratios using machine learning models. Users input parameters to predict amplifier properties, optimizing circuit design.",
     technologies: [
       {name: "Python"},
-      {name: "OpenCV"},
-      {name: "Pandas"},
-      {name: "Numpy"},
-      {name: "Scikit-learn"},
-      {name: "Matplotlib"},
+      {name: "Streamlit"},
+      {name: "Neural Networks"},
+      {name: "ML"},
     ],
     websiteUrl: "#",
-    repoUrl: "https://github.com/MaskedSyntax/ColorSnap"
+    repoUrl: "https://github.com/MaskedSyntax/2-Stage-OpAmp-Analysis"
   },
   {
-    name: "DocuLens",
-    dateRange: "Nov 2023 - Dec 2023",
-    description: "A document scanning application that detects and captures documents in real time using computer vision techniques. DocuLens enhances document quality through advanced image processing, including edge detection, blurring, and correction, making the scanned documents clear and easy to read.",
+    name: "Sudoku",
+    dateRange: "Aug 2022",
+    description: "A C program to solve Sudoku puzzles using backtracking. The program fills in the missing numbers in a given Sudoku grid and prints the completed solution.",
     technologies: [
-      {name: "Python"},
-      {name: "OpenCV"},
-      {name: "Numpy"},
-      {name: "Contour Detection"},
-      {name: "Canny Edge Detection"},
-      {name: "Gaussian Blur"},
-      // {name: "Vercel"},
+      {name: "C"},
+      {name: "Backtracking"},
+      {name: "CLI"},
     ],
     websiteUrl: "#",
-    repoUrl: "https://github.com/MaskedSyntax/DocuLens"
+    repoUrl: "https://github.com/MaskedSyntax/Sudoku"
+  },
+  {
+    name: "Crypto Coin",
+    dateRange: "May 2021 - June 2021",
+    description: "A blockchain simulation implementing a basic cryptocurrency with proof-of-work and block validation. Users can mine blocks and make transactions within the blockchain.",
+    technologies: [
+      {name: "Python"},
+      {name: "Blockchain"},
+      {name: "SHA-256"},
+      {name: "POW"},
+    ],
+    websiteUrl: "#",
+    repoUrl: "https://github.com/MaskedSyntax/Crypto-Coin"
   },
 ]
 

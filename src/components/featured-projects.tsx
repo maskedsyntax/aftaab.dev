@@ -25,7 +25,7 @@ const projects = [
       {name: "Pygame"},
       {name: "PriorityQueue"},
       {name: "Math Functions"},
-      // {name: "FastAPI"},
+      {name: "GUI"},
       // {name: "Tailwind CSS"},
       // {name: "Node.js"},
       // {name: "Vercel"},
