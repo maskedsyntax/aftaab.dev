@@ -9,13 +9,6 @@ import type {Metadata} from "next"
 import {Button} from "@/components/ui/button";
 import {FeaturedProjects} from "@/components/featured-projects";
 
-// import {JetBrains_Mono} from 'next/font/google'
-//
-// const jetBrainsMono = JetBrains_Mono({
-//   subsets: ['latin'],
-//   weight: ['400', '500', '700', '800'],
-//   variable: '--font-montserrat',
-// });
 
 export const metadata: Metadata = {
   title: 'Aftaab Siddiqui',
@@ -172,36 +165,7 @@ export default function Home() {
               ))}
             </div>
           </section>
-
-          {/*<section className="mb-12">*/}
-          {/*  <h2 className="text-2xl font-bold mb-4 relative inline-block">*/}
-          {/*    Resume*/}
-          {/*    <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>*/}
-          {/*  </h2>*/}
-          {/*  <p className="text-lg text-muted-foreground">*/}
-          {/*    Interested in my professional journey?{' '}*/}
-          {/*    <Link href="/assets/Resume_Aftaab_Siddiqui.pdf" target="_blank"*/}
-          {/*          className="font-medium text-blue-600 underline">*/}
-          {/*      View my resume*/}
-          {/*    </Link>*/}
-          {/*    .*/}
-          {/*  </p>*/}
-          {/*</section>*/}
-
-          {/*<section className="text-center mt-20">*/}
-          {/*  <h2 className="text-4xl font-bold mb-3">*/}
-          {/*    My Resume*/}
-          {/*  </h2>*/}
-          {/*  <p className="text-lg text-muted-foreground mb-6">*/}
-          {/*    Interested in my professional journey? View my resume.*/}
-          {/*  </p>*/}
-          {/*  <Button asChild className="bg-black hover:bg-gray-800 text-white">*/}
-          {/*    <Link href="/assets/Resume_Aftaab_Siddiqui.pdf" target="_blank" rel="noopener noreferrer">*/}
-          {/*      <FileText className="mr-2 h-4 w-4"/>*/}
-          {/*      View Resume*/}
-          {/*    </Link>*/}
-          {/*  </Button>*/}
-          {/*</section>*/}
+          
 
           <section className="text-center mt-20">
             <h2 className="text-4xl font-bold mb-3 text-foreground">
