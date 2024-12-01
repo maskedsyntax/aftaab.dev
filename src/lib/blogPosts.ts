@@ -107,7 +107,7 @@ const blogs: BlogPost[] = [
 ]
 
 export const blogPosts = blogs.sort((a, b) => {
-  const dateA = new Date(a.date.split("-").reverse().join("-"));
-  const dateB = new Date(b.date.split("-").reverse().join("-"));
+  const dateA: any = new Date(a.date.split("-").reverse().join("-"));
+  const dateB: any = new Date(b.date.split("-").reverse().join("-"));
   return dateB - dateA; // For descending order (latest first)
 });
