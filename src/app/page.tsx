@@ -276,7 +276,8 @@ export default function Home() {
                 email
               </Link>
               {' '} or connect with me on {' '}
-              <Link href="https://www.linkedin.com/in/aftaabsiddiqui" className="text-blue-500 hover:underline">
+              <Link href="https://www.linkedin.com/in/aftaabsiddiqui" target="_blank"
+                    className="text-blue-500 hover:underline">
                 LinkedIn
               </Link>
               .
