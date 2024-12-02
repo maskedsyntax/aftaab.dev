@@ -1,8 +1,21 @@
 import {notFound} from 'next/navigation'
 import {Heart} from "lucide-react";
 import Navbar from "@/components/navbar";
-import {blogPosts} from "@/lib/blogPosts";
 import type {Metadata} from "next";
+import {getBlogById} from "@/lib/getBlogs";
+import MarkdownIt from "markdown-it";
+
+const md = new MarkdownIt("zero", {
+  html: true,
+  xhtmlOut: true,
+  breaks: false,
+  linkify: true,
+  typographer: true,
+  quotes: '“”‘’',
+})
+  .enable(['heading', 'blockquote']);
+
+// .use(markdownItAnchor);
 
 interface PageProps {
   params: Promise<{
@@ -23,28 +36,33 @@ export const metadata: Metadata = {
 
 export default async function BlogPost({params}: PageProps) {
   const resolvedParams = await params;
-  const post = blogPosts.find(p => p.id === resolvedParams.id)
+  // const post = blogPosts.find(p => p.id === resolvedParams.id)
 
-  if (!post) {
+  const blog = await getBlogById(resolvedParams.id);
+
+  if (!blog) {
     notFound()
   }
+
+  const htmlContent = md.render(blog.content);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar/>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 pt-16 max-w-4xl">
+      <main className="container mx-auto px-4 py-8 pt-12 max-w-4xl">
         <article className="prose lg:prose-xl dark:prose-invert mx-auto">
           <div className="mb-4">
             <a href="/blog" className="text-blue-500 hover:underline">
               ← Back to Blog
             </a>
           </div>
-          <h1 className="font-bold text-4xl mb-4">{post.title}</h1>
-          <p className="text-sm text-muted-foreground mb-6">{post.date}</p>
-          <p className="text-lg font-medium mb-4">{post.description}</p>
-          <div dangerouslySetInnerHTML={{__html: post.content}}/>
+          <h1 className="font-bold text-4xl mb-4">{blog.title}</h1>
+          <p className="text-sm text-muted-foreground mb-6">{blog.date}</p>
+          <p className="text-lg font-medium mb-4">{blog.description}</p>
+          <hr/>
+          <div dangerouslySetInnerHTML={{__html: htmlContent}}/>
         </article>
       </main>
 
