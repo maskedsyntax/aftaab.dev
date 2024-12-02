@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {PageTransition} from "@/components/page-transition";
 import type {Metadata} from "next";
 import {Heart} from "lucide-react";
-import {blogPosts} from "@/lib/blogPosts";
+import {getAllBlogs} from "@/lib/getBlogs";
 
 export const metadata: Metadata = {
   title: 'Blog | Aftaab Siddiqui',
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
+  const blogPosts = getAllBlogs();
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">

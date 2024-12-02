@@ -104,3 +104,31 @@ body {
     filter: blur(4px); /* Optional blur effect */
     transform: translateZ(0); /* Ensure better performance for blur */
 }
+
+/* Blockquote Styling */
+blockquote {
+    border-left: 4px solid #d1d5db;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #6b7280; /* Muted text color */
+    quotes: "“" "”" "‘" "’"; /* Proper quotes for blockquote */
+}
+
+blockquote p {
+    margin: 0;
+}
+
+blockquote::before {
+    content: open-quote;
+}
+
+blockquote::after {
+    content: close-quote;
+}
+
+/* Dark mode blockquote */
+.dark blockquote {
+    border-left: 4px solid #6b7280; /* Gray border */
+    color: #d1d5db; /* Light gray text for better contrast */
+}
