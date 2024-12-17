@@ -89,17 +89,20 @@ export default function Home() {
                 build innovative tools and master the craft.
               </p>
             </div>
-            <div className="relative w-36 h-36 rounded-full overflow-hidden bg-muted">
-              <Image
-                src="/images/Avatar/avatar.jpg"
-                alt="Aftaab's avatar"
-                fill
-                sizes="144px"
-                className="object-cover"
-              />
+            <div
+              className="relative w-36 h-36 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center">
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <Image
+                  src="/images/Avatar/new_avatar.jpg"
+                  alt="Aftaab's avatar"
+                  layout="fill"
+                  // sizes="144px"
+                  objectFit="contain"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
-
           <section className="mb-12">
             <h2 className={`text-2xl font-bold mb-4 relative inline-block`}>
               About
@@ -121,7 +124,8 @@ export default function Home() {
               <br/>
 
               Right now, I’m focusing on exploring ML algorithms, low-level programming, and working on impactful
-              projects. With my experience across various tech domains, I thrive on learning and building with anything
+              projects. With my experience across various tech domains, I thrive on learning and building with
+              anything
               that compiles.
 
             </p>
@@ -165,7 +169,7 @@ export default function Home() {
               ))}
             </div>
           </section>
-          
+
 
           <section className="text-center mt-20">
             <h2 className="text-4xl font-bold mb-3 text-foreground">
@@ -199,7 +203,8 @@ export default function Home() {
               Explore My <Link href="/blog" className="text-blue-500 hover:underline">blog</Link>.
             </h2>
             <p className="text-lg text-muted-foreground">
-              Dive into my thoughts on technology, coding journeys, and the ever-evolving world of software development.
+              Dive into my thoughts on technology, coding journeys, and the ever-evolving world of software
+              development.
               Occasionally, I also share insights on topics beyond tech.
             </p>
           </section>
@@ -233,7 +238,8 @@ export default function Home() {
             {/*  Contact*/}
             {/*</div>*/}
             <h2 className="text-4xl font-bold mb-3">Reach Out</h2>
-            <p className="text-lg text-muted-foreground mb-2">Have a project idea, feedback, or just want to say hi?</p>
+            <p className="text-lg text-muted-foreground mb-2">Have a project idea, feedback, or just want to say
+              hi?</p>
             <p className="text-lg">
               Feel free to drop me an{' '}
               <Link href="mailto:aftaab@aftaab.xyz" className="text-blue-500 hover:underline">
