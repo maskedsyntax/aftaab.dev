@@ -30,9 +30,9 @@ export const metadata: Metadata = {
 };
 
 const jetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '700', '800'],
-  variable: '--font-montserrat',
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-montserrat",
 });
 
 export default function Home() {
@@ -110,7 +110,6 @@ export default function Home() {
         <main className="container mx-auto px-8 py-8 sm:py-16 pt-16 sm:pt-24 max-w-4xl">
           <div className="flex flex-col sm:flex-row items-center justify-between sm:items-start gap-4 mb-12">
             <div className="max-w-lg text-center sm:text-left">
-
               <h1 className={`text-4xl sm:text-5xl font-bold mb-4`}>
                 Hi, I'm Aftaab <span className="wave">👋</span>
               </h1>
@@ -126,7 +125,10 @@ export default function Home() {
                 {/* Software engineer diving into low-level programming and AI,
                 merging machine learning with engineering to build innovative
                 tools and master the craft. */}
-                Software developer diving into low-level programming and applied ML, blending machine learning with engineering to craft impactful tools and refine the art of building intelligent systems.
+                Software developer diving into low-level programming and applied
+                ML, blending machine learning with engineering to craft
+                impactful tools and refine the art of building intelligent
+                systems.
               </p>
             </div>
             <div className="relative pl-1 w-32 h-32 sm:w-48 sm:h-48 xs:w-32 xs:h-32 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center">
@@ -147,31 +149,29 @@ export default function Home() {
               About
               <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              I’ve always been fascinated by technology, and a Linux course in
-              college kick-started my love for{" "}
-              <Link
-                href="https://github.com/MaskedSyntax"
-                target="_blank"
-                className="font-medium text-blue-600 underline"
-              >
-                open source development
-              </Link>
-              . I enjoy solving problems, building tools, and diving into areas
-              like{" "}
+            <p className={`text-muted-foreground leading-relaxed`}>
+              I’ve always been passionate about technology, and a Linux course
+              in college sparked my journey into open-source development. Over the years, I’ve explored backend development, cross-platform app development with Flutter, and problem-solving through data structures and algorithms—solving over 500+ questions on {" "}
               <Link
                 href="https://leetcode.com/u/maskedsyntax/"
                 target="_blank"
-                className="font-medium text-blue-600 underline"
+                className={`${jetBrainsMono.className} font-medium text-black underline dark:text-white`}
               >
-                DSA
+                LeetCode
+              </Link>{" "}
+              along the way. 
+              Recently, I’ve shifted my focus entirely to applied machine
+              learning and mathematics, diving deep into areas like Edge ML,
+              Multimodal ML, and Graph Machine Learning. I love working on projects that turn theory into real-world impact and staying active on {" "}
+              <Link
+                href="https://github.com/MaskedSyntax"
+                target="_blank"
+                className={`${jetBrainsMono.className} font-medium text-black underline dark:text-white`}
+              >
+                GitHub
               </Link>
-              , Blockchain, Machine Learning, and Backend Development.
-              <br />
-              Right now, I’m focusing on exploring ML algorithms, low-level
-              programming, and working on impactful projects. With my experience
-              across various tech domains, I thrive on learning and building
-              with anything that compiles.
+              , where I share my work and contribute to open source. <br />
+
             </p>
           </section>
 
