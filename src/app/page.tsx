@@ -90,10 +90,10 @@ export default function Home() {
               </p>
             </div>
             <div
-              className="relative w-36 h-36 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center">
+              className="relative pl-1 w-40 h-40 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center">
               <div className="relative w-full h-full rounded-full overflow-hidden">
                 <Image
-                  src="/images/Avatar/new_avatar.jpg"
+                  src="/images/Avatar/beard.jpg"
                   alt="Aftaab's avatar"
                   layout="fill"
                   // sizes="144px"
