@@ -118,6 +118,9 @@ export default function Home() {
               >
                 Aftaab Siddiqui | MaskedSyntax
               </h2>
+              
+              {/*Separator*/}
+              <div className="my-4 w-full h-px bg-gray-300 dark:bg-gray-600"></div>
 
               <p className="text-lg sm:text-xl text-muted-foreground">
                 {/*Software engineer exploring Applied Mathematics and Applied Mathematics, merging compilers, OS, and ML to build*/}
