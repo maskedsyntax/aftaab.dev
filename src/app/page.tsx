@@ -114,7 +114,7 @@ export default function Home() {
                 Hi, I'm Aftaab <span className="wave">👋</span>
               </h1>
               <h2
-                className={`${jetBrainsMono.className} text-lg sm:text-xl font-semibold text-gray-600 mb-2`}
+                className={`${jetBrainsMono.className} text-md sm:text-xl font-semibold text-gray-600 mb-2`}
               >
                 Aftaab Siddiqui | MaskedSyntax
               </h2>
@@ -171,7 +171,6 @@ export default function Home() {
                 GitHub
               </Link>
               , where I share my work and contribute to open source. <br />
-
             </p>
           </section>
 
