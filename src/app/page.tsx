@@ -46,6 +46,7 @@ export default function Home() {
     "Opencv",
     "Scikit-Learn",
     "TensorFlow",
+    "Pytorch",
     "Keras",
     "PyQt5",
     "Next.js",
@@ -53,7 +54,7 @@ export default function Home() {
     "MySQL",
   ];
 
-  const exploring = ["Rust", "GTK", "Qt", "Compilers"];
+  const exploring = ["Graph Neural Networks", "NLP", "ImGui", "Applied Mathematics"];
 
   const socialLinks = [
     {
@@ -118,7 +119,7 @@ export default function Home() {
               >
                 Aftaab Siddiqui | MaskedSyntax
               </h2>
-              
+
               {/*Separator*/}
               <div className="my-4 w-full h-px bg-gray-300 dark:bg-gray-600"></div>
 
