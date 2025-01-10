@@ -5,7 +5,7 @@ import type {Metadata} from "next";
 import {getBlogById} from "@/lib/getBlogs";
 import MarkdownIt from "markdown-it";
 
-const md = new MarkdownIt("zero", {
+const md = new MarkdownIt({
   html: true,
   xhtmlOut: true,
   breaks: false,
@@ -13,7 +13,7 @@ const md = new MarkdownIt("zero", {
   typographer: true,
   quotes: '“”‘’',
 })
-  .enable(['heading', 'blockquote']);
+  .enable(['heading', 'blockquote', 'inline']);
 
 // .use(markdownItAnchor);
 
