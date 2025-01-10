@@ -48,21 +48,16 @@ export function AboutSection() {
         </CardHeader>
         <CardContent className="text-muted-foreground leading-relaxed space-y-4">
           <p>
-            My journey in technology has been a mix of curiosity, exploration, and wanting to build cool stuff. It all
-            started with me taking apart gadgets just to see how they worked. That curiosity soon turned into a love for
-            programming.
+          My journey in technology has been a mix of curiosity, exploration, and wanting to build cool stuff. I’ve always been the curious type—the kind of kid who’d take apart gadgets just to see what’s inside. That curiosity eventually turned into a love for programming, and honestly, it’s been a fun ride ever since.
           </p>
           <p>
-            I got into data structures and algorithms, solving 500+ problems on LeetCode, and gained some solid
-            experience as a backend developer working with Spring Boot and MySQL. I even dabbled in low-level
-            programming, diving into operating systems and compilers to understand how things work at a deeper level.
+          I got into data structures and algorithms, solving over 500 problems on LeetCode, and spent a couple of years building backend systems with Spring Boot and MySQL. At some point, I got hooked on low-level programming—things like operating systems and compilers—because I wanted to really understand how things work under the hood.
           </p>
           <p>
-            Machine Learning caught my eye, and I dove right in. I've worked as an ML engineering intern,
-            tackling image processing projects, and even contributed to machine learning research during college. I've
-            also had the chance to explore blockchain tech during a startup internship. Now, I'm focused on blending
-            low-level programming with machine learning, building open-source tools, and pushing the boundaries of
-            what's possible. My journey's been all about learning and creating, and I'm excited for whatever comes next.
+          Machine Learning caught my eye, and I dove right in. I’ve worked on image processing projects during an ML internship, dabbled in blockchain tech at a startup, and even explored machine learning research back in college. Now, I’ve stepped away from the typical job or college path to focus entirely on applied machine learning and math.
+          </p>
+          <p>
+          Over the years, I’ve worked with so many technologies that I’ve gotten pretty comfortable picking up anything that compiles. These days, I’m blending low-level programming with machine learning, building open-source tools, and diving deep into areas like Edge ML, Multimodal ML, and Graph ML. It’s all about learning, experimenting, and creating stuff that’s actually useful—and I’m loving every bit of it.
           </p>
           {/*<p>*/}
           {/*  In my free time, I contribute to open-source projects, believing in the power of community-driven*/}
