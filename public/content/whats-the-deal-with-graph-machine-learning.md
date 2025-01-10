@@ -1,7 +1,7 @@
 ---
 id: "7"
 title: "What’s the Deal with Graph Machine Learning?"
-date: "10-01-2025"
+date: "01-01-2025"
 description: "Ever wondered how machine learning can learn from relationships? Graph Machine Learning is the answer."
 ---
 
