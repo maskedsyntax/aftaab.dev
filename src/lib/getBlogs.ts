@@ -6,10 +6,15 @@ const contentDir = path.join(process.cwd(), '/public/content');
 
 export interface BlogPost {
   id: string;
+  slug: string;
   title: string;
   date: string;
   description: string;
   content: string;
+}
+
+function createSlug(title: string): string {
+  return title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
 }
 
 export function getAllBlogs(): BlogPost[] {
@@ -23,6 +28,7 @@ export function getAllBlogs(): BlogPost[] {
 
     return {
       id: data.id,
+      slug: createSlug(data.title),
       title: data.title,
       date: data.date,
       description: data.description,
@@ -35,7 +41,7 @@ export function getAllBlogs(): BlogPost[] {
   }); // Sort by date (latest first)
 }
 
-export function getBlogById(id: string): BlogPost | undefined {
+export function getBlogBySlug(slug: string): BlogPost | undefined {
   const blogs = getAllBlogs();
-  return blogs.find((blog) => blog.id === id);
+  return blogs.find((blog) => blog.slug === slug);
 }

@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   },
 }
 
+function createSlug(title: string) {
+  return title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+}
+
 export default function BlogPage() {
   const blogPosts = getAllBlogs();
   return (
@@ -33,7 +37,7 @@ export default function BlogPage() {
                 <CardContent>
                   <p className="mb-4">{post.description}</p>
                   <Link
-                    href={`/blog/${post.id}`}
+                    href={`/blog/${createSlug(post.title)}`}
                     className="text-blue-500 hover:underline"
                   >
                     Read more

@@ -2,7 +2,7 @@ import {notFound} from 'next/navigation'
 import {Heart} from "lucide-react";
 import Navbar from "@/components/navbar";
 import type {Metadata} from "next";
-import {getBlogById} from "@/lib/getBlogs";
+import {getBlogBySlug} from "@/lib/getBlogs";
 import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt({
@@ -19,7 +19,7 @@ const md = new MarkdownIt({
 
 interface PageProps {
   params: Promise<{
-    id: string
+    slug: string
   }>
 }
 
@@ -38,7 +38,7 @@ export default async function BlogPost({params}: PageProps) {
   const resolvedParams = await params;
   // const post = blogPosts.find(p => p.id === resolvedParams.id)
 
-  const blog = await getBlogById(resolvedParams.id);
+  const blog = await getBlogBySlug(resolvedParams.slug);
 
   if (!blog) {
     notFound()
