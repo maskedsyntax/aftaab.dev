@@ -75,7 +75,7 @@ const projects = [
       {name: "Neural Networks"},
       {name: "ML"},
     ],
-    websiteUrl: "#",
+    websiteUrl: "https://opamp-analysis.streamlit.app/",
     repoUrl: "https://github.com/MaskedSyntax/2-Stage-OpAmp-Analysis"
   },
   {

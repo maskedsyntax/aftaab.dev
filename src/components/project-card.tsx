@@ -1,4 +1,5 @@
 import {Badge} from "@/components/ui/badge"
+import { FaGithub, FaGlobe } from "react-icons/fa"
 
 interface Technology {
   name: string
@@ -40,18 +41,20 @@ export function ProjectCard({
           {websiteUrl && websiteUrl !== "#" &&
             <Badge
               variant="default"
-              className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
+              className="text-sm bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200  flex items-center"
               asChild
             >
-              <a href={websiteUrl} target="_blank" rel="noopener noreferrer">Website</a>
+              <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
+              <FaGlobe className="inline-block mr-1" /> Website</a>
             </Badge>
           }
           <Badge
             variant="default"
-            className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
+            className="text-sm bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200  flex items-center"
             asChild
           >
-            <a href={repoUrl} target="_blank" rel="noopener noreferrer">Repository</a>
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+              <FaGithub className="inline-block mr-1" /> Repository</a>
           </Badge>
         </div>
       </div>
