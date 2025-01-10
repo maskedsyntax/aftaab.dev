@@ -37,13 +37,15 @@ export function ProjectCard({
           ))}
         </div>
         <div className="flex gap-2 mt-auto">
-          <Badge
-            variant="default"
-            className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
-            asChild
-          >
-            <a href={websiteUrl} target="_blank" rel="noopener noreferrer">Website</a>
-          </Badge>
+          {websiteUrl && websiteUrl !== "#" &&
+            <Badge
+              variant="default"
+              className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
+              asChild
+            >
+              <a href={websiteUrl} target="_blank" rel="noopener noreferrer">Website</a>
+            </Badge>
+          }
           <Badge
             variant="default"
             className="bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200"
