@@ -6,6 +6,7 @@ import {ThemeProvider} from "@/components/themes";
 import Navbar from "@/components/navbar";
 import {AnimatePresence} from "framer-motion";
 import React from "react";
+import { Analytics } from "@vercel/analytics/react"
 import {ThemeWrapper} from "@/components/theme-wrapper";
 
 
@@ -40,6 +41,7 @@ export default function RootLayout({
         </div>
       </ThemeWrapper>
     </ThemeProvider>
+    <Analytics/>
     </body>
     </html>
   )
