@@ -60,6 +60,7 @@ out/
 
 # TypeScript
 *.tsbuildinfo
+*.d.ts
 
 # Next.js specific
 .vercel/
