@@ -16,7 +16,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { FeaturedProjects } from "@/components/featured-projects";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Pacifico } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Aftaab Siddiqui",
@@ -33,6 +33,12 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "700", "800"],
   variable: "--font-montserrat",
+});
+
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pacifico",
 });
 
 export default function Home() {
@@ -54,7 +60,12 @@ export default function Home() {
     "MySQL",
   ];
 
-  const exploring = ["Graph Neural Networks", "NLP", "ImGui", "Applied Mathematics"];
+  const exploring = [
+    "Graph Neural Networks",
+    "NLP",
+    "ImGui",
+    "Applied Mathematics",
+  ];
 
   const socialLinks = [
     {
@@ -112,7 +123,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-between sm:items-start gap-4 mb-12">
             <div className="max-w-lg text-center sm:text-left">
               <h1 className={`text-4xl sm:text-5xl font-bold mb-4`}>
-                Hi, I'm Aftaab <span className="wave">👋</span>
+                <span className={`${pacifico.className}`}>Hi, I'm Aftaab </span>
+                <span className="wave">👋</span>
               </h1>
               <h2
                 className={`${jetBrainsMono.className} text-md sm:text-xl font-semibold text-gray-600 mb-2`}
@@ -149,13 +161,18 @@ export default function Home() {
             </div>
           </div>
           <section className="mb-12">
-            <h2 className={`text-2xl font-bold mb-4 relative inline-block`}>
+            <h2
+              className={`${pacifico.className} text-2xl font-bold mb-4 relative inline-block`}
+            >
               About
               <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
             </h2>
             <p className={`text-muted-foreground leading-relaxed`}>
               I’ve always been passionate about technology, and a Linux course
-              in college sparked my journey into open-source development. Over the years, I’ve explored backend development, cross-platform app development with Flutter, and problem-solving through data structures and algorithms—solving over 500+ questions on {" "}
+              in college sparked my journey into open-source development. Over
+              the years, I’ve explored backend development, cross-platform app
+              development with Flutter, and problem-solving through data
+              structures and algorithms—solving over 500+ questions on{" "}
               <Link
                 href="https://leetcode.com/u/maskedsyntax/"
                 target="_blank"
@@ -163,10 +180,11 @@ export default function Home() {
               >
                 LeetCode
               </Link>{" "}
-              along the way. 
-              Recently, I’ve shifted my focus entirely to applied machine
-              learning and mathematics, diving deep into areas like Edge ML,
-              Multimodal ML, and Graph Machine Learning. I love working on projects that turn theory into real-world impact and staying active on {" "}
+              along the way. Recently, I’ve shifted my focus entirely to applied
+              machine learning and mathematics, diving deep into areas like Edge
+              ML, Multimodal ML, and Graph Machine Learning. I love working on
+              projects that turn theory into real-world impact and staying
+              active on{" "}
               <Link
                 href="https://github.com/MaskedSyntax"
                 target="_blank"
@@ -179,7 +197,9 @@ export default function Home() {
           </section>
 
           <section className="mb-12">
-            <h2 className={`text-2xl font-bold mb-4 relative inline-block`}>
+            <h2
+              className={`${pacifico.className} text-2xl font-bold mb-4 relative inline-block`}
+            >
               Skills
               <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
             </h2>
