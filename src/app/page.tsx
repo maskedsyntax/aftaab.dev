@@ -16,7 +16,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { FeaturedProjects } from "@/components/featured-projects";
-import { JetBrains_Mono, Pacifico } from "next/font/google";
+import { JetBrains_Mono, Pacifico, Kalam } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Aftaab Siddiqui",
@@ -38,6 +38,12 @@ const jetBrainsMono = JetBrains_Mono({
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: ["400"],
+  variable: "--font-pacifico",
+});
+
+const kalam = Kalam({
+  subsets: ["latin"],
+  weight: ["700"],
   variable: "--font-pacifico",
 });
 
@@ -285,10 +291,13 @@ export default function Home() {
           </section>
 
           <section className="text-center mt-24 mb-24">
-            <h2 className="text-4xl font-bold mb-3">
+            <h2 className={`text-4xl font-bold mb-3`}>
               Explore My{" "}
-              <Link href="/blog" className="text-blue-500 hover:underline">
-                blog
+              <Link
+                href="/blog"
+                className={` ${pacifico.className} text-blue-500 hover:underline`}
+              >
+                Blog
               </Link>
               .
             </h2>
@@ -300,7 +309,7 @@ export default function Home() {
           </section>
 
           <section className="text-center mb-24">
-            <h2 className="text-4xl font-bold mb-3">Let’s Connect</h2>
+            <h2 className={` text-4xl font-bold mb-3`}>Let’s Connect</h2>
             <p className="text-lg text-muted-foreground mb-6">
               Explore my contributions, projects, and collaborations on these
               platforms:
@@ -338,7 +347,7 @@ export default function Home() {
               Feel free to drop me an{" "}
               <Link
                 href="mailto:aftaab@aftaab.xyz"
-                className="text-blue-500 hover:underline"
+                className={`${pacifico.className} text-blue-500 hover:underline`}
               >
                 email
               </Link>{" "}
@@ -346,7 +355,7 @@ export default function Home() {
               <Link
                 href="https://www.linkedin.com/in/aftaabsiddiqui"
                 target="_blank"
-                className="text-blue-500 hover:underline"
+                className={`${kalam.className} text-blue-500 hover:underline`}
               >
                 LinkedIn
               </Link>
