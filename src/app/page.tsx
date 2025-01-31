@@ -16,7 +16,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { FeaturedProjects } from "@/components/featured-projects";
-import { JetBrains_Mono, Pacifico, Kalam } from "next/font/google";
+import { JetBrains_Mono, Pacifico, Kalam, Ubuntu_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Aftaab Siddiqui",
@@ -44,6 +44,12 @@ const pacifico = Pacifico({
 const kalam = Kalam({
   subsets: ["latin"],
   weight: ["700"],
+  variable: "--font-pacifico",
+});
+
+const ubuntu = Ubuntu_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   variable: "--font-pacifico",
 });
 
@@ -133,7 +139,7 @@ export default function Home() {
                 <span className="wave">👋</span>
               </h1>
               <h2
-                className={`${jetBrainsMono.className} text-md sm:text-xl font-semibold text-gray-600 mb-2`}
+                className={`${ubuntu.className} text-md sm:text-xl font-semibold text-gray-600 mb-2`}
               >
                 Aftaab Siddiqui | MaskedSyntax
               </h2>
@@ -171,20 +177,20 @@ export default function Home() {
               className={`${pacifico.className} text-2xl font-bold mb-4 relative inline-block`}
             >
               About
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-500 -mb-1"></div>
             </h2>
             <p className={`text-muted-foreground leading-relaxed`}>
               I’ve always been passionate about technology, and a Linux course
               in college sparked my journey into open-source development. Over
               the years, I’ve explored backend development, cross-platform app
               development with Flutter, and problem-solving through data
-              structures and algorithms—solving over 500+ questions on{" "}
+              structures and algorithms — solving over 500+ questions on{" "}
               <Link
                 href="https://leetcode.com/u/maskedsyntax/"
                 target="_blank"
-                className={`${jetBrainsMono.className} font-medium text-black underline dark:text-white`}
+                className={`${ubuntu.className} font-medium text-black underline dark:text-white`}
               >
-                LeetCode
+                leetcode
               </Link>{" "}
               along the way. Recently, I’ve shifted my focus entirely to applied
               machine learning and mathematics, diving deep into areas like Edge
@@ -194,9 +200,9 @@ export default function Home() {
               <Link
                 href="https://github.com/MaskedSyntax"
                 target="_blank"
-                className={`${jetBrainsMono.className} font-medium text-black underline dark:text-white`}
+                className={`${ubuntu.className} font-medium text-black underline dark:text-white`}
               >
-                GitHub
+                github
               </Link>
               , where I share my work and contribute to open source. <br />
             </p>
@@ -207,7 +213,7 @@ export default function Home() {
               className={`${pacifico.className} text-2xl font-bold mb-4 relative inline-block`}
             >
               Skills
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-red-500 -mb-1"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-500 -mb-1"></div>
             </h2>
             {/* Programming Languages */}
             <div className="flex flex-wrap gap-2 mb-2">
