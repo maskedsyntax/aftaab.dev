@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { JetBrains_Mono, Pacifico, Kalam } from "next/font/google";
+import { Pacifico, Exo_2 } from "next/font/google";
 
 interface Experience {
   company: string;
@@ -19,6 +19,12 @@ interface Experience {
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: ["400"],
+  variable: "--font-pacifico",
+});
+
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-pacifico",
 });
 
@@ -90,7 +96,7 @@ export function ExperienceSection() {
   return (
     <section className="mb-12">
       <h2
-        className={`${pacifico.className} text-2xl font-bold mb-6 relative inline-block`}
+        className={`${exo2.className} text-2xl font-bold mb-6 relative inline-block`}
       >
         Experience
         <div className="absolute bottom-0 left-0 w-full h-1 way bg-blue-500 -mb-1"></div>

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pacifico } from "next/font/google";
+import { Pacifico, Ubuntu_Condensed, Fira_Sans } from "next/font/google";
 
 interface Milestone {
   date: string;
@@ -10,6 +10,11 @@ interface Milestone {
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: ["400"],
+  variable: "--font-pacifico",
+});
+const firacode = Fira_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-pacifico",
 });
 const milestones: Milestone[] = [
@@ -56,7 +61,7 @@ export function AboutSection() {
     <section className="mb-12 space-y-8">
       <Card>
         <CardHeader>
-          <CardTitle className={`${pacifico.className} underline`}>
+          <CardTitle className={`${firacode.className} underline`}>
             My Journey in Technology
           </CardTitle>
         </CardHeader>
