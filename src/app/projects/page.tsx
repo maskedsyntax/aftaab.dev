@@ -37,7 +37,7 @@ export default function ProjectsPage() {
             <Link
               href="https://github.com/MaskedSyntax"
               target="_blank"
-              className={`${pacifico.className} text-blue-500 hover:underline`}
+              className={`${pacifico.className} text-blue-500 underline`}
             >
               latest creations
             </Link>
