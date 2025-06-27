@@ -15,7 +15,7 @@ const projects = [
       { name: "Feature Extraction" },
     ],
     websiteUrl: "#",
-    repoUrl: "https://github.com/MaskedSyntax/genes-drug-response-prediction",
+    repoUrl: "https://github.com/MaskedSyntax/generx-mapper",
   },
   {
     name: "IntelliPath",
