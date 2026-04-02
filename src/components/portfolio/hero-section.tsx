@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useHydrationSafeReducedMotion } from "@/hooks/use-hydration-safe-reduced-motion";
 import { heroCopy, contactCopy } from "@/lib/portfolio-data";
 import { ArrowDown, Github } from "lucide-react";
 
@@ -18,7 +19,7 @@ function fade(i: number, skip: boolean | null) {
 }
 
 export function HeroSection() {
-  const rm = useReducedMotion();
+  const rm = useHydrationSafeReducedMotion();
 
   return (
     <section className="relative pb-10 pt-1 md:pb-12 md:pt-3">

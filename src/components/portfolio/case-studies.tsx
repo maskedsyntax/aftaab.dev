@@ -6,7 +6,10 @@ import Image from "next/image";
 
 export function CaseStudies() {
   return (
-    <SectionReveal className="border-t border-border py-12 md:py-16">
+    <SectionReveal
+      id="case-studies"
+      className="scroll-mt-8 border-t border-border py-12 md:py-16"
+    >
       <SectionHeader
         title="Case studies"
         description="Structured write-ups: challenge, solution, and impact. No filler."

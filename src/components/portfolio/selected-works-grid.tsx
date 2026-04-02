@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useHydrationSafeReducedMotion } from "@/hooks/use-hydration-safe-reduced-motion";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 
@@ -28,7 +29,7 @@ export function SelectedWorksGrid({
 }: {
   projects: FeaturedProject[];
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydrationSafeReducedMotion();
 
   if (reduceMotion) {
     return (

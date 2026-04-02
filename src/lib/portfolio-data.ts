@@ -98,18 +98,79 @@ export const featuredProjects: FeaturedProject[] = [
 export const selectedWorksIntro =
   "A selection of systems and tools I’ve designed and built, ranging from developer infrastructure to full-scale products. Each project focuses on solving a specific problem with clarity, structure, and long-term usability in mind.";
 
+/** Full catalog on `/projects` — everything not covered by `featuredProjects` case studies */
+export type WorkListStatus = "live" | "in-progress" | "future";
+
+export type WorkListItem = {
+  id: string;
+  name: string;
+  url: string;
+  status: WorkListStatus;
+  note?: string;
+};
+
+export const additionalWorkProjects: WorkListItem[] = [
+  {
+    id: "lofikofi",
+    name: "LofiKofi",
+    url: "https://lofikofi.space",
+    status: "live",
+  },
+  {
+    id: "patterns",
+    name: "Patterns",
+    url: "https://patterns.maskedsyntax.com",
+    status: "live",
+  },
+  {
+    id: "cachevector",
+    name: "CacheVector",
+    url: "https://cachevector.com",
+    status: "live",
+    note: "Lab & open source hub",
+  },
+  {
+    id: "eirafocus",
+    name: "EiraFocus",
+    url: "https://eirafocus.com",
+    status: "in-progress",
+  },
+  {
+    id: "foliomint",
+    name: "FolioMint",
+    url: "https://foliomint.site",
+    status: "in-progress",
+  },
+  {
+    id: "queriously",
+    name: "Queriously",
+    url: "https://queriously.app",
+    status: "future",
+  },
+];
+
+export const cacheVectorOpenSourceLibraries = [
+  { name: "hashprep", href: "https://github.com/cachevector/hashprep" },
+  { name: "fuzzybunny", href: "https://github.com/cachevector/fuzzybunny" },
+  { name: "doqtor", href: "https://github.com/cachevector/doqtor" },
+  { name: "image-diff", href: "https://github.com/cachevector/image-diff" },
+] as const;
+
+export const workPageIntro =
+  "Flagship work with full case studies lives on the home page. This page lists the rest—lab tools, additional products, and builds in progress—plus open-source libraries from CacheVector.";
+
+export const workPageExternalLinks = {
+  github: "https://github.com/MaskedSyntax",
+  portfolio: "https://maskedsyntax.com",
+} as const;
+
 export const labContent = {
   title: "CacheVector — Lab & open source",
   body: [
     "Alongside product development, I run a small lab focused on open-source tools and machine learning systems. If I build something useful, parts of it should be reusable by others.",
     "Through this work I’ve developed tools for data processing, fuzzy matching, and image-based analysis—contributing back while exploring practical ML applications.",
   ],
-  contributions: [
-    "hashprep",
-    "fuzzybunny",
-    "doqtor",
-    "image-diff",
-  ],
+  contributions: cacheVectorOpenSourceLibraries.map((p) => p.name),
 };
 
 export const specializations = {
@@ -158,23 +219,19 @@ export const aboutShort = [
 
 export const stackCategories = [
   {
-    name: "Frontend",
-    items: ["React", "Next.js", "Svelte", "Tailwind CSS", "Shadcn UI"],
+    name: "Web & mobile",
+    items: ["React", "Next.js", "Svelte", "Tailwind CSS", "Shadcn UI", "Flutter"],
   },
   {
-    name: "Backend",
-    items: ["Flask", "FastAPI", "Django", "Express", "Fastify", "Golang"],
+    name: "Backend & APIs",
+    items: ["Flask", "FastAPI", "Django", "Express", "Fastify", "Go"],
   },
   {
-    name: "Cross-platform",
-    items: ["Flutter"],
-  },
-  {
-    name: "Systems",
+    name: "Systems & languages",
     items: ["C++", "Python", "Rust"],
   },
   {
-    name: "Tooling",
+    name: "Runtime & tooling",
     items: ["Bun", "Node.js", "Docker"],
   },
 ];
