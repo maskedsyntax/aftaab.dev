@@ -1,82 +1,112 @@
-import {notFound} from 'next/navigation'
-import {Heart} from "lucide-react";
-import Navbar from "@/components/navbar";
-import type {Metadata} from "next";
-import {getBlogBySlug} from "@/lib/getBlogs";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getAllBlogs, getBlogBySlug } from "@/lib/getBlogs";
 import MarkdownIt from "markdown-it";
+import Link from "next/link";
+import { SiteFooter } from "@/components/site-footer";
+import { siteUrl, siteName } from "@/lib/site";
+
+function toISODate(ddmmyyyy: string): string {
+  return new Date(ddmmyyyy.split("-").reverse().join("-")).toISOString();
+}
 
 const md = new MarkdownIt({
-  html: true,
+  html: false,
   xhtmlOut: true,
   breaks: false,
   linkify: true,
   typographer: true,
-  quotes: '“”‘’',
-})
-  .enable(['heading', 'blockquote', 'inline']);
-
-// .use(markdownItAnchor);
+  quotes: "\u201C\u201D\u2018\u2019",
+}).enable(["heading", "blockquote", "inline"]);
 
 interface PageProps {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }
 
-export const metadata: Metadata = {
-  title: 'Blog | Aftaab Siddiqui',
-  description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
-  icons: {
-    icon: "/favicons/favicon.ico", // Default favicon
-    shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
-    apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
-  },
+export function generateStaticParams() {
+  return getAllBlogs().map((post) => ({ slug: post.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
+  if (!blog) {
+    return { title: "Post" };
+  }
+  const title = blog.title.trim();
+  const publishedTime = toISODate(blog.date);
+  return {
+    title,
+    description: blog.description,
+    authors: [{ name: siteName }],
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title,
+      description: blog.description,
+      url: `${siteUrl}/blog/${slug}`,
+      type: "article",
+      publishedTime,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: blog.description,
+    },
+  };
+}
 
-export default async function BlogPost({params}: PageProps) {
+export default async function BlogPost({ params }: PageProps) {
   const resolvedParams = await params;
-  // const post = blogPosts.find(p => p.id === resolvedParams.id)
 
-  const blog = await getBlogBySlug(resolvedParams.slug);
+  const blog = getBlogBySlug(resolvedParams.slug);
 
   if (!blog) {
-    notFound()
+    notFound();
   }
 
   const htmlContent = md.render(blog.content);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blog.title.trim(),
+    description: blog.description,
+    datePublished: toISODate(blog.date),
+    author: { "@type": "Person", name: siteName, url: siteUrl },
+    url: `${siteUrl}/blog/${resolvedParams.slug}`,
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <Navbar/>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 pt-12 max-w-4xl">
-        <article className="prose lg:prose-xl dark:prose-invert mx-auto">
-          <div className="mb-4">
-            <a href="/blog" className="text-blue-500 hover:underline">
-              ← Back to Blog
-            </a>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
+        <article className="prose prose-neutral dark:prose-invert mx-auto max-w-none lg:prose-lg">
+          <div className="not-prose mb-8">
+            <Link
+              href="/blog"
+              className="font-mono text-sm font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 hover:decoration-foreground"
+            >
+              ← Blog
+            </Link>
           </div>
-          <h1 className="font-bold text-4xl mb-4">{blog.title}</h1>
-          <p className="text-sm text-muted-foreground mb-6">{blog.date}</p>
-          <p className="text-lg font-medium mb-4">{blog.description}</p>
-          <hr/>
-          <div dangerouslySetInnerHTML={{__html: htmlContent}}/>
+          <h1 className="font-semibold tracking-tight">{blog.title.trim()}</h1>
+          <p className="text-sm text-muted-foreground">{blog.date}</p>
+          <p className="lead !font-normal text-muted-foreground">
+            {blog.description}
+          </p>
+          <hr className="my-8" />
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </article>
       </main>
 
-      <footer className="mt-20 pb-24 text-center">
-        <div className="flex items-center justify-center mb-2">
-          <span className="mr-1">Made with</span>
-          <Heart className="w-4 h-4 text-red-500 mx-1"/>
-          <span>by Aftaab Siddiqui</span>
-        </div>
-        <div className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Aftaab Siddiqui. All rights reserved.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
-  )
+  );
 }
-

@@ -27,12 +27,12 @@ export function ProjectCard({
       className="border rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-card dark:text-card-foreground flex flex-col h-full">
       <div className="p-6 flex flex-col flex-grow">
         <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm text-gray-500 mb-2">{dateRange}</p>
+        <p className="text-sm text-muted-foreground mb-2">{dateRange}</p>
         <p className="text-sm mb-4 flex-grow">{description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {technologies.map((tech) => (
             <Badge key={tech.name} variant="secondary"
-                   className="text-xs px-2 py-1 rounded-full bg-gray-200 dark:bg-gray-700">
+                   className="text-xs px-2 py-1">
               {tech.name}
             </Badge>
           ))}
@@ -41,7 +41,7 @@ export function ProjectCard({
           {websiteUrl && websiteUrl !== "#" &&
             <Badge
               variant="default"
-              className="text-sm bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200  flex items-center"
+              className="text-sm cursor-pointer transition-colors hover:bg-primary/90 flex items-center"
               asChild
             >
               <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
@@ -50,7 +50,7 @@ export function ProjectCard({
           }
           <Badge
             variant="default"
-            className="text-sm bg-black hover:bg-gray-800 transition-colors cursor-pointer dark:bg-white dark:text-black dark:hover:bg-gray-200  flex items-center"
+            className="text-sm cursor-pointer transition-colors hover:bg-primary/90 flex items-center"
             asChild
           >
             <a href={repoUrl} target="_blank" rel="noopener noreferrer">

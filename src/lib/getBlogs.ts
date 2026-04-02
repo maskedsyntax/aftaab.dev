@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { slugifyTitle } from '@/lib/slug';
 
-const contentDir = path.join(process.cwd(), '/public/content');
+const contentDir = path.join(process.cwd(), 'content');
 
 export interface BlogPost {
   id: string;
@@ -13,14 +14,14 @@ export interface BlogPost {
   content: string;
 }
 
-function createSlug(title: string): string {
-  return title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
-}
+let cached: BlogPost[] | null = null;
 
 export function getAllBlogs(): BlogPost[] {
-  const files = fs.readdirSync(contentDir);
+  if (cached) return cached;
 
-  return files.map((fileName) => {
+  const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.md'));
+
+  cached = files.map((fileName) => {
     const filePath = path.join(contentDir, fileName);
     const fileContent = fs.readFileSync(filePath, 'utf8');
 
@@ -28,20 +29,21 @@ export function getAllBlogs(): BlogPost[] {
 
     return {
       id: data.id,
-      slug: createSlug(data.title),
+      slug: slugifyTitle(data.title),
       title: data.title,
       date: data.date,
       description: data.description,
       content,
     };
   }).sort((a, b) => {
-    const dateA: any = new Date(a.date.split("-").reverse().join("-"));
-    const dateB: any = new Date(b.date.split("-").reverse().join("-"));
+    const dateA = new Date(a.date.split("-").reverse().join("-")).getTime();
+    const dateB = new Date(b.date.split("-").reverse().join("-")).getTime();
     return dateB - dateA;
-  }); // Sort by date (latest first)
+  });
+
+  return cached;
 }
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {
-  const blogs = getAllBlogs();
-  return blogs.find((blog) => blog.slug === slug);
+  return getAllBlogs().find((blog) => blog.slug === slug);
 }

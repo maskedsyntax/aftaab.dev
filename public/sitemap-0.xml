@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://aftaab.xyz/about</loc><lastmod>2025-01-30T16:40:41.290Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://aftaab.xyz</loc><lastmod>2025-01-30T16:40:41.291Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://aftaab.xyz/projects</loc><lastmod>2025-01-30T16:40:41.291Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://aftaab.xyz/blog</loc><lastmod>2025-01-30T16:40:41.291Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/projects</loc><lastmod>2026-04-02T15:55:35.219Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/about</loc><lastmod>2026-04-02T15:55:35.220Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz</loc><lastmod>2026-04-02T15:55:35.220Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://aftaab.xyz/blog</loc><lastmod>2026-04-02T15:55:35.220Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/designing-developer-tools-that-dont-feel-like-tools</loc><lastmod>2026-03-22T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/from-idea-to-system-how-i-approach-product-development</loc><lastmod>2026-03-18T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/music-coffee-while-coding-the-perfect-combo</loc><lastmod>2024-07-11T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/should-you-use-ai-tools-to-code-spoiler-yes-but-with-limits</loc><lastmod>2024-05-12T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/simplicity-is-engineered-the-hidden-work-behind-clean-ui</loc><lastmod>2026-03-28T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/slam-in-self-driving-cars-mapping-the-road-ahead</loc><lastmod>2025-01-10T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/switching-to-python-from-c-for-dsa-a-new-chapter</loc><lastmod>2025-01-27T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/the-role-of-machine-learning-in-medical-science-a-hopeful-future</loc><lastmod>2024-11-06T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/too-many-dsa-rounds-a-developers-perspective</loc><lastmod>2024-09-15T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/whats-the-deal-with-graph-machine-learning</loc><lastmod>2025-01-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/why-i-use-linux-for-everything-yes-even-gaming</loc><lastmod>2024-12-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/why-most-freelancers-build-the-wrong-things</loc><lastmod>2026-03-15T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://aftaab.xyz/blog/why-neovim-is-surprisingly-awesome-for-frontend-development</loc><lastmod>2024-09-15T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

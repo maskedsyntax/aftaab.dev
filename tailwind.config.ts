@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -72,7 +76,7 @@ export default {
         dark: {
           css: {
             blockquote: {
-              borderLeftColor: 'theme("colors.grey.600")',
+              borderLeftColor: 'theme("colors.gray.600")',
               color: 'theme("colors.gray.300")'
             }
           }

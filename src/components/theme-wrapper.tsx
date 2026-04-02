@@ -1,17 +1,5 @@
-"use client";
+import type { ReactNode } from "react";
 
-import {useTheme} from "next-themes";
-import React from "react";
-
-export function ThemeWrapper({children}: { children: React.ReactNode }) {
-  const {theme} = useTheme(); // Get the current theme
-
-  // Determine the class based on the theme
-  const themeClass = theme === "dark" ? "theme" : "theme";
-
-  return (
-    <div className={themeClass}>
-      {children}
-    </div>
-  );
+export function ThemeWrapper({ children }: { children: ReactNode }) {
+  return <>{children}</>;
 }

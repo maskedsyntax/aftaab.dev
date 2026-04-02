@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Pacifico, Exo_2 } from "next/font/google";
+import { Exo_2 } from "next/font/google";
 
 interface Experience {
   company: string;
@@ -16,16 +16,10 @@ interface Experience {
   totalDuration: string;
 }
 
-const pacifico = Pacifico({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-pacifico",
-});
-
 const exo2 = Exo_2({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-pacifico",
+  variable: "--font-exo2",
 });
 
 const experiences: Experience[] = [
@@ -146,7 +140,7 @@ export function ExperienceSection() {
                             <Badge
                               key={skillIndex}
                               variant="secondary"
-                              className="text-xs px-2 py-1 rounded-full bg-gray-200 dark:bg-gray-700"
+                              className="text-xs px-2 py-1"
                             >
                               {skill}
                             </Badge>

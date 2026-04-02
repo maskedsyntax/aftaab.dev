@@ -2,21 +2,16 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/compo
 import Link from 'next/link'
 import {PageTransition} from "@/components/page-transition";
 import type {Metadata} from "next";
-import {Heart} from "lucide-react";
 import {getAllBlogs} from "@/lib/getBlogs";
+import { SiteFooter } from "@/components/site-footer";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: 'Blog | Aftaab Siddiqui',
-  description: 'Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology',
-  icons: {
-    icon: "/favicons/favicon.ico", // Default favicon
-    shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
-    apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
-  },
-}
-
-function createSlug(title: string) {
-  return title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+  title: "Blog",
+  description:
+    "Engineering notes, product building, and systems thinking.",
+  alternates: { canonical: "/blog" },
+  openGraph: { url: `${siteUrl}/blog` },
 }
 
 export default function BlogPage() {
@@ -24,21 +19,24 @@ export default function BlogPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <main className="container mx-auto px-4 py-8 pt-16 max-w-4xl">
-          <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
-          <div className="grid gap-6">
+        <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
+          <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Blog</h1>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-[15px]">
+            Long-form writing on building products and systems.
+          </p>
+          <div className="mt-10 grid gap-6">
             {blogPosts.map((post) => (
               <Card key={post.id}
-                    className="relative transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+                    className="border-border transition-colors hover:bg-accent/30">
                 <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                  <CardDescription>{post.date}</CardDescription>
+                  <CardTitle className="text-lg font-semibold leading-snug">{post.title.trim()}</CardTitle>
+                  <CardDescription className="font-mono text-xs">{post.date}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4">{post.description}</p>
+                  <p className="mb-4 text-sm text-muted-foreground">{post.description}</p>
                   <Link
-                    href={`/blog/${createSlug(post.title)}`}
-                    className="text-blue-500 hover:underline"
+                    href={`/blog/${post.slug}`}
+                    className="font-mono text-sm font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 hover:decoration-foreground"
                   >
                     Read more
                   </Link>
@@ -47,16 +45,7 @@ export default function BlogPage() {
             ))}
           </div>
         </main>
-        <footer className="mt-20 pb-24 text-center">
-          <div className="flex items-center justify-center mb-2">
-            <span className="mr-1">Made with</span>
-            <Heart className="w-4 h-4 text-red-500 mx-1"/>
-            <span>by Aftaab Siddiqui</span>
-          </div>
-          <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Aftaab Siddiqui. All rights reserved.
-          </div>
-        </footer>
+        <SiteFooter />
       </div>
     </PageTransition>
   )

@@ -1,60 +1,52 @@
-import { ProjectGrid } from "@/components/project-grid";
+import Link from "next/link";
 import { PageTransition } from "@/components/page-transition";
 import type { Metadata } from "next";
-import { Heart } from "lucide-react";
-import Link from "next/link";
-import { Pacifico } from "next/font/google";
+import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
+import { featuredProjects, selectedWorksIntro } from "@/lib/portfolio-data";
+import { SiteFooter } from "@/components/site-footer";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Projects | Aftaab Siddiqui",
+  title: "Work",
   description:
-    "Personal portfolio of Aftaab Siddiqui, a software developer passionate about technology",
-  icons: {
-    icon: "/favicons/favicon.ico", // Default favicon
-    shortcut: "/favicons/favicon-16x16.png", // Shortcut icon
-    apple: "/favicons/apple-touch-icon.png", // Apple Touch Icon
-  },
+    "Selected systems and products: developer tooling, infrastructure, and ML-integrated applications.",
+  alternates: { canonical: "/projects" },
+  openGraph: { url: `${siteUrl}/projects` },
 };
-const pacifico = Pacifico({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-pacifico",
-});
 
 export default function ProjectsPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <main className="container mx-auto px-4 py-8 pt-16 max-w-4xl">
-          <h1 className="text-3xl font-bold mb-8 text-center">
-            Dive Into My Work
-          </h1>
-          <p className="text-lg text-muted-foreground mb-10 text-center">
-            Here's a peek at some of the cool stuff I've built over the years!
-            From AI experiments to handy tools and just-for-fun projects, this
-            is where I pour my ideas into code. Want to see what I've been up to
-            lately? Check out my{" "}
-            <Link
-              href="https://github.com/MaskedSyntax"
-              target="_blank"
-              className={`${pacifico.className} text-blue-500 underline`}
-            >
-              latest creations
-            </Link>
-            !
-          </p>
-          <ProjectGrid />
+        <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
+          <header className="mb-12 max-w-2xl">
+            <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
+              Work
+            </h1>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+              {selectedWorksIntro}{" "}
+              <Link
+                href="https://github.com/MaskedSyntax"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 transition-colors hover:decoration-foreground"
+              >
+                GitHub
+              </Link>{" "}
+              has additional experiments and smaller tools.
+            </p>
+          </header>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <FeaturedWorkCard
+                key={project.id}
+                project={project}
+                caseStudyHref={`/#case-study-${project.id}`}
+              />
+            ))}
+          </div>
         </main>
-        <footer className="mt-20 pb-24 text-center">
-          <div className="flex items-center justify-center mb-2">
-            <span className="mr-1">Made with</span>
-            <Heart className="w-4 h-4 text-red-500 mx-1" />
-            <span>by Aftaab Siddiqui</span>
-          </div>
-          <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Aftaab Siddiqui. All rights reserved.
-          </div>
-        </footer>
+        <SiteFooter />
       </div>
     </PageTransition>
   );
