@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { BotttleCardPreview } from "@/components/portfolio/previews/botttle-card-preview";
+import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-preview";
+import { RepogrepCardPreview } from "@/components/portfolio/previews/repogrep-card-preview";
+import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-card-preview";
 import { ArrowUpRight } from "lucide-react";
 
 export function FeaturedWorkCard({
@@ -20,10 +23,22 @@ export function FeaturedWorkCard({
       href={href}
       className="group flex flex-col rounded-xl border border-border/80 bg-card p-5 shadow-sm transition-all duration-200 hover:border-border hover:shadow-md md:p-6"
     >
-      <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/60 bg-muted/30">
+      <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm">
         {project.coverVariant === "botttle-preview" ? (
           <div className="absolute inset-0 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
-            <BotttleCardPreview className="h-full w-full rounded-lg" />
+            <BotttleCardPreview className="h-full w-full rounded-xl" />
+          </div>
+        ) : project.coverVariant === "trelay-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+            <TrelayCardPreview className="h-full w-full rounded-xl" />
+          </div>
+        ) : project.coverVariant === "repogrep-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+            <RepogrepCardPreview className="h-full w-full rounded-xl" />
+          </div>
+        ) : project.coverVariant === "hashprep-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+            <HashprepCardPreview className="h-full w-full rounded-xl" />
           </div>
         ) : project.coverImage ? (
           <Image

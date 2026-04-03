@@ -6,8 +6,12 @@ export type FeaturedProject = {
   category: string;
   /** Optional cover under `public/` (e.g. `/images/projects/botttle.svg`) */
   coverImage?: string;
-  /** Coded UI preview instead of a static image (e.g. botttle marketing shell) */
-  coverVariant?: "botttle-preview";
+  /** Coded UI preview instead of a static image (marketing-style mini UI) */
+  coverVariant?:
+    | "botttle-preview"
+    | "trelay-preview"
+    | "repogrep-preview"
+    | "hashprep-preview";
   challenge: string;
   solution: string;
   impact: string;
@@ -59,7 +63,7 @@ export const featuredProjects: FeaturedProject[] = [
       "Trelay enables developers to manage links as part of their infrastructure rather than relying on third-party tools—demonstrating how developer tooling can be powerful and accessible without sacrificing control or simplicity.",
     liveUrl: "https://trelay.dev",
     repoUrl: "https://github.com/trelay-dev/trelay",
-    coverImage: "/images/projects/trelay.svg",
+    coverVariant: "trelay-preview",
   },
   {
     id: "repogrep",
@@ -76,7 +80,7 @@ export const featuredProjects: FeaturedProject[] = [
       "A practical developer utility that improves how codebases are explored and understood, especially for large or unfamiliar projects.",
     liveUrl: "https://repogrep.maskedsyntax.com",
     repoUrl: "https://github.com/maskedsyntax/repogrep",
-    coverImage: "/images/projects/repogrep.svg",
+    coverVariant: "repogrep-preview",
   },
   {
     id: "hashprep",
@@ -93,7 +97,7 @@ export const featuredProjects: FeaturedProject[] = [
       "A foundation for a scalable, ML-integrated learning platform that combines structured workflows with extensibility.",
     liveUrl: "https://hashprep.com",
     repoUrl: "https://github.com/cachevector/hashprep",
-    coverImage: "/images/projects/hashprep.svg",
+    coverVariant: "hashprep-preview",
   },
 ];
 

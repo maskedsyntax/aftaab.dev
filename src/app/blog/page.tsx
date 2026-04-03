@@ -26,7 +26,7 @@ export default function BlogPage() {
           </p>
           <div className="mt-10 grid gap-6">
             {blogPosts.map((post) => (
-              <Card key={post.id}
+              <Card key={post.slug}
                     className="border-border transition-colors hover:bg-accent/30">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold leading-snug">{post.title.trim()}</CardTitle>

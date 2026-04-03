@@ -7,7 +7,16 @@ import { SiteFooter } from "@/components/site-footer";
 import { siteUrl, siteName } from "@/lib/site";
 
 function toISODate(ddmmyyyy: string): string {
-  return new Date(ddmmyyyy.split("-").reverse().join("-")).toISOString();
+  const d = new Date(ddmmyyyy.split("-").reverse().join("-"));
+  if (Number.isNaN(d.getTime())) {
+    return new Date(0).toISOString();
+  }
+  return d.toISOString();
+}
+
+/** Safe inside `<script type="application/ld+json">` (avoids `</script>` breaking the tag). */
+function jsonLdStringify(value: object): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
 const md = new MarkdownIt({
@@ -17,7 +26,7 @@ const md = new MarkdownIt({
   linkify: true,
   typographer: true,
   quotes: "\u201C\u201D\u2018\u2019",
-}).enable(["heading", "blockquote", "inline"]);
+}).enable(["heading", "blockquote", "inline", "image", "fence", "code"]);
 
 interface PageProps {
   params: Promise<{
@@ -84,7 +93,7 @@ export default async function BlogPost({ params }: PageProps) {
     <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdStringify(articleJsonLd) }}
       />
       <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
         <article className="prose prose-neutral dark:prose-invert mx-auto max-w-none lg:prose-lg">
