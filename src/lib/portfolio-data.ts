@@ -6,6 +6,8 @@ export type FeaturedProject = {
   category: string;
   /** Optional cover under `public/` (e.g. `/images/projects/botttle.svg`) */
   coverImage?: string;
+  /** Coded UI preview instead of a static image (e.g. botttle marketing shell) */
+  coverVariant?: "botttle-preview";
   challenge: string;
   solution: string;
   impact: string;
@@ -40,7 +42,7 @@ export const featuredProjects: FeaturedProject[] = [
       "A complete MVP that replaces multiple SaaS tools with a single system, improving workflow efficiency while maintaining simplicity.",
     liveUrl: "https://botttle.dev",
     repoUrl: "https://github.com/growvth/botttle",
-    coverImage: "/images/projects/botttle.svg",
+    coverVariant: "botttle-preview",
   },
   {
     id: "trelay",

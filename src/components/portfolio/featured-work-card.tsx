@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { FeaturedProject } from "@/lib/portfolio-data";
+import { BotttleCardPreview } from "@/components/portfolio/previews/botttle-card-preview";
 import { ArrowUpRight } from "lucide-react";
 
 export function FeaturedWorkCard({
@@ -18,7 +21,11 @@ export function FeaturedWorkCard({
       className="group flex flex-col rounded-xl border border-border/80 bg-card p-5 shadow-sm transition-all duration-200 hover:border-border hover:shadow-md md:p-6"
     >
       <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/60 bg-muted/30">
-        {project.coverImage ? (
+        {project.coverVariant === "botttle-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+            <BotttleCardPreview className="h-full w-full rounded-lg" />
+          </div>
+        ) : project.coverImage ? (
           <Image
             src={project.coverImage}
             alt={`${project.name} preview`}

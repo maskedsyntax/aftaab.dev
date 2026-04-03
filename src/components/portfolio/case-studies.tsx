@@ -1,5 +1,6 @@
 import { SectionReveal } from "@/components/portfolio/section-reveal";
 import { SectionHeader } from "@/components/portfolio/section-header";
+import { BotttleCardPreview } from "@/components/portfolio/previews/botttle-card-preview";
 import { featuredProjects } from "@/lib/portfolio-data";
 import { ExternalLink, Github, Target, Wrench, TrendingUp } from "lucide-react";
 import Image from "next/image";
@@ -58,8 +59,18 @@ export function CaseStudies() {
                 </div>
               </header>
 
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm lg:sticky lg:top-24">
-                {p.coverImage ? (
+              <div
+                className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm lg:sticky lg:top-24"
+                role={p.coverVariant === "botttle-preview" ? "img" : undefined}
+                aria-label={
+                  p.coverVariant === "botttle-preview"
+                    ? `${p.name} landing page preview`
+                    : undefined
+                }
+              >
+                {p.coverVariant === "botttle-preview" ? (
+                  <BotttleCardPreview className="absolute inset-0 h-full w-full rounded-xl" />
+                ) : p.coverImage ? (
                   <Image
                     src={p.coverImage}
                     alt={`${p.name} preview`}
