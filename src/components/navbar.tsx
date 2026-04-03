@@ -15,16 +15,15 @@ export default function Navbar() {
   const pathname = usePathname()
 
   const routes = [
-    {href: '/', label: 'Home'},
-    {href: '/about', label: 'About'},
-    {href: '/projects', label: 'Work'},
-    {href: '/blog', label: 'Blog'},
-  ]
+    { href: "/", label: "Home" },
+    { href: "/projects", label: "Work" },
+    { href: "/blog", label: "Blog" },
+  ];
 
   const getActiveRoute = (path: string) => {
-    if (path.startsWith('/blog/')) return '/blog'
-    return path
-  }
+    if (path.startsWith("/blog/")) return "/blog";
+    return path;
+  };
 
   return (
     <div className="fixed bottom-4 left-1/2 z-10 -translate-x-1/2 font-mono text-sm">

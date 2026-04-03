@@ -129,8 +129,130 @@ blockquote p {
     mask-image: radial-gradient(circle at 30% 10%, black 0%, transparent 62%);
 }
 
-.dark .hero-texture {
-    background-image:
-        radial-gradient(hsl(var(--primary) / 0.2) 1px, transparent 1px);
+/* ── highlight.js syntax highlighting ── */
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1.25rem;
+    font-family: var(--font-geist-mono);
+    @apply rounded-xl border border-border;
+}
+
+/* Light theme (github) - adjacent colors */
+.hljs-comment,
+.hljs-quote {
+    color: #6a737d;
+    font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+    color: #d73a49;
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-template-variable,
+.hljs-addition {
+    color: #032f62;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+    color: #6f42c1;
+}
+
+.hljs-variable,
+.hljs-template-tag,
+.hljs-bullet,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-number,
+.hljs-symbol {
+    color: #e36209;
+}
+
+/* Dark theme (atom-one-dark adjacent) */
+.dark .hljs {
+    background: transparent;
+    color: #abb2bf;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote {
+    color: #5c6370;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-builtin-name {
+    color: #c678dd;
+}
+
+.dark .hljs-string,
+.dark .hljs-doctag,
+.dark .hljs-template-variable,
+.dark .hljs-addition {
+    color: #98c379;
+}
+
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-selector-id {
+    color: #61afef;
+}
+
+.dark .hljs-variable,
+.dark .hljs-template-tag,
+.dark .hljs-bullet,
+.dark .hljs-name,
+.dark .hljs-type,
+.dark .hljs-attribute,
+.dark .hljs-number,
+.dark .hljs-symbol {
+    color: #d19a66;
+}
+
+.dark .hljs-attr,
+.dark .hljs-variable,
+.dark .hljs-template-variable,
+.dark .hljs-type,
+.dark .hljs-selector-class,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-pseudo,
+.dark .hljs-number {
+    color: #d19a66;
+}
+
+.dark .hljs-string,
+.dark .hljs-bullet,
+.dark .hljs-subst,
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-emphasis,
+.dark .hljs-type,
+.dark .hljs-built_in,
+.dark .hljs-builtin-name,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-pseudo,
+.dark .hljs-addition,
+.dark .hljs-variable,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable {
+    color: #98c379;
+}
+
+.dark .hljs-link,
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-attribute {
+    color: #61afef;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag {
+    color: #c678dd;
 }
 

@@ -17,23 +17,32 @@ export interface BlogPost {
 let cached: BlogPost[] | null = null;
 
 export function getAllBlogs(): BlogPost[] {
-  if (cached) return cached;
+  /** In dev, always re-read so new/edited posts don’t stay stuck behind a stale cache. */
+  if (process.env.NODE_ENV === "production" && cached) return cached;
 
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.md'));
 
-  cached = files.map((fileName) => {
+  const posts = files.map((fileName) => {
     const filePath = path.join(contentDir, fileName);
     const fileContent = fs.readFileSync(filePath, 'utf8');
 
     const {data, content} = matter(fileContent);
 
+    const title = typeof data.title === "string" ? data.title : "";
+    const fromTitle = slugifyTitle(title);
+    /** Fallback when the title slugifies to nothing (avoids duplicate empty keys). */
+    const slug =
+      fromTitle ||
+      fileName.replace(/\.md$/i, "").replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase();
+
     return {
-      id: data.id,
-      slug: slugifyTitle(data.title),
-      title: data.title,
-      date: data.date,
-      description: data.description,
-      content,
+      id: data.id != null ? String(data.id) : fileName,
+      slug,
+      title,
+      date: typeof data.date === "string" ? data.date : "",
+      description:
+        typeof data.description === "string" ? data.description : "",
+      content: typeof content === "string" ? content : "",
     };
   }).sort((a, b) => {
     const dateA = new Date(a.date.split("-").reverse().join("-")).getTime();
@@ -41,7 +50,10 @@ export function getAllBlogs(): BlogPost[] {
     return dateB - dateA;
   });
 
-  return cached;
+  if (process.env.NODE_ENV === "production") {
+    cached = posts;
+  }
+  return posts;
 }
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {

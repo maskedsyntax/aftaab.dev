@@ -18,7 +18,7 @@ export function BlogPreviewSection() {
       />
       <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border">
         {posts.map((post) => (
-          <li key={post.slug}>
+          <li key={`${post.slug}-${post.id}`}>
             <Link
               href={`/blog/${post.slug}`}
               className="group flex flex-col gap-1.5 bg-card/40 px-5 py-4 transition-colors hover:bg-accent/40 md:flex-row md:items-baseline md:justify-between md:gap-8 md:px-6 md:py-5"

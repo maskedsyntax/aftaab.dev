@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllBlogs, getBlogBySlug } from "@/lib/getBlogs";
-import MarkdownIt from "markdown-it";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { siteUrl, siteName } from "@/lib/site";
+import { renderBlogMarkdown } from "@/lib/render-markdown";
 
 function toISODate(ddmmyyyy: string): string {
   const d = new Date(ddmmyyyy.split("-").reverse().join("-"));
@@ -18,15 +18,6 @@ function toISODate(ddmmyyyy: string): string {
 function jsonLdStringify(value: object): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
-
-const md = new MarkdownIt({
-  html: false,
-  xhtmlOut: true,
-  breaks: false,
-  linkify: true,
-  typographer: true,
-  quotes: "\u201C\u201D\u2018\u2019",
-}).enable(["heading", "blockquote", "inline", "image", "fence", "code"]);
 
 interface PageProps {
   params: Promise<{
@@ -47,15 +38,16 @@ export async function generateMetadata({
     return { title: "Post" };
   }
   const title = blog.title.trim();
+  const desc = blog.description?.trim() || title;
   const publishedTime = toISODate(blog.date);
   return {
     title,
-    description: blog.description,
+    description: desc,
     authors: [{ name: siteName }],
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title,
-      description: blog.description,
+      description: desc,
       url: `${siteUrl}/blog/${slug}`,
       type: "article",
       publishedTime,
@@ -63,7 +55,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description: blog.description,
+      description: desc,
     },
   };
 }
@@ -77,13 +69,26 @@ export default async function BlogPost({ params }: PageProps) {
     notFound();
   }
 
-  const htmlContent = md.render(blog.content);
+  let htmlContent = "";
+  try {
+    htmlContent = renderBlogMarkdown(blog.content);
+  } catch (err) {
+    console.error(
+      "[blog] Markdown render failed:",
+      resolvedParams.slug,
+      err
+    );
+    htmlContent =
+      "<p>Could not render this post. Check the Markdown source for issues.</p>";
+  }
+
+  const safeDesc = blog.description?.trim() || blog.title.trim();
 
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blog.title.trim(),
-    description: blog.description,
+    description: safeDesc,
     datePublished: toISODate(blog.date),
     author: { "@type": "Person", name: siteName, url: siteUrl },
     url: `${siteUrl}/blog/${resolvedParams.slug}`,
@@ -108,7 +113,7 @@ export default async function BlogPost({ params }: PageProps) {
           <h1 className="font-semibold tracking-tight">{blog.title.trim()}</h1>
           <p className="text-sm text-muted-foreground">{blog.date}</p>
           <p className="lead !font-normal text-muted-foreground">
-            {blog.description}
+            {safeDesc}
           </p>
           <hr className="my-8" />
           <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
