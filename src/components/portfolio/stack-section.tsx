@@ -46,8 +46,31 @@ const STACK_ICONS: Record<string, IconType> = {
   Docker: SiDocker,
 };
 
+/** Brand-tinted icons (Simple Icons–adjacent hues) so pills are scannable on light and dark. */
+const STACK_ICON_COLORS: Record<string, string> = {
+  React: "text-[#61DAFB]",
+  "Next.js": "text-[#0070F3]",
+  Svelte: "text-[#FF3E00]",
+  "Tailwind CSS": "text-[#38BDF8]",
+  "Shadcn UI": "text-[#A855F7]",
+  Flutter: "text-[#60CAF6]",
+  Flask: "text-[#1a1a1a] dark:text-[#E8E8E8]",
+  FastAPI: "text-[#009688]",
+  Django: "text-[#44B78B]",
+  Express: "text-[#555555] dark:text-[#B8B8B8]",
+  Fastify: "text-[#111111] dark:text-[#F5F5F5]",
+  Go: "text-[#00ADD8]",
+  "C++": "text-[#00599C]",
+  Python: "text-[#3776AB]",
+  Rust: "text-[#DEA584]",
+  Bun: "text-[#f97316]",
+  "Node.js": "text-[#339933]",
+  Docker: "text-[#2496ED]",
+};
+
 function StackBadge({ name }: { name: string }) {
   const Icon = STACK_ICONS[name];
+  const iconColor = STACK_ICON_COLORS[name];
   return (
     <Badge
       variant="secondary"
@@ -57,7 +80,13 @@ function StackBadge({ name }: { name: string }) {
       )}
     >
       {Icon ? (
-        <Icon className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
+        <Icon
+          className={cn(
+            "h-3.5 w-3.5 shrink-0",
+            iconColor ?? "text-muted-foreground"
+          )}
+          aria-hidden
+        />
       ) : null}
       {name}
     </Badge>

@@ -1,8 +1,9 @@
+import Image from "next/image";
+import Link from "next/link";
 import { SectionReveal } from "@/components/portfolio/section-reveal";
 import { SectionHeader } from "@/components/portfolio/section-header";
 import { labContent } from "@/lib/portfolio-data";
 import { Badge } from "@/components/ui/badge";
-import { FlaskConical } from "lucide-react";
 
 export function LabSection() {
   return (
@@ -17,12 +18,22 @@ export function LabSection() {
             ))}
           </div>
           <div className="flex items-start justify-center md:justify-end md:pt-0.5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-muted/50 dark:bg-muted/30">
-              <FlaskConical
-                className="h-7 w-7 text-primary"
-                strokeWidth={1.75}
+            <Link
+              href={labContent.siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-border shadow-sm ring-1 ring-black/5 transition-opacity hover:opacity-95 dark:ring-white/10"
+              aria-label="CacheVector (opens in a new tab)"
+            >
+              <Image
+                src="/images/cachevector-logo.png"
+                alt=""
+                width={128}
+                height={128}
+                className="h-full w-full object-cover"
+                sizes="64px"
               />
-            </div>
+            </Link>
           </div>
         </div>
 

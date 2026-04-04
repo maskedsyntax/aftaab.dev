@@ -20,14 +20,15 @@ export type FeaturedProject = {
 };
 
 export const heroCopy = {
-  /** One line under the name — not a wall of headline text */
+  /** Lead line beside the photo — plain language for clients and peers */
   tagline:
-    "I build full-stack products and dev tooling—infra through ML—with systems thinking and open source from CacheVector.",
-  /** Former “headline” — body copy below the tagline */
+    "I build software products and tools people use every day—at CacheVector and through open-source work.",
+  /** Paired with the tagline; trust and growth without engineering jargon */
   intro:
-    "I design and build software systems that stay approachable for users while staying engineered for reliability and growth.",
+    "I focus on experiences that feel simple and products that stay dependable as your needs grow.",
+  /** Below the photo row */
   subline:
-    "Systems, tools, and products across web, infrastructure, and machine learning.",
+    "Recent work includes web apps, business tools, and projects from first idea to release.",
 };
 
 export const featuredProjects: FeaturedProject[] = [
@@ -172,6 +173,7 @@ export const workPageExternalLinks = {
 
 export const labContent = {
   title: "CacheVector — Lab & open source",
+  siteUrl: "https://cachevector.com",
   body: [
     "Alongside product development, I run a small lab focused on open-source tools and machine learning systems. If I build something useful, parts of it should be reusable by others.",
     "Through this work I’ve developed tools for data processing, fuzzy matching, and image-based analysis—contributing back while exploring practical ML applications.",
@@ -245,8 +247,36 @@ export const stackCategories = [
 export const stackNote =
   "I choose tools based on the problem, constraints, and long-term maintainability over trends.";
 
-export const contactCopy = {
-  email: "mailto:aftaab@aftaab.xyz",
-  github: "https://github.com/MaskedSyntax",
-  line: "Let’s build something meaningful.",
-};
+/** Short intro under the Contact heading—invite work and conversation. */
+export const contactIntro =
+  "I love helping people grow strong engineering practices, navigate their careers, and ship meaningful projects. I also work with founders on product and technical strategy. Whether you have a project in mind or just want to connect—say hello anytime.";
+
+/** Update `href` if your public profile URLs differ. */
+export const contactLinks = [
+  {
+    key: "email",
+    href: "mailto:aftaab@aftaab.xyz",
+    label: "aftaab@aftaab.xyz",
+    external: false,
+  },
+  {
+    key: "linkedin",
+    href: "https://www.linkedin.com/in/aftaab-siddiqui",
+    label: "LinkedIn",
+    external: true,
+  },
+  {
+    key: "x",
+    href: "https://x.com/MaskedSyntax",
+    label: "X",
+    external: true,
+  },
+  {
+    key: "github",
+    href: "https://github.com/MaskedSyntax",
+    label: "GitHub",
+    external: true,
+  },
+] as const;
+
+export const contactGithubUrl = contactLinks.find((l) => l.key === "github")!.href;
