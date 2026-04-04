@@ -12,12 +12,12 @@ export function LabSection() {
 
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
         <div className="grid gap-8 p-6 md:grid-cols-[1fr_auto] md:gap-12 md:p-8">
-          <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+          <div className="order-2 max-w-2xl space-y-4 text-sm leading-relaxed text-muted-foreground md:order-1 md:text-[15px]">
             {labContent.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
-          <div className="flex items-start justify-center md:justify-end md:pt-0.5">
+          <div className="order-1 flex items-start justify-center md:order-2 md:justify-end md:pt-0.5">
             <Link
               href={labContent.siteUrl}
               target="_blank"
@@ -38,10 +38,10 @@ export function LabSection() {
         </div>
 
         <div className="border-t border-border bg-muted/30 px-6 py-4 dark:bg-muted/20 md:px-8">
-          <p className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="mb-3 text-center font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-left">
             Open source & tools
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2 md:justify-start">
             {labContent.contributions.map((name) => (
               <Badge
                 key={name}

@@ -251,7 +251,6 @@ export const stackNote =
 export const contactIntro =
   "I love helping people grow strong engineering practices, navigate their careers, and ship meaningful projects. I also work with founders on product and technical strategy. Whether you have a project in mind or just want to connect—say hello anytime.";
 
-/** Update `href` if your public profile URLs differ. */
 export const contactLinks = [
   {
     key: "email",
@@ -261,13 +260,13 @@ export const contactLinks = [
   },
   {
     key: "linkedin",
-    href: "https://www.linkedin.com/in/aftaab-siddiqui",
+    href: "https://www.linkedin.com/in/aftaabsiddiqui/",
     label: "LinkedIn",
     external: true,
   },
   {
     key: "x",
-    href: "https://x.com/MaskedSyntax",
+    href: "https://x.com/aftaab___",
     label: "X",
     external: true,
   },

@@ -18,7 +18,7 @@ export function CaseStudies() {
         title="Case studies"
         description="Structured write-ups: challenge, solution, and impact. No filler."
       />
-      <div className="space-y-14 md:space-y-20">
+      <div className="space-y-14 pt-8 md:space-y-20 md:pt-10">
         {featuredProjects.map((p, idx) => (
           <article
             key={p.id}
