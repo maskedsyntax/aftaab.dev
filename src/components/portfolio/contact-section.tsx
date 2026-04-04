@@ -33,8 +33,6 @@ export function ContactSection() {
         {contactLinks.map((item) => {
           const Icon = CONTACT_ICONS_LUCIDE[item.key];
           const isExternal = item.external;
-          const iconClass =
-            "h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary";
           return (
             <li key={item.key}>
               <Link
@@ -42,15 +40,25 @@ export function ContactSection() {
                 {...(isExternal
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors"
+                className="group flex w-full items-center gap-3 text-sm font-medium text-foreground transition-colors sm:inline-flex sm:w-auto sm:gap-2"
               >
-                {item.key === "x" ? (
-                  <SimpleIconGlyph icon={siX} className={iconClass} />
-                ) : Icon ? (
-                  <Icon className={iconClass} aria-hidden />
-                ) : null}
-                {item.label}
-                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
+                <span
+                  className="inline-flex h-6 w-6 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover:text-primary"
+                  aria-hidden
+                >
+                  {item.key === "x" ? (
+                    <SimpleIconGlyph icon={siX} className="h-4 w-4" />
+                  ) : Icon ? (
+                    <Icon className="h-4 w-4" />
+                  ) : null}
+                </span>
+                <span className="inline-flex min-w-0 items-center gap-1.5">
+                  <span className="min-w-0 break-words">{item.label}</span>
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
+                    aria-hidden
+                  />
+                </span>
               </Link>
             </li>
           );
