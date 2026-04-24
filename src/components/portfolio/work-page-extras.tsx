@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { WorkListItem, WorkListStatus } from "@/lib/portfolio-data";
-import {
-  cacheVectorOpenSourceLibraries,
-  workPageExternalLinks,
-} from "@/lib/portfolio-data";
+import { workPageExternalLinks } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
 const STATUS_LABEL: Record<WorkListStatus, string> = {
@@ -57,31 +54,6 @@ export function MoreWorkList({ items }: { items: WorkListItem[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-export function CacheVectorOssSection() {
-  return (
-    <div className="rounded-xl border border-border bg-muted/20 px-4 py-5 dark:bg-muted/10 md:px-6">
-      <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-        ML & open source (CacheVector)
-      </p>
-      <ul className="mt-3 flex flex-wrap gap-2">
-        {cacheVectorOpenSourceLibraries.map((lib) => (
-          <li key={lib.name}>
-            <Link
-              href={lib.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-border/80 bg-background/80 px-2.5 py-1 font-mono text-[11px] text-foreground/90 transition-colors hover:border-border hover:bg-muted/50"
-            >
-              {lib.name}
-              <ArrowUpRight className="h-3 w-3 opacity-50" />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 

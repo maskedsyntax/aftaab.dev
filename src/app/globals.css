@@ -3,62 +3,70 @@
 @tailwind utilities;
 
 @layer base {
-    /* Light: clean editor canvas (Cursor / VS Code–adjacent) */
+    /* Light: warm paper white — gallery, not editor canvas */
     :root {
-        --background: 210 40% 98%;
-        --foreground: 222 47% 11%;
-        --card: 0 0% 100%;
-        --card-foreground: 222 47% 11%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222 47% 11%;
-        /* Cyan/teal keyword accent — tuned for contrast on light surfaces */
-        --primary: 188 72% 34%;
-        --primary-foreground: 210 40% 99%;
-        --secondary: 210 32% 94%;
-        --secondary-foreground: 222 35% 16%;
-        --muted: 210 28% 95%;
-        --muted-foreground: 220 12% 38%;
-        --accent: 188 40% 93%;
-        --accent-foreground: 222 40% 14%;
+        --background: 40 28% 97%;
+        --foreground: 228 20% 10%;
+        --card: 40 30% 99%;
+        --card-foreground: 228 20% 10%;
+        --popover: 40 30% 99%;
+        --popover-foreground: 228 20% 10%;
+        /* Teal accent — slightly deeper, less neon than before */
+        --primary: 188 60% 30%;
+        --primary-foreground: 40 35% 99%;
+        --secondary: 36 22% 92%;
+        --secondary-foreground: 228 18% 14%;
+        --muted: 36 22% 94%;
+        --muted-foreground: 225 10% 38%;
+        --accent: 188 32% 91%;
+        --accent-foreground: 228 22% 12%;
         --destructive: 0 72% 48%;
         --destructive-foreground: 0 0% 98%;
-        --border: 214 22% 88%;
-        --input: 214 22% 88%;
-        --ring: 188 72% 34%;
-        --chart-1: 188 70% 42%;
-        --chart-2: 215 50% 45%;
-        --chart-3: 38 70% 48%;
-        --chart-4: 152 40% 44%;
-        --chart-5: 12 58% 48%;
-        --radius: 0.5rem;
+        --border: 33 18% 86%;
+        --input: 33 18% 86%;
+        --ring: 188 60% 30%;
+        /* Warm secondary accent — amber — for human/designed moments */
+        --warm: 28 85% 55%;
+        --warm-foreground: 28 50% 14%;
+        --warm-soft: 32 90% 94%;
+        --chart-1: 188 60% 36%;
+        --chart-2: 28 72% 50%;
+        --chart-3: 215 42% 46%;
+        --chart-4: 152 36% 42%;
+        --chart-5: 12 60% 48%;
+        --radius: 0.625rem;
     }
 
-    /* Dark: deep neutral charcoal (Cursor-like editor bg — darker than blue-tinted slate) */
+    /* Dark: neutral near-black. The teal + amber accents do the colour work. */
     .dark {
-        --background: 0 0% 8%;
-        --foreground: 210 12% 92%;
-        --card: 0 0% 11%;
-        --card-foreground: 210 12% 92%;
-        --popover: 0 0% 11%;
-        --popover-foreground: 210 12% 92%;
-        --primary: 188 68% 52%;
+        --background: 0 0% 7%;
+        --foreground: 0 0% 93%;
+        --card: 0 0% 10%;
+        --card-foreground: 0 0% 93%;
+        --popover: 0 0% 10%;
+        --popover-foreground: 0 0% 93%;
+        --primary: 188 60% 56%;
         --primary-foreground: 0 0% 7%;
         --secondary: 0 0% 13%;
-        --secondary-foreground: 210 10% 90%;
+        --secondary-foreground: 0 0% 90%;
         --muted: 0 0% 12%;
-        --muted-foreground: 215 14% 58%;
+        --muted-foreground: 0 0% 60%;
         --accent: 0 0% 14%;
-        --accent-foreground: 210 12% 92%;
+        --accent-foreground: 0 0% 93%;
         --destructive: 0 55% 42%;
         --destructive-foreground: 0 0% 98%;
         --border: 0 0% 17%;
         --input: 0 0% 17%;
-        --ring: 188 68% 52%;
-        --chart-1: 188 65% 55%;
-        --chart-2: 215 48% 58%;
-        --chart-3: 38 65% 56%;
-        --chart-4: 152 38% 52%;
-        --chart-5: 12 55% 54%;
+        --ring: 188 60% 56%;
+        /* Warm accent stays saturated so it still pops as an accent */
+        --warm: 28 90% 62%;
+        --warm-foreground: 0 0% 10%;
+        --warm-soft: 28 30% 16%;
+        --chart-1: 188 60% 58%;
+        --chart-2: 28 80% 62%;
+        --chart-3: 215 46% 60%;
+        --chart-4: 152 36% 54%;
+        --chart-5: 12 58% 58%;
     }
 }
 
@@ -69,6 +77,7 @@
 
     body {
         @apply bg-background text-foreground;
+        overflow-x: clip;
     }
 
     ::selection {
@@ -116,17 +125,43 @@ blockquote p {
     color: hsl(var(--muted-foreground));
 }
 
-/* ── subtle hero texture (theme-aware, primary-tinted dots) ── */
-.hero-texture {
+/* ── hero aurora: two soft wash gradients (teal + warm)
+   Breaks out of its max-width parent so the gradient spans the full viewport.
+   Radial gradients fade to transparent well before the edges of a 100vw
+   container, so there is no visible rectangle boundary at any screen width. */
+.hero-aurora {
     position: absolute;
-    inset: -24px -24px auto -24px;
-    height: 380px;
+    top: -140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 680px;
     pointer-events: none;
     z-index: 0;
-    background-image:
-        radial-gradient(hsl(var(--primary) / 0.14) 1px, transparent 1px);
-    background-size: 22px 22px;
-    mask-image: radial-gradient(circle at 30% 10%, black 0%, transparent 62%);
+    background:
+        radial-gradient(ellipse 28% 45% at 32% 32%, hsl(var(--primary) / 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 48% at 68% 36%, hsl(var(--warm) / 0.09) 0%, transparent 72%);
+}
+
+.dark .hero-aurora {
+    background:
+        radial-gradient(ellipse 28% 45% at 32% 32%, hsl(var(--primary) / 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 48% at 68% 36%, hsl(var(--warm) / 0.10) 0%, transparent 72%);
+}
+
+/* ── grain overlay for a softer, more tactile surface ── */
+.surface-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.dark .surface-grain {
+    opacity: 0.07;
 }
 
 /* ── highlight.js syntax highlighting ── */

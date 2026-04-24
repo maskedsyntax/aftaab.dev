@@ -1,106 +1,237 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useHydrationSafeReducedMotion } from "@/hooks/use-hydration-safe-reduced-motion";
-import { heroCopy, contactGithubUrl } from "@/lib/portfolio-data";
-import { ArrowDown, Github } from "lucide-react";
+import { heroCopy, contactLinks } from "@/lib/portfolio-data";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-function fade(i: number, skip: boolean | null) {
-  if (skip) return {};
-  return {
-    initial: { opacity: 0, y: 12 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.45, ease, delay: 0.05 * i },
-  } as const;
+const emailLink = contactLinks.find((l) => l.key === "email")!;
+const linkedinLink = contactLinks.find((l) => l.key === "linkedin")!;
+const xLink = contactLinks.find((l) => l.key === "x")!;
+const githubLink = contactLinks.find((l) => l.key === "github")!;
+
+/** Mask-reveal one word at a time; Instrument Serif italic with a gradient accent word. */
+function DisplayHeadline({
+  words,
+  skip,
+}: {
+  words: string[];
+  skip: boolean | null;
+}) {
+  const renderWord = (w: string) => {
+    if (w === "build") {
+      return (
+        <span className="bg-gradient-to-br from-primary via-primary to-warm bg-clip-text text-transparent">
+          {w}
+        </span>
+      );
+    }
+    if (w === "&") {
+      return (
+        <span className="font-display not-italic font-normal text-muted-foreground/70">
+          {w}
+        </span>
+      );
+    }
+    return w;
+  };
+
+  const headingClass =
+    "font-serif italic font-normal text-[3rem] leading-[1.12] tracking-serif-tight text-foreground sm:text-[3.9rem] md:text-[4.75rem]";
+
+  if (skip) {
+    return (
+      <h1 className={headingClass}>
+        {words.map((w, i) => (
+          <span key={`${w}-${i}`} className="mr-[0.12em] inline-block">
+            {renderWord(w)}
+          </span>
+        ))}
+      </h1>
+    );
+  }
+
+  return (
+    <h1 className={headingClass}>
+      {words.map((w, i) => (
+        <span
+          key={`${w}-${i}`}
+          className="mr-[0.12em] inline-block overflow-hidden align-bottom"
+        >
+          <motion.span
+            initial={{ y: "115%" }}
+            animate={{ y: "0%" }}
+            transition={{ duration: 0.9, ease, delay: 0.12 + i * 0.08 }}
+            className="inline-block"
+          >
+            {renderWord(w)}
+          </motion.span>
+        </span>
+      ))}
+    </h1>
+  );
 }
 
 export function HeroSection() {
   const rm = useHydrationSafeReducedMotion();
 
   return (
-    <section className="relative pb-10 pt-1 md:pb-12 md:pt-3">
-      <div className="hero-texture" aria-hidden />
+    <section className="relative overflow-visible pb-14 pt-4 md:pb-20 md:pt-6">
+      <div className="hero-aurora" aria-hidden />
 
-      <div className="relative z-[1] grid grid-cols-1 gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-start sm:gap-x-8 sm:gap-y-6">
-        <motion.div
-          {...fade(0, rm)}
-          className="mx-auto shrink-0 justify-self-center sm:mx-0 sm:justify-self-start sm:row-start-1 sm:col-start-1"
-        >
-          <div className="relative h-[5.5rem] w-[5.5rem] overflow-hidden rounded-lg border border-border bg-muted shadow-sm sm:h-24 sm:w-24 md:h-[6.75rem] md:w-[6.75rem]">
-            <Image
-              src="/images/Avatar/beard.jpg"
-              alt="Aftaab Siddiqui"
-              width={216}
-              height={216}
-              priority
-              sizes="(max-width: 640px) 88px, 108px"
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-        </motion.div>
-
-        <div className="min-w-0 space-y-4 text-center sm:row-start-1 sm:col-start-2 sm:text-left">
-          <motion.div {...fade(1, rm)}>
-            <h1 className="text-[1.65rem] font-semibold leading-tight tracking-tight text-foreground sm:text-[1.85rem] md:text-[2.15rem]">
-              Aftaab Siddiqui
-            </h1>
-            <p className="mt-1.5 text-[13px] font-medium text-muted-foreground md:text-sm">
-              Software engineer
-            </p>
+      <div className="relative z-[1] grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(260px,340px)] md:items-start md:gap-14">
+        <div className="min-w-0 space-y-7 md:space-y-8">
+          <motion.div
+            initial={rm ? false : { opacity: 0, y: 10 }}
+            animate={rm ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 0.05 }}
+            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur-sm"
+          >
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-warm/70 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-warm" />
+            </span>
+            <span>{heroCopy.eyebrow}</span>
           </motion.div>
 
+          <div>
+            <DisplayHeadline
+              words={["Design", "&", "build", "digital", "products."]}
+              skip={rm}
+            />
+          </div>
+
           <motion.p
-            {...fade(2, rm)}
-            className="mx-auto max-w-xl text-[14px] font-medium leading-snug tracking-tight text-foreground sm:mx-0 md:text-[15px]"
+            initial={rm ? false : { opacity: 0, y: 12 }}
+            animate={rm ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 0.55 }}
+            className="max-w-xl text-[15px] font-medium leading-relaxed tracking-tight text-foreground md:text-[17px]"
           >
             {heroCopy.tagline}
           </motion.p>
-        </div>
 
-        <div className="space-y-4 text-center sm:col-span-2 sm:row-start-2 sm:text-left">
           <motion.p
-            {...fade(3, rm)}
-            className="mx-auto max-w-2xl text-[13px] leading-relaxed text-muted-foreground sm:mx-0 md:text-[14px]"
+            initial={rm ? false : { opacity: 0, y: 12 }}
+            animate={rm ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 0.7 }}
+            className="max-w-xl text-[14px] leading-relaxed text-muted-foreground md:text-[15px]"
           >
             {heroCopy.intro}
           </motion.p>
 
-          <motion.p
-            {...fade(4, rm)}
-            className="mx-auto max-w-2xl text-[13px] leading-relaxed text-muted-foreground/90 sm:mx-0 md:text-[14px]"
-          >
-            {heroCopy.subline}
-          </motion.p>
-
           <motion.div
-            {...fade(5, rm)}
-            className="mx-auto flex w-full max-w-2xl flex-wrap items-center justify-center gap-2.5 pt-0.5 sm:mx-0 sm:justify-start"
+            initial={rm ? false : { opacity: 0, y: 12 }}
+            animate={rm ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 0.85 }}
+            className="flex flex-wrap items-center gap-3 pt-1"
           >
             <a
               href="#selected-works"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-transform hover:-translate-y-0.5"
             >
-              View work
-              <ArrowDown className="h-3.5 w-3.5" />
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-primary via-warm to-primary opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
+              <span className="relative">View selected work</span>
+              <ArrowDown className="relative h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
             </a>
-            <Link
-              href={contactGithubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-background/80 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/35 hover:bg-accent"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
-            </Link>
           </motion.div>
         </div>
+
+        {/* Contact surface — replaces the avatar column, vertically dropped so it sits alongside the hero's body copy rather than the headline */}
+        <motion.aside
+          initial={rm ? false : { opacity: 0, y: 16 }}
+          animate={rm ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease, delay: 0.3 }}
+          className="relative md:row-start-1 md:col-start-2 md:self-end md:pb-1"
+        >
+          <div className="group relative flex flex-col items-center rounded-2xl border border-border/70 bg-card/60 p-5 text-center shadow-[0_10px_40px_-18px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-6">
+            {/* Soft warm glow that activates on hover */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-px -z-[1] rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-warm/15 opacity-40 transition-opacity duration-500 group-hover:opacity-80"
+            />
+
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-2.5 py-0.5 text-[10.5px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="relative inline-flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70 opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              </span>
+              <span>{heroCopy.availability}</span>
+            </div>
+
+            <div className="mt-5 flex flex-col items-center">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
+                Get in touch
+              </p>
+              <a
+                href={emailLink.href}
+                className="group/mail mt-2 inline-flex items-center gap-1.5 font-mono text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-primary md:text-[16px]"
+              >
+                {emailLink.label}
+                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/60 transition-all group-hover/mail:-translate-y-0.5 group-hover/mail:translate-x-0.5 group-hover/mail:text-primary" />
+              </a>
+            </div>
+
+            <a
+              href={emailLink.href}
+              className="mt-5 flex w-full items-center justify-between gap-2 rounded-full border border-border/70 bg-background/80 py-1.5 pl-5 pr-1.5 text-[13px] font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-foreground/25"
+            >
+              <span>Send me a message</span>
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background transition-transform group-hover:scale-105">
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </span>
+            </a>
+
+            <div className="mt-5 flex items-center justify-center gap-3 text-[12.5px] font-medium">
+              <Link
+                href={linkedinLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                LinkedIn
+              </Link>
+              <span className="h-1 w-1 rounded-full bg-border" aria-hidden />
+              <Link
+                href={xLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                X
+              </Link>
+              <span className="h-1 w-1 rounded-full bg-border" aria-hidden />
+              <Link
+                href={githubLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                GitHub
+              </Link>
+            </div>
+
+            <div className="mt-5 w-full border-t border-border/50 pt-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                {heroCopy.location}
+              </p>
+            </div>
+          </div>
+        </motion.aside>
       </div>
 
-      <div className="mt-10 h-px w-full max-w-md bg-gradient-to-r from-primary/35 via-border to-transparent md:mt-11" />
+      <motion.p
+        initial={rm ? false : { opacity: 0, y: 6 }}
+        animate={rm ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease, delay: 1 }}
+        className="relative z-[1] mt-10 max-w-2xl text-[13px] leading-relaxed text-muted-foreground/80 md:mt-14 md:text-[14px]"
+      >
+        {heroCopy.subline}
+      </motion.p>
+
+      <div className="relative z-[1] mt-10 h-px w-full max-w-md bg-gradient-to-r from-primary/40 via-border to-transparent md:mt-12" />
     </section>
   );
 }

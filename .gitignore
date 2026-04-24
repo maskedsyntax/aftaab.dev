@@ -87,3 +87,37 @@ pnpm-lock.yaml
 
 # Playwright
 .playwright/
+
+# Planning / personal notes (kept local, not published)
+PORTFOLIO_REVAMP_PLAN.md
+spec.md
+NOTES.md
+TODO.md
+SCRATCH.md
+DRAFT.md
+*.plan.md
+*.notes.md
+*.draft.md
+/drafts/
+/notes/
+
+# AI coding assistant workspaces
+.cursor/
+.claude/
+.aider*
+.continue/
+.codeium/
+.copilot/
+.windsurf/
+AGENTS.md
+CLAUDE.md
+.cursorrules
+.cursorignore
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo

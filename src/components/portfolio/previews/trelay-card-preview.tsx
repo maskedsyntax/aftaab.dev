@@ -81,7 +81,7 @@ export function TrelayCardPreview({ className }: { className?: string }) {
         </p>
 
         <p className="mt-1 line-clamp-2 max-w-[30ch] text-[6px] leading-snug text-zinc-500 dark:text-zinc-400 sm:text-[7px]">
-          Self-hosted URL manager—dashboard, CLI, and API.
+          Self-hosted URL manager. Dashboard, CLI, and API.
         </p>
 
         <div className="mt-1.5 flex flex-wrap justify-center gap-1 sm:mt-2">

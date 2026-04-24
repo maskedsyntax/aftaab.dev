@@ -3,7 +3,6 @@ import { PageTransition } from "@/components/page-transition";
 import type { Metadata } from "next";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
 import {
-  CacheVectorOssSection,
   MoreWorkList,
   WorkPageExternalLinks,
 } from "@/components/portfolio/work-page-extras";
@@ -18,7 +17,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Featured case studies, full project catalog, CacheVector open source, and links to GitHub and MaskedSyntax.",
+    "Featured case studies, the full project catalog, and links to GitHub and MaskedSyntax.",
   alternates: { canonical: "/projects" },
   openGraph: { url: `${siteUrl}/projects` },
 };
@@ -27,7 +26,7 @@ export default function ProjectsPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
+        <main className="container mx-auto max-w-5xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
           <header className="mb-12 max-w-2xl">
             <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Work
@@ -67,14 +66,13 @@ export default function ProjectsPage() {
               More projects
             </h2>
             <p className="mt-2 mb-6 max-w-2xl text-sm text-muted-foreground">
-              Additional products, lab tools, and builds not covered by the
-              featured case studies.
+              Additional products and builds not covered by the featured case
+              studies.
             </p>
             <MoreWorkList items={additionalWorkProjects} />
           </section>
 
           <section className="mb-12 space-y-8">
-            <CacheVectorOssSection />
             <WorkPageExternalLinks />
           </section>
         </main>

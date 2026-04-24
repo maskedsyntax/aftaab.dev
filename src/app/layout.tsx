@@ -1,13 +1,32 @@
 import type { Metadata, Viewport } from "next";
+import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { defaultDescription, siteName, siteUrl } from "@/lib/site";
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const siteTagline = "Design & engineering for digital products";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — Systems, tools, and products`,
+    default: `${siteName} — ${siteTagline}`,
     template: `%s | ${siteName}`,
   },
   description: defaultDescription,
@@ -17,12 +36,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName,
-    title: `${siteName} — Systems, tools, and products`,
+    title: `${siteName} — ${siteTagline}`,
     description: defaultDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} — Systems, tools, and products`,
+    title: `${siteName} — ${siteTagline}`,
     description: defaultDescription,
   },
   robots: {
@@ -49,7 +68,7 @@ const personJsonLd = {
   name: siteName,
   url: siteUrl,
   sameAs: ["https://github.com/MaskedSyntax"],
-  jobTitle: "Software engineer",
+  jobTitle: "Product designer & full-stack engineer",
 };
 
 export default function RootLayout({
@@ -58,7 +77,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={GeistMono.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} ${bricolage.variable}`}
+    >
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"

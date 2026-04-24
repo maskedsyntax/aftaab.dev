@@ -4,12 +4,17 @@ import {
   SiCplusplus,
   SiDjango,
   SiDocker,
+  SiExpo,
   SiExpress,
   SiFastapi,
   SiFastify,
+  SiFigma,
   SiFlask,
   SiFlutter,
+  SiFramer,
   SiGo,
+  SiJetpackcompose,
+  SiKotlin,
   SiNextdotjs,
   SiNodedotjs,
   SiPython,
@@ -17,8 +22,10 @@ import {
   SiRust,
   SiShadcnui,
   SiSvelte,
+  SiSwift,
   SiTailwindcss,
 } from "react-icons/si";
+import { Palette } from "lucide-react";
 import { SectionReveal } from "@/components/portfolio/section-reveal";
 import { SectionHeader } from "@/components/portfolio/section-header";
 import { Badge } from "@/components/ui/badge";
@@ -26,12 +33,19 @@ import { stackCategories, stackNote } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
 const STACK_ICONS: Record<string, IconType> = {
+  Figma: SiFigma,
+  "Framer Motion": SiFramer,
   React: SiReact,
   "Next.js": SiNextdotjs,
   Svelte: SiSvelte,
   "Tailwind CSS": SiTailwindcss,
   "Shadcn UI": SiShadcnui,
   Flutter: SiFlutter,
+  "React Native": SiReact,
+  SwiftUI: SiSwift,
+  "Kotlin Multiplatform": SiKotlin,
+  "Jetpack Compose": SiJetpackcompose,
+  Expo: SiExpo,
   Flask: SiFlask,
   FastAPI: SiFastapi,
   Django: SiDjango,
@@ -46,14 +60,27 @@ const STACK_ICONS: Record<string, IconType> = {
   Docker: SiDocker,
 };
 
+/** Lucide fallback for tokens that don't have a brand mark */
+const STACK_LUCIDE: Record<string, IconType> = {
+  "Design tokens": Palette as unknown as IconType,
+};
+
 /** Brand-tinted icons (Simple Icons–adjacent hues) so pills are scannable on light and dark. */
 const STACK_ICON_COLORS: Record<string, string> = {
+  Figma: "text-[#F24E1E]",
+  "Framer Motion": "text-[#BB4B96]",
+  "Design tokens": "text-warm",
   React: "text-[#61DAFB]",
   "Next.js": "text-[#0070F3]",
   Svelte: "text-[#FF3E00]",
   "Tailwind CSS": "text-[#38BDF8]",
   "Shadcn UI": "text-[#A855F7]",
   Flutter: "text-[#60CAF6]",
+  "React Native": "text-[#61DAFB]",
+  SwiftUI: "text-[#F05138]",
+  "Kotlin Multiplatform": "text-[#7F52FF]",
+  "Jetpack Compose": "text-[#4285F4]",
+  Expo: "text-[#111111] dark:text-[#F5F5F5]",
   Flask: "text-[#1a1a1a] dark:text-[#E8E8E8]",
   FastAPI: "text-[#009688]",
   Django: "text-[#44B78B]",
@@ -69,7 +96,7 @@ const STACK_ICON_COLORS: Record<string, string> = {
 };
 
 function StackBadge({ name }: { name: string }) {
-  const Icon = STACK_ICONS[name];
+  const Icon = STACK_ICONS[name] ?? STACK_LUCIDE[name];
   const iconColor = STACK_ICON_COLORS[name];
   return (
     <Badge
@@ -98,15 +125,20 @@ export function StackSection() {
     <SectionReveal className="border-t border-border py-12 md:py-16">
       <SectionHeader title="Stack" />
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-        <div className="grid gap-px bg-border sm:grid-cols-2">
-          {stackCategories.map((cat) => (
+        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {stackCategories.map((cat, i) => (
             <div
               key={cat.name}
               className="bg-card/90 p-5 md:p-6 dark:bg-card/80"
             >
-              <h3 className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                {cat.name}
-              </h3>
+              <div className="flex items-baseline gap-2">
+                <span className="font-mono text-[10px] tabular-nums text-muted-foreground/50">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  {cat.name}
+                </h3>
+              </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {cat.items.map((item) => (
                   <StackBadge key={item} name={item} />

@@ -51,7 +51,7 @@ export function BotttleCardPreview({ className }: { className?: string }) {
           </p>
 
           <p className="mt-0.5 line-clamp-2 max-w-[28ch] text-[6px] leading-snug text-muted-foreground sm:mt-1 sm:text-[7px]">
-            Projects, invoices, time tracking—one self-hosted workspace.
+            Projects, invoices, and time tracking in one workspace.
           </p>
 
           <div className="mt-1 flex flex-wrap justify-center gap-1 sm:mt-1.5">

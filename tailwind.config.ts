@@ -10,8 +10,34 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        sans: [
+          "var(--font-geist-sans)",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Helvetica Neue",
+          "sans-serif",
+        ],
+        display: [
+          "var(--font-bricolage)",
+          "var(--font-geist-sans)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        serif: [
+          "var(--font-instrument-serif)",
+          "ui-serif",
+          "Georgia",
+          "serif",
+        ],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+      },
+      letterSpacing: {
+        "display-tight": "-0.035em",
+        "display-normal": "-0.02em",
+        "serif-tight": "-0.025em",
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -39,6 +65,11 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))'
+        },
+        warm: {
+          DEFAULT: 'hsl(var(--warm))',
+          foreground: 'hsl(var(--warm-foreground))',
+          soft: 'hsl(var(--warm-soft))'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',

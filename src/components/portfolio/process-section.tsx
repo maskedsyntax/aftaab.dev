@@ -7,19 +7,19 @@ export function ProcessSection() {
     <SectionReveal className="border-t border-border py-12 md:py-16">
       <SectionHeader
         title="Process"
-        description="How I work with teams and founders—from problem framing to shipped software."
+        description="How I work with founders and teams. Research through release, with design and engineering interleaved at every step."
       />
-      <ol className="grid gap-px overflow-hidden rounded-lg border border-border md:grid-cols-2">
+      <ol className="grid gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/70 md:grid-cols-2">
         {processSteps.map((step, i) => (
           <li
             key={step.title}
-            className="flex gap-5 bg-card/60 p-6 md:p-7"
+            className="relative flex gap-5 bg-card p-6 transition-colors hover:bg-card/80 md:p-7"
           >
-            <span className="shrink-0 font-mono text-2xl font-semibold tabular-nums text-foreground/10">
+            <span className="shrink-0 font-display text-3xl font-semibold tabular-nums text-foreground/10">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div>
-              <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
+            <div className="min-w-0">
+              <h3 className="font-display text-[16px] font-semibold tracking-tight text-foreground">
                 {step.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

@@ -14,15 +14,18 @@ export function SectionHeader({
   footer?: ReactNode;
 }) {
   return (
-    <div className="mb-6 max-w-2xl md:mb-7">
-      <h2 className="text-[1.3rem] font-semibold tracking-tight text-foreground md:text-[1.5rem]">
+    <div className="mb-7 max-w-2xl md:mb-8">
+      <h2 className="font-display text-[1.55rem] font-semibold tracking-display-tight text-foreground md:text-[1.85rem]">
         {title}
       </h2>
       {showRule ? (
-        <div className="mt-2 h-px w-8 bg-primary/45" />
+        <div className="mt-3 flex items-center gap-1.5">
+          <span className="h-px w-8 bg-gradient-to-r from-primary/70 to-primary/10" />
+          <span className="h-1 w-1 rounded-full bg-primary/50" />
+        </div>
       ) : null}
       {description ? (
-        <p className="mt-3 text-[15px] leading-snug text-muted-foreground md:text-base">
+        <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground md:text-base">
           {description}
         </p>
       ) : null}

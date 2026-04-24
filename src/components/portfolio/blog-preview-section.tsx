@@ -13,8 +13,8 @@ export function BlogPreviewSection() {
       className="scroll-mt-8 border-t border-border py-12 md:py-16"
     >
       <SectionHeader
-        title="Blog"
-        description="Long-form notes on engineering decisions, product building, and systems—not trend chasing."
+        title="Writing"
+        description="Long-form notes on product, design, and engineering decisions."
       />
       <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border">
         {posts.map((post) => (

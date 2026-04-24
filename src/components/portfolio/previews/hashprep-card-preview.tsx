@@ -59,7 +59,7 @@ export function HashprepCardPreview({ className }: { className?: string }) {
         </p>
 
         <p className="mt-0.5 line-clamp-2 max-w-[28ch] text-[5.5px] leading-snug text-zinc-500 dark:text-zinc-400 sm:text-[6.5px]">
-          Profile, debug, and fix—before your pipeline breaks.
+          Profile, debug, and fix before your pipeline breaks.
         </p>
 
         <div className="mt-1.5 flex flex-wrap justify-center gap-1 sm:mt-2">

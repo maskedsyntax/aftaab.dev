@@ -4,4 +4,4 @@ export const siteUrl = "https://aftaab.xyz" as const;
 export const siteName = "Aftaab Siddiqui";
 
 export const defaultDescription =
-  "Production-ready software systems that feel simple to use—engineered for scale and reliability. Full-stack products, developer tooling, and ML-integrated applications.";
+  "Product designer and full-stack engineer building web and mobile products end-to-end—from interface design and motion to a reliable, scalable build underneath.";

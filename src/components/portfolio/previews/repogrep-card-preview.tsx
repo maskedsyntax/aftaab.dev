@@ -63,7 +63,7 @@ export function RepogrepCardPreview({ className }: { className?: string }) {
           </p>
 
           <p className="mt-1 line-clamp-2 text-[5.5px] leading-snug text-zinc-500 dark:text-zinc-400 sm:text-[6.5px]">
-            Local-first code search. No cloud—just speed.
+            Local-first code search. Runs on your machine.
           </p>
 
           <div className="mt-1.5 flex flex-wrap gap-1 sm:mt-2">
