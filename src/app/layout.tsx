@@ -21,7 +21,7 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-const siteTagline = "Design & engineering for digital products";
+const siteTagline = "From idea to product.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -82,7 +82,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} ${bricolage.variable}`}
     >
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

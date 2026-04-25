@@ -22,9 +22,9 @@ function DisplayHeadline({
   skip: boolean | null;
 }) {
   const renderWord = (w: string) => {
-    if (w === "build") {
+    if (w === "product.") {
       return (
-        <span className="bg-gradient-to-br from-primary via-primary to-warm bg-clip-text text-transparent">
+        <span className="inline-block bg-gradient-to-br from-primary via-primary to-warm bg-clip-text text-transparent">
           {w}
         </span>
       );
@@ -41,6 +41,17 @@ function DisplayHeadline({
 
   const headingClass =
     "font-serif italic font-normal text-[3rem] leading-[1.12] tracking-serif-tight text-foreground sm:text-[3.9rem] md:text-[4.75rem]";
+  const revealClass =
+    "inline-block pb-[0.08em] -mb-[0.08em] will-change-[clip-path]";
+
+  const wordReveal = {
+    initial: {
+      clipPath: "inset(0% 0% 100% 0%)",
+    },
+    animate: {
+      clipPath: "inset(0% 0% 0% 0%)",
+    },
+  } as const;
 
   if (skip) {
     return (
@@ -57,15 +68,12 @@ function DisplayHeadline({
   return (
     <h1 className={headingClass}>
       {words.map((w, i) => (
-        <span
-          key={`${w}-${i}`}
-          className="mr-[0.12em] inline-block overflow-hidden align-bottom"
-        >
+        <span key={`${w}-${i}`} className="mr-[0.12em] inline-block">
           <motion.span
-            initial={{ y: "115%" }}
-            animate={{ y: "0%" }}
+            initial={wordReveal.initial}
+            animate={wordReveal.animate}
             transition={{ duration: 0.9, ease, delay: 0.12 + i * 0.08 }}
-            className="inline-block"
+            className={revealClass}
           >
             {renderWord(w)}
           </motion.span>
@@ -99,7 +107,7 @@ export function HeroSection() {
 
           <div>
             <DisplayHeadline
-              words={["Design", "&", "build", "digital", "products."]}
+              words={["From", "idea", "to", "product."]}
               skip={rm}
             />
           </div>
