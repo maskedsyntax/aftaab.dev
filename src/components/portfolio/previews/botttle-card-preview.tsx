@@ -1,3 +1,6 @@
+"use client";
+
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -5,6 +8,7 @@ import { cn } from "@/lib/utils";
  * and stack chips—so project cards stay sharp at any size without raster screenshots.
  */
 export function BotttleCardPreview({ className }: { className?: string }) {
+  const clipId = useId();
   return (
     <div
       className={cn(
@@ -20,10 +24,26 @@ export function BotttleCardPreview({ className }: { className?: string }) {
       <div className="relative z-[1] shrink-0 flex items-center justify-between gap-1 px-2 pt-2 text-[7px] leading-none sm:px-2.5 sm:pt-2.5 sm:text-[8px]">
         <div className="flex min-w-0 items-center gap-1 font-semibold tracking-tight text-foreground">
           <span
-            className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-md bg-primary/20 text-[6px] text-primary sm:h-4 sm:w-4"
+            className="grid h-2.5 w-2.5 shrink-0 place-items-center sm:h-3 sm:w-3"
             aria-hidden
           >
-            ◎
+            <svg viewBox="0 0 64 64" className="h-full w-full" fill="none">
+              <defs>
+                <clipPath id={clipId}>
+                  <path d="M26 8 h12 v8 l4 8 v28 c0 3-2 5-5 5 H27 c-3 0-5-2-5-5 V24 l4-8 V8z" />
+                </clipPath>
+              </defs>
+              <path
+                d="M26 8 h12 v8 l4 8 v28 c0 3-2 5-5 5 H27 c-3 0-5-2-5-5 V24 l4-8 V8z"
+                stroke="#2563eb"
+                strokeWidth={3}
+                strokeLinejoin="round"
+                fill="none"
+              />
+              <g clipPath={`url(#${clipId})`}>
+                <path d="M16 42 Q 24 36, 32 42 T 48 42 L 48 60 L 16 60 Z" fill="#2563eb" />
+              </g>
+            </svg>
           </span>
           <span className="truncate lowercase">botttle</span>
         </div>
@@ -31,10 +51,9 @@ export function BotttleCardPreview({ className }: { className?: string }) {
           <span>Features</span>
           <span>Docs</span>
         </div>
-        <div className="flex shrink-0 gap-0.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-border sm:h-2 sm:w-2" />
-          <span className="h-1.5 w-1.5 rounded-full bg-border sm:h-2 sm:w-2" />
-        </div>
+        <span className="rounded-md bg-primary/90 px-1.5 py-px text-[5.5px] font-medium text-primary-foreground shadow-sm sm:text-[6px]">
+          Sign in
+        </span>
       </div>
 
       {/* Hero copy (can shrink); terminal + stack stay visible at bottom */}

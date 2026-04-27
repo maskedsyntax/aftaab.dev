@@ -10,6 +10,8 @@ import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-p
 import { RepogrepCardPreview } from "@/components/portfolio/previews/repogrep-card-preview";
 import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-card-preview";
 import { EiraFocusCardPreview } from "@/components/portfolio/previews/eirafocus-card-preview";
+import { PatternsCardPreview } from "@/components/portfolio/previews/patterns-card-preview";
+import { OpenConduitCardPreview } from "@/components/portfolio/previews/openconduit-card-preview";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
@@ -52,6 +54,10 @@ function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
       <RepogrepCardPreview className="h-full w-full rounded-xl" />
     ) : project.coverVariant === "hashprep-preview" ? (
       <HashprepCardPreview className="h-full w-full rounded-xl" />
+    ) : project.coverVariant === "patterns-preview" ? (
+      <PatternsCardPreview className="h-full w-full rounded-xl" />
+    ) : project.coverVariant === "openconduit-preview" ? (
+      <OpenConduitCardPreview className="h-full w-full rounded-xl" />
     ) : project.coverImage ? (
       <Image
         src={project.coverImage}

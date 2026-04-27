@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
@@ -21,16 +22,14 @@ export function HashprepCardPreview({ className }: { className?: string }) {
       {/* Nav */}
       <div className="relative z-[1] flex items-center justify-between gap-1 px-2 pt-2 text-[6.5px] leading-none sm:px-2.5 sm:pt-2.5 sm:text-[7.5px]">
         <div className="flex min-w-0 items-center gap-1 font-bold tracking-[0.12em]">
-          <span
-            className="grid h-3 w-3 shrink-0 place-items-center rounded sm:h-3.5 sm:w-3.5"
-            aria-hidden
-          >
-            <svg viewBox="0 0 24 24" className="h-full w-full text-pink-500">
-              <path
-                fill="currentColor"
-                d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"
-              />
-            </svg>
+          <span className="relative h-2.5 w-2.5 shrink-0 sm:h-3 sm:w-3" aria-hidden>
+            <Image
+              src="/images/projects/logos/hashprep.svg"
+              alt=""
+              fill
+              sizes="12px"
+              className="object-contain"
+            />
           </span>
           <span className="truncate text-[7px] uppercase text-zinc-800 dark:text-white sm:text-[8px]">
             HashPrep
@@ -40,12 +39,9 @@ export function HashprepCardPreview({ className }: { className?: string }) {
           <span>Features</span>
           <span>Docs</span>
         </div>
-        <div className="flex shrink-0 items-center gap-1">
-          <span className="h-2.5 w-2.5 rounded border border-zinc-300 dark:border-zinc-600" />
-          <span className="rounded-full bg-pink-500 px-1.5 py-px text-[5.5px] font-semibold text-white dark:bg-pink-400 dark:text-zinc-950 sm:px-2 sm:text-[6px]">
-            Start
-          </span>
-        </div>
+        <span className="rounded-full bg-pink-500 px-1.5 py-px text-[5.5px] font-semibold text-white dark:bg-pink-400 dark:text-zinc-950 sm:px-2 sm:text-[6px]">
+          Start
+        </span>
       </div>
 
       {/* Hero */}

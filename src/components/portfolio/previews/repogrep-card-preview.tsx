@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,21 +21,14 @@ export function RepogrepCardPreview({ className }: { className?: string }) {
       {/* Nav */}
       <div className="relative z-[1] flex items-center justify-between gap-1 px-2 pt-2 text-[7px] leading-none sm:px-2.5 sm:pt-2.5 sm:text-[8px]">
         <div className="flex min-w-0 items-center gap-1 font-semibold tracking-tight">
-          <span
-            className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-md bg-teal-600/12 text-teal-700 dark:bg-teal-400/15 dark:text-teal-300 sm:h-4 sm:w-4"
-            aria-hidden
-          >
-            <svg
-              className="h-2 w-2 sm:h-2.5 sm:w-2.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            >
-              <circle cx="11" cy="11" r="6.5" />
-              <path d="M16.5 16.5 21 21" />
-            </svg>
+          <span className="relative h-2.5 w-2.5 shrink-0 sm:h-3 sm:w-3" aria-hidden>
+            <Image
+              src="/images/projects/logos/repogrep.png"
+              alt=""
+              fill
+              sizes="12px"
+              className="object-contain"
+            />
           </span>
           <span className="truncate text-teal-800 dark:text-teal-200">repogrep</span>
         </div>
@@ -42,7 +36,6 @@ export function RepogrepCardPreview({ className }: { className?: string }) {
           <span>Features</span>
           <span>GitHub</span>
         </div>
-        <div className="h-3 w-3 shrink-0 rounded border border-zinc-200 dark:border-white/15" />
       </div>
 
       {/* Hero: copy + window */}

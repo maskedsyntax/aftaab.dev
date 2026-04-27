@@ -5,6 +5,8 @@ import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-p
 import { RepogrepCardPreview } from "@/components/portfolio/previews/repogrep-card-preview";
 import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-card-preview";
 import { EiraFocusCardPreview } from "@/components/portfolio/previews/eirafocus-card-preview";
+import { PatternsCardPreview } from "@/components/portfolio/previews/patterns-card-preview";
+import { OpenConduitCardPreview } from "@/components/portfolio/previews/openconduit-card-preview";
 import { featuredProjects, type FeaturedProject } from "@/lib/portfolio-data";
 import { ExternalLink, Github, Target, Wrench, TrendingUp } from "lucide-react";
 import Image from "next/image";
@@ -24,7 +26,9 @@ function ProjectMedia({ p }: { p: FeaturedProject }) {
     p.coverVariant === "trelay-preview" ||
     p.coverVariant === "repogrep-preview" ||
     p.coverVariant === "hashprep-preview" ||
-    p.coverVariant === "eirafocus-preview";
+    p.coverVariant === "eirafocus-preview" ||
+    p.coverVariant === "patterns-preview" ||
+    p.coverVariant === "openconduit-preview";
 
   return (
     <div
@@ -45,6 +49,10 @@ function ProjectMedia({ p }: { p: FeaturedProject }) {
           className="absolute inset-0 h-full w-full rounded-2xl"
           layout={isPortrait ? "portrait" : "landscape"}
         />
+      ) : p.coverVariant === "patterns-preview" ? (
+        <PatternsCardPreview className="absolute inset-0 h-full w-full rounded-2xl" />
+      ) : p.coverVariant === "openconduit-preview" ? (
+        <OpenConduitCardPreview className="absolute inset-0 h-full w-full rounded-2xl" />
       ) : p.coverImage ? (
         <Image
           src={p.coverImage}

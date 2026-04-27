@@ -9,6 +9,8 @@ import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-p
 import { RepogrepCardPreview } from "@/components/portfolio/previews/repogrep-card-preview";
 import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-card-preview";
 import { EiraFocusCardPreview } from "@/components/portfolio/previews/eirafocus-card-preview";
+import { PatternsCardPreview } from "@/components/portfolio/previews/patterns-card-preview";
+import { OpenConduitCardPreview } from "@/components/portfolio/previews/openconduit-card-preview";
 import { ArrowUpRight } from "lucide-react";
 
 export function FeaturedWorkCard({
@@ -49,6 +51,14 @@ export function FeaturedWorkCard({
         ) : project.coverVariant === "eirafocus-preview" ? (
           <div className="absolute inset-0 overflow-hidden transition-transform duration-500 group-hover:scale-[1.03]">
             <EiraFocusCardPreview className="h-full w-full rounded-xl" />
+          </div>
+        ) : project.coverVariant === "patterns-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-500 group-hover:scale-[1.03]">
+            <PatternsCardPreview className="h-full w-full rounded-xl" />
+          </div>
+        ) : project.coverVariant === "openconduit-preview" ? (
+          <div className="absolute inset-0 overflow-hidden transition-transform duration-500 group-hover:scale-[1.03]">
+            <OpenConduitCardPreview className="h-full w-full rounded-xl" />
           </div>
         ) : project.coverImage ? (
           <Image

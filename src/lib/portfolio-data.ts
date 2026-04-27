@@ -12,7 +12,9 @@ export type FeaturedProject = {
     | "trelay-preview"
     | "repogrep-preview"
     | "hashprep-preview"
-    | "eirafocus-preview";
+    | "eirafocus-preview"
+    | "patterns-preview"
+    | "openconduit-preview";
   /** Hint to the layout about the preview's natural orientation */
   mediaOrientation?: "landscape" | "portrait";
   challenge: string;
@@ -128,6 +130,41 @@ export const featuredProjects: FeaturedProject[] = [
     coverVariant: "hashprep-preview",
     mediaOrientation: "landscape",
   },
+  {
+    id: "patterns",
+    name: "Patterns",
+    role: "Designer & Desktop Developer",
+    tagline:
+      "A focused desktop app for daily journaling and tracking obsessive-compulsive patterns.",
+    category: "Desktop · Wellbeing",
+    challenge:
+      "OCD journaling needs a calm, structured surface. Most note apps are either too unstructured to surface patterns over time, or so clinical they raise the cost of writing.",
+    solution:
+      "Patterns is a small, focused desktop app. A dated entry list, a quiet editor, and a privacy-first local model. The interface is designed to make starting an entry effortless, and to make trends visible across days without turning reflection into a dashboard.",
+    impact:
+      "A private companion for people working through OCD-style thinking, useful on its own and as preparation for clinical conversations.",
+    liveUrl: "https://patterns.maskedsyntax.com",
+    coverVariant: "patterns-preview",
+    mediaOrientation: "landscape",
+  },
+  {
+    id: "openconduit",
+    name: "OpenConduit",
+    role: "Product Designer & Full-Stack Developer",
+    tagline:
+      "Open-source WhatsApp CRM for solo operators and small teams. Self-hosted contacts, conversations, and pipelines.",
+    category: "Product · SaaS",
+    challenge:
+      "Hosted WhatsApp CRMs are pricey, lock data behind seats, and force a specific workflow. Operators who run their business through chat want the same polish without giving up ownership of their pipeline.",
+    solution:
+      "OpenConduit is a self-hosted CRM built around the way solo operators actually work in WhatsApp. A clear conversation surface, lightweight pipelines, and an admin layer that stays out of the way. Docker-friendly deployment so it runs on the operator's own server.",
+    impact:
+      "A privacy-respecting CRM that scales from a single operator to a small team, without monthly per-seat costs.",
+    liveUrl: "https://openconduit.dev",
+    repoUrl: "https://github.com/growvth/openconduit",
+    coverVariant: "openconduit-preview",
+    mediaOrientation: "landscape",
+  },
 ];
 
 export const selectedWorksIntro =
@@ -149,12 +186,6 @@ export const additionalWorkProjects: WorkListItem[] = [
     id: "lofikofi",
     name: "LofiKofi",
     url: "https://lofikofi.space",
-    status: "live",
-  },
-  {
-    id: "patterns",
-    name: "Patterns",
-    url: "https://patterns.maskedsyntax.com",
     status: "live",
   },
   {
