@@ -1,6 +1,22 @@
 /** Shared JSX for Open Graph / Twitter image generation (@vercel/og) */
 
-export function OgBrandImage() {
+interface OgBrandImageProps {
+  /** Small uppercase label above the title (category, "Case study", etc.) */
+  eyebrow?: string;
+  /** Main heading — defaults to the site author */
+  title?: string;
+  /** Sub-heading body text */
+  subtitle?: string;
+  /** Footer right-side label */
+  footerNote?: string;
+}
+
+export function OgBrandImage({
+  eyebrow,
+  title = "Aftaab Siddiqui",
+  subtitle = "Product designer and full-stack engineer. Web and mobile products from first interface to shipped code.",
+  footerNote = "Product · Design · Code",
+}: OgBrandImageProps = {}) {
   return (
     <div
       style={{
@@ -15,30 +31,44 @@ export function OgBrandImage() {
           'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
       }}
     >
-      <div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {eyebrow ? (
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+              color: "#0d9488",
+              textTransform: "uppercase",
+              marginBottom: 24,
+            }}
+          >
+            {eyebrow}
+          </div>
+        ) : null}
         <div
           style={{
-            fontSize: 52,
-            fontWeight: 600,
+            fontSize: 64,
+            fontWeight: 700,
             letterSpacing: "-0.03em",
             color: "#0f172a",
-            lineHeight: 1.1,
+            lineHeight: 1.05,
+            maxWidth: 980,
           }}
         >
-          Aftaab Siddiqui
+          {title}
         </div>
         <div
           style={{
-            marginTop: 16,
+            marginTop: 20,
             fontSize: 26,
             fontWeight: 400,
             color: "#475569",
-            maxWidth: 720,
+            maxWidth: 880,
             lineHeight: 1.35,
           }}
         >
-          Production-ready systems that feel simple—built for scale and
-          reliability.
+          {subtitle}
         </div>
       </div>
       <div
@@ -51,7 +81,7 @@ export function OgBrandImage() {
         }}
       >
         <span style={{ fontSize: 18, color: "#0d9488", fontWeight: 600 }}>
-          aftaab.xyz
+          aftaab.dev
         </span>
         <span
           style={{
@@ -60,7 +90,7 @@ export function OgBrandImage() {
             fontFamily: "ui-monospace, monospace",
           }}
         >
-          systems · tooling · ML
+          {footerNote}
         </span>
       </div>
     </div>

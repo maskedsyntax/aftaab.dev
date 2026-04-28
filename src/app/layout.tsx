@@ -4,7 +4,13 @@ import { GeistMono } from "geist/font/mono";
 import { Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import { defaultDescription, siteName, siteUrl } from "@/lib/site";
+import {
+  defaultDescription,
+  siteName,
+  siteTagline,
+  siteUrl,
+  socials,
+} from "@/lib/site";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -21,8 +27,6 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-const siteTagline = "From idea to product.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -31,6 +35,22 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   applicationName: siteName,
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  keywords: [
+    "Aftaab Siddiqui",
+    "product designer",
+    "full-stack engineer",
+    "freelance developer India",
+    "web design",
+    "mobile design",
+    "React",
+    "Next.js",
+    "Flutter",
+    "Figma",
+  ],
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -43,14 +63,45 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteName} — ${siteTagline}`,
     description: defaultDescription,
+    creator: socials.xHandle,
+    site: socials.xHandle,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
-    icon: "/favicons/favicon.ico",
-    shortcut: "/favicons/favicon-16x16.png",
+    icon: [
+      { url: "/favicons/favicon.ico", sizes: "any" },
+      {
+        url: "/favicons/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicons/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/favicons/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/favicons/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/favicons/favicon.ico",
     apple: "/favicons/apple-touch-icon.png",
   },
 };
@@ -67,9 +118,41 @@ const personJsonLd = {
   "@type": "Person",
   name: siteName,
   url: siteUrl,
-  sameAs: ["https://github.com/MaskedSyntax"],
+  image: `${siteUrl}/opengraph-image`,
+  description: defaultDescription,
   jobTitle: "Product designer & full-stack engineer",
+  email: `mailto:${socials.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+  },
+  knowsAbout: [
+    "Product design",
+    "UI/UX design",
+    "Frontend engineering",
+    "React",
+    "Next.js",
+    "Flutter",
+    "Mobile development",
+    "Full-stack development",
+    "Design systems",
+  ],
+  sameAs: [socials.github, socials.linkedin, socials.x],
 };
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  description: defaultDescription,
+  inLanguage: "en",
+  publisher: { "@type": "Person", name: siteName, url: siteUrl },
+};
+
+function jsonLdStringify(value: object): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
 
 export default function RootLayout({
   children,
@@ -86,7 +169,13 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personJsonLd),
+            __html: jsonLdStringify(personJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLdStringify(websiteJsonLd),
           }}
         />
         <Providers>{children}</Providers>

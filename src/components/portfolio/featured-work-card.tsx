@@ -20,7 +20,7 @@ export function FeaturedWorkCard({
   project: FeaturedProject;
   caseStudyHref?: string;
 }) {
-  const href = caseStudyHref ?? `#case-study-${project.id}`;
+  const href = caseStudyHref ?? `/projects/${project.id}`;
   return (
     <Link
       href={href}

@@ -11,7 +11,7 @@ import { featuredProjects, type FeaturedProject } from "@/lib/portfolio-data";
 import { ExternalLink, Github, Target, Wrench, TrendingUp } from "lucide-react";
 import Image from "next/image";
 
-function ProjectMedia({ p }: { p: FeaturedProject }) {
+export function ProjectMedia({ p }: { p: FeaturedProject }) {
   const isPortrait = p.mediaOrientation === "portrait";
   // Portrait: stretch to match the left column's full height (header + editorial rows)
   // so the two columns finish together. Scene stays centered; ambient wash fills extra
@@ -109,7 +109,7 @@ function ProjectHeader({ p, idx }: { p: FeaturedProject; idx: number }) {
   );
 }
 
-function EditorialRows({ p }: { p: FeaturedProject }) {
+export function EditorialRows({ p }: { p: FeaturedProject }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-sm backdrop-blur-sm">
       <div className="divide-y divide-border/50">

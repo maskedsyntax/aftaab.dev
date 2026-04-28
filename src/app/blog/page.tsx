@@ -9,16 +9,36 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Engineering notes, product building, and systems thinking.",
+    "Notes on building products end to end — design systems, Next.js, Flutter, motion, and the bridge between Figma and the editor.",
   alternates: { canonical: "/blog" },
   openGraph: { url: `${siteUrl}/blog` },
 }
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: `${siteUrl}/blog`,
+    },
+  ],
+};
 
 export default function BlogPage() {
   const blogPosts = getAllBlogs();
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
           <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Blog</h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-[15px]">

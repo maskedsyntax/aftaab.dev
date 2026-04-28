@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PageTransition } from "@/components/page-transition";
 import type { Metadata } from "next";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
@@ -17,15 +16,35 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Featured case studies, the full project catalog, and links to GitHub and MaskedSyntax.",
+    "Case studies and ongoing builds by Aftaab Siddiqui — EiraFocus, Botttle, Trelay, OpenConduit, Patterns, RepoGrep, HashPrep, and more.",
   alternates: { canonical: "/projects" },
   openGraph: { url: `${siteUrl}/projects` },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Work",
+      item: `${siteUrl}/projects`,
+    },
+  ],
 };
 
 export default function ProjectsPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <main className="container mx-auto max-w-5xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
           <header className="mb-12 max-w-2xl">
             <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
@@ -41,21 +60,14 @@ export default function ProjectsPage() {
               Featured
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Deep-dive case studies live on the{" "}
-              <Link
-                href="/#case-studies"
-                className="font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 transition-colors hover:decoration-foreground"
-              >
-                home page
-              </Link>
-              . Jump to a study from a card below.
+              Each card opens its own deep-dive case study. Pick one to read.
             </p>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {featuredProjects.map((project) => (
                 <FeaturedWorkCard
                   key={project.id}
                   project={project}
-                  caseStudyHref={`/#case-study-${project.id}`}
+                  caseStudyHref={`/projects/${project.id}`}
                 />
               ))}
             </div>

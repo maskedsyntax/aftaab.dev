@@ -10,6 +10,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  /** Optional `dateModified` from frontmatter — same DD-MM-YYYY format as `date` */
+  dateModified?: string;
   description: string;
   content: string;
 }
@@ -40,6 +42,8 @@ export function getAllBlogs(): BlogPost[] {
       slug,
       title,
       date: typeof data.date === "string" ? data.date : "",
+      dateModified:
+        typeof data.dateModified === "string" ? data.dateModified : undefined,
       description:
         typeof data.description === "string" ? data.description : "",
       content: typeof content === "string" ? content : "",

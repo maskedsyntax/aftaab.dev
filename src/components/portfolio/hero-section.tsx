@@ -55,18 +55,18 @@ function DisplayHeadline({
 
   if (skip) {
     return (
-      <h1 className={headingClass}>
+      <h2 className={headingClass}>
         {words.map((w, i) => (
           <span key={`${w}-${i}`} className="mr-[0.12em] inline-block">
             {renderWord(w)}
           </span>
         ))}
-      </h1>
+      </h2>
     );
   }
 
   return (
-    <h1 className={headingClass}>
+    <h2 className={headingClass}>
       {words.map((w, i) => (
         <span key={`${w}-${i}`} className="mr-[0.12em] inline-block">
           <motion.span
@@ -79,7 +79,7 @@ function DisplayHeadline({
           </motion.span>
         </span>
       ))}
-    </h1>
+    </h2>
   );
 }
 
@@ -105,12 +105,10 @@ export function HeroSection() {
             <span>{heroCopy.eyebrow}</span>
           </motion.div>
 
-          <div>
-            <DisplayHeadline
-              words={["From", "idea", "to", "product."]}
-              skip={rm}
-            />
-          </div>
+          <DisplayHeadline
+            words={["From", "idea", "to", "product."]}
+            skip={rm}
+          />
 
           <motion.p
             initial={rm ? false : { opacity: 0, y: 12 }}
@@ -145,6 +143,15 @@ export function HeroSection() {
               <ArrowDown className="relative h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
             </a>
           </motion.div>
+
+          <motion.p
+            initial={rm ? false : { opacity: 0, y: 6 }}
+            animate={rm ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 1 }}
+            className="max-w-2xl pt-3 text-[13px] leading-relaxed text-muted-foreground/80 md:pt-5 md:text-[14px]"
+          >
+            {heroCopy.subline}
+          </motion.p>
         </div>
 
         {/* Contact surface — replaces the avatar column, vertically dropped so it sits alongside the hero's body copy rather than the headline */}
@@ -152,7 +159,7 @@ export function HeroSection() {
           initial={rm ? false : { opacity: 0, y: 16 }}
           animate={rm ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease, delay: 0.3 }}
-          className="relative md:row-start-1 md:col-start-2 md:self-end md:pb-1"
+          className="relative md:row-start-1 md:col-start-2 md:self-center"
         >
           <div className="group relative flex flex-col items-center rounded-2xl border border-border/70 bg-card/60 p-5 text-center shadow-[0_10px_40px_-18px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-6">
             {/* Soft warm glow that activates on hover */}
@@ -169,18 +176,30 @@ export function HeroSection() {
               <span>{heroCopy.availability}</span>
             </div>
 
-            <div className="mt-5 flex flex-col items-center">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                Get in touch
+            <div className="mt-4 flex flex-col items-center">
+              <h1 className="font-display text-[1.4rem] font-semibold tracking-display-tight text-foreground md:text-[1.55rem]">
+                Aftaab Siddiqui
+              </h1>
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/80">
+                Product designer · Full-stack engineer
               </p>
-              <a
-                href={emailLink.href}
-                className="group/mail mt-2 inline-flex items-center gap-1.5 font-mono text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-primary md:text-[16px]"
-              >
-                {emailLink.label}
-                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/60 transition-all group-hover/mail:-translate-y-0.5 group-hover/mail:translate-x-0.5 group-hover/mail:text-primary" />
-              </a>
             </div>
+
+            <div className="mt-5 flex w-full items-center gap-3">
+              <span className="h-px flex-1 bg-border/60" aria-hidden />
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-muted-foreground/70">
+                Get in touch
+              </span>
+              <span className="h-px flex-1 bg-border/60" aria-hidden />
+            </div>
+
+            <a
+              href={emailLink.href}
+              className="group/mail mt-3 inline-flex items-center gap-1.5 font-mono text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-primary md:text-[16px]"
+            >
+              {emailLink.label}
+              <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/60 transition-all group-hover/mail:-translate-y-0.5 group-hover/mail:translate-x-0.5 group-hover/mail:text-primary" />
+            </a>
 
             <a
               href={emailLink.href}
@@ -229,15 +248,6 @@ export function HeroSection() {
           </div>
         </motion.aside>
       </div>
-
-      <motion.p
-        initial={rm ? false : { opacity: 0, y: 6 }}
-        animate={rm ? undefined : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease, delay: 1 }}
-        className="relative z-[1] mt-10 max-w-2xl text-[13px] leading-relaxed text-muted-foreground/80 md:mt-14 md:text-[14px]"
-      >
-        {heroCopy.subline}
-      </motion.p>
 
       <div className="relative z-[1] mt-10 h-px w-full max-w-md bg-gradient-to-r from-primary/40 via-border to-transparent md:mt-12" />
     </section>

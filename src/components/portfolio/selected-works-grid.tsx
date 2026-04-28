@@ -38,7 +38,7 @@ const item = {
 };
 
 function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
-  const href = `#case-study-${project.id}`;
+  const href = `/projects/${project.id}`;
 
   const preview =
     project.coverVariant === "eirafocus-preview" ? (

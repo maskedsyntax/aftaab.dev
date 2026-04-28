@@ -2,8 +2,5 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://aftaab.xyz
-
 # Sitemaps
-Sitemap: https://aftaab.xyz/sitemap.xml
+Sitemap: https://aftaab.dev/sitemap.xml

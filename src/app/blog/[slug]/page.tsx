@@ -40,10 +40,13 @@ export async function generateMetadata({
   const title = blog.title.trim();
   const desc = blog.description?.trim() || title;
   const publishedTime = toISODate(blog.date);
+  const modifiedTime = blog.dateModified
+    ? toISODate(blog.dateModified)
+    : publishedTime;
   return {
     title,
     description: desc,
-    authors: [{ name: siteName }],
+    authors: [{ name: siteName, url: siteUrl }],
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title,
@@ -51,6 +54,8 @@ export async function generateMetadata({
       url: `${siteUrl}/blog/${slug}`,
       type: "article",
       publishedTime,
+      modifiedTime,
+      authors: [siteUrl],
     },
     twitter: {
       card: "summary_large_image",
@@ -84,14 +89,50 @@ export default async function BlogPost({ params }: PageProps) {
 
   const safeDesc = blog.description?.trim() || blog.title.trim();
 
+  const canonicalUrl = `${siteUrl}/blog/${resolvedParams.slug}`;
+  const datePublished = toISODate(blog.date);
+  const dateModified = blog.dateModified
+    ? toISODate(blog.dateModified)
+    : datePublished;
+  const wordCount = blog.content
+    .replace(/[`*_>#~\[\]\(\)\-\!]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blog.title.trim(),
     description: safeDesc,
-    datePublished: toISODate(blog.date),
+    datePublished,
+    dateModified,
     author: { "@type": "Person", name: siteName, url: siteUrl },
-    url: `${siteUrl}/blog/${resolvedParams.slug}`,
+    publisher: { "@type": "Person", name: siteName, url: siteUrl },
+    image: `${canonicalUrl}/opengraph-image`,
+    url: canonicalUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    wordCount,
+    inLanguage: "en",
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteUrl}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: blog.title.trim(),
+        item: canonicalUrl,
+      },
+    ],
   };
 
   return (
@@ -99,6 +140,10 @@ export default async function BlogPost({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdStringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdStringify(breadcrumbJsonLd) }}
       />
       <main className="container mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
         <article className="prose prose-neutral dark:prose-invert mx-auto max-w-none lg:prose-lg">
