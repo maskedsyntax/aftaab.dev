@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { Badge } from "@/components/ui/badge";
@@ -91,9 +92,14 @@ export function SelectedWorksGrid({
     <div className="flex flex-col gap-6">
       {lead ? <LeadFeaturedCard project={lead} /> : null}
       <div className="grid gap-6 sm:grid-cols-2">
-        {rest.map((project) => (
-          <FeaturedWorkCard key={project.id} project={project} />
-        ))}
+        {rest.map((project) => {
+          const wide = project.gridSpan === "full";
+          return (
+            <div key={project.id} className={cn(wide && "sm:col-span-2")}>
+              <FeaturedWorkCard project={project} wide={wide} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { ArrowUpRight } from "lucide-react";
@@ -9,9 +10,11 @@ import { ArrowUpRight } from "lucide-react";
 export function FeaturedWorkCard({
   project,
   caseStudyHref,
+  wide = false,
 }: {
   project: FeaturedProject;
   caseStudyHref?: string;
+  wide?: boolean;
 }) {
   const href = caseStudyHref ?? `/projects/${project.id}`;
   const accent = project.accentColor ?? "#6366f1";
@@ -31,7 +34,10 @@ export function FeaturedWorkCard({
       />
 
       {/* Thumbnail */}
-      <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm">
+      <div className={cn(
+        "relative mb-5 w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm",
+        wide ? "aspect-[21/9]" : "aspect-[16/10]",
+      )}>
         {project.coverImage ? (
           <Image
             src={project.coverImage}

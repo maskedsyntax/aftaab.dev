@@ -22,6 +22,8 @@ export type FeaturedProject = {
   accentColor?: string;
   /** Hint to the layout about the preview's natural orientation */
   mediaOrientation?: "landscape" | "portrait";
+  /** "full" cards span the whole grid row; "half" (default) pair up in two columns */
+  gridSpan?: "full" | "half";
   challenge: string;
   solution: string;
   impact: string;
@@ -79,6 +81,7 @@ export const featuredProjects: FeaturedProject[] = [
     liveUrl: "https://cairnly.app",
     coverImage: "/images/projects/cairnly.png",
     accentColor: "#C2714F",
+    gridSpan: "full",
     mediaOrientation: "landscape",
   },
   {
@@ -174,6 +177,7 @@ export const featuredProjects: FeaturedProject[] = [
     repoUrl: "https://github.com/growvth/openconduit",
     coverImage: "/images/projects/openconduit.png",
     accentColor: "#16A34A",
+    gridSpan: "full",
     mediaOrientation: "landscape",
   },
 ];
