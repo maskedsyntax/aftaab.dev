@@ -49,7 +49,7 @@ function AppIcon({ app }: { app: AppStoreApp }) {
   if (errored) {
     return (
       <div
-        className="flex h-[72px] w-[72px] items-center justify-center rounded-[18px] bg-muted text-[22px] font-semibold text-muted-foreground shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)]"
+        className="flex h-24 w-24 items-center justify-center rounded-[24px] bg-muted text-[26px] font-semibold text-muted-foreground shadow-[0_12px_32px_-8px_rgba(0,0,0,0.18)]"
         aria-hidden
       >
         {app.name[0]}
@@ -61,9 +61,9 @@ function AppIcon({ app }: { app: AppStoreApp }) {
     <img
       src={app.iconPath}
       alt={`${app.name} icon`}
-      width={72}
-      height={72}
-      className="rounded-[18px] object-cover shadow-[0_8px_24px_-8px_rgba(0,0,0,0.22)]"
+      width={96}
+      height={96}
+      className="rounded-[24px] object-cover shadow-[0_12px_32px_-8px_rgba(0,0,0,0.28)]"
       onError={() => setErrored(true)}
     />
   );
@@ -77,35 +77,35 @@ function AppTile({ app }: { app: AppStoreApp }) {
       href={primaryHref}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col items-center gap-2.5 rounded-2xl border border-transparent p-3 text-center transition-all duration-200 hover:border-border/70 hover:bg-background/60"
+      className="group flex flex-col items-center gap-4 rounded-2xl border border-transparent p-5 text-center transition-all duration-200 hover:border-border/70 hover:bg-background/60 md:p-6"
     >
       {/* App icon */}
-      <div className="shrink-0 transition-transform duration-300 group-hover:-translate-y-1">
+      <div className="shrink-0 transition-transform duration-300 group-hover:-translate-y-1.5">
         <AppIcon app={app} />
       </div>
 
       {/* Name */}
-      <p className="font-display text-[13.5px] font-semibold leading-snug tracking-tight text-foreground">
+      <p className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground">
         {app.name}
       </p>
 
       {/* Platform chips */}
-      <div className="flex flex-wrap justify-center gap-1">
+      <div className="flex flex-wrap justify-center gap-1.5">
         {app.platforms.map((p) => (
           <PlatformChip key={p} label={p} />
         ))}
       </div>
 
       {/* Tagline */}
-      <p className="line-clamp-2 text-[11.5px] leading-snug text-muted-foreground">
+      <p className="line-clamp-2 text-[12.5px] leading-relaxed text-muted-foreground">
         {app.tagline}
       </p>
 
       {/* Store links */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2">
         {(app.appStoreUrl || app.macAppStoreUrl) && (
           <span
-            className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background/80 px-2 py-0.5 text-[10px] font-medium text-foreground/70 transition-colors group-hover:text-foreground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[11px] font-medium text-foreground/70 transition-colors group-hover:text-foreground"
             title="App Store"
           >
             <AppStoreIcon className="h-3 w-3 text-[#007AFF]" />
@@ -114,7 +114,7 @@ function AppTile({ app }: { app: AppStoreApp }) {
         )}
         {app.playStoreUrl && (
           <span
-            className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background/80 px-2 py-0.5 text-[10px] font-medium text-foreground/70 transition-colors group-hover:text-foreground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[11px] font-medium text-foreground/70 transition-colors group-hover:text-foreground"
             title="Google Play"
           >
             <PlayStoreIcon className="h-3 w-3 text-[#34A853]" />
@@ -141,8 +141,8 @@ export function AppleAppsSection() {
         </p>
       </div>
 
-      <div className="rounded-2xl bg-muted/30 p-4 sm:p-6 md:p-8">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5 sm:gap-3">
+      <div className="rounded-2xl bg-muted/30 p-5 sm:p-8 md:p-10">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 lg:gap-5">
           {appleApps.map((app) => (
             <AppTile key={app.id} app={app} />
           ))}

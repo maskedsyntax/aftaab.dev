@@ -22,8 +22,8 @@ export type FeaturedProject = {
   accentColor?: string;
   /** Hint to the layout about the preview's natural orientation */
   mediaOrientation?: "landscape" | "portrait";
-  /** "full" cards span the whole grid row; "half" (default) pair up in two columns */
-  gridSpan?: "full" | "half";
+  /** "hero" = full-width tall; "banner" = full-width short; "1x1" = half-width */
+  bentoSize?: "hero" | "banner" | "1x1";
   challenge: string;
   solution: string;
   impact: string;
@@ -65,6 +65,7 @@ export const featuredProjects: FeaturedProject[] = [
     coverImage: "/images/projects/patterns.png",
     accentColor: "#E6A817",
     mediaOrientation: "landscape",
+    bentoSize: "hero",
   },
   {
     id: "cairnly",
@@ -82,7 +83,6 @@ export const featuredProjects: FeaturedProject[] = [
     liveUrl: "https://cairnly.app",
     coverImage: "/images/projects/cairnly.png",
     accentColor: "#C2714F",
-    gridSpan: "full",
     mediaOrientation: "landscape",
   },
   {
@@ -124,6 +124,24 @@ export const featuredProjects: FeaturedProject[] = [
     mediaOrientation: "landscape",
   },
   {
+    id: "apimask",
+    name: "ApiMask",
+    role: "Founder · Designer & Engineer",
+    tagline:
+      "Practical APIs for developer tools and website intelligence. 34 endpoints, 4 product groups, one RapidAPI key.",
+    category: "API Platform · Developer Tools",
+    challenge:
+      "Developers integrating common utilities — QR codes, email validation, DNS checks, AI content — end up juggling multiple providers, keys, billing accounts, and documentation sites. Every new utility means a new integration surface.",
+    solution:
+      "ApiMask packages 34 focused JSON endpoints into 4 product groups (Developer Utilities, AI Content, Email & Domain, QR Codes), all accessible through a single RapidAPI subscription. Consistent schemas and response formats across every endpoint. A modular roadmap keeps expanding under one key: OCR, PDF parsing, resume scoring, App Store intelligence, security and threat intel.",
+    impact:
+      "One key, one docs site, one billing account. Teams ship common integrations in minutes without managing a fragmented stack of API providers.",
+    liveUrl: "https://apimask.dev",
+    coverImage: "/images/projects/apimask.png",
+    accentColor: "#5B21B6",
+    mediaOrientation: "landscape",
+  },
+  {
     id: "queriously",
     name: "Queriously",
     role: "Designer & Engineer",
@@ -140,6 +158,7 @@ export const featuredProjects: FeaturedProject[] = [
     coverImage: "/images/projects/queriously.png",
     accentColor: "#CC3333",
     mediaOrientation: "landscape",
+    bentoSize: "banner",
   },
   {
     id: "trelay",
@@ -159,6 +178,7 @@ export const featuredProjects: FeaturedProject[] = [
     coverImage: "/images/projects/trelay.png",
     accentColor: "#E91E8C",
     mediaOrientation: "landscape",
+    bentoSize: "banner",
   },
   {
     id: "openconduit",
@@ -177,8 +197,8 @@ export const featuredProjects: FeaturedProject[] = [
     repoUrl: "https://github.com/growvth/openconduit",
     coverImage: "/images/projects/openconduit.png",
     accentColor: "#16A34A",
-    gridSpan: "full",
     mediaOrientation: "landscape",
+    bentoSize: "banner",
   },
 ];
 

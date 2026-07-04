@@ -1,101 +1,96 @@
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
 import type { FeaturedProject } from "@/lib/portfolio-data";
-import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 
-function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
-  const href = `/projects/${project.id}`;
+function BentoCard({ project, hero = false }: { project: FeaturedProject; hero?: boolean }) {
+  const isBanner = project.bentoSize === "banner";
   const accent = project.accentColor ?? "#6366f1";
+  const href = `/projects/${project.id}`;
 
   return (
     <Link
       href={href}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.24)]"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card"
     >
-      {/* Per-project accent glow on hover */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-px -z-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `linear-gradient(135deg, ${accent}28 0%, transparent 50%, ${accent}14 100%)`,
-        }}
-      />
-
-      {/* Full-width image */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border/50 bg-muted/30">
-        <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.02]">
-          {project.coverImage ? (
-            <Image
-              src={project.coverImage}
-              alt={`${project.name} preview`}
-              fill
-              className="object-cover object-top"
-              sizes="100vw"
-              priority
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="font-mono text-sm text-muted-foreground/50">{project.name}</span>
-            </div>
-          )}
-        </div>
+      {/* Image — fills all remaining height */}
+      <div className="relative min-h-0 flex-1">
+        {project.coverImage && (
+          <Image
+            src={project.coverImage}
+            alt={`${project.name} preview`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+            sizes={hero || isBanner ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
+            priority={hero}
+          />
+        )}
+        {/* Per-project accent glow on hover */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(ellipse 80% 50% at 50% 100%, ${accent}38, transparent)`,
+          }}
+        />
       </div>
 
-      {/* Text content */}
-      <div className="flex flex-col justify-between gap-6 p-6 md:flex-row md:items-end md:p-8 lg:p-10">
-        <div className="space-y-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge
-              variant="secondary"
-              className="border-border/60 bg-background/70 font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground"
-            >
-              Lead case study
-            </Badge>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
-              {project.category}
-            </span>
-          </div>
-          <h3 className="font-serif text-[2.3rem] font-normal italic leading-[1.02] tracking-serif-tight text-foreground md:text-[2.9rem]">
-            {project.name}
-          </h3>
-          <p className="max-w-lg text-[14px] leading-relaxed text-muted-foreground md:text-[15px]">
-            {project.tagline}
+      {/* Footer — same card, visually connected to the image */}
+      <div
+        className="flex shrink-0 items-center justify-between border-t border-white/[0.06] px-4 py-3.5"
+        style={{ background: `linear-gradient(135deg, ${accent}0d 0%, transparent 60%)` }}
+      >
+        <div className="min-w-0">
+          <p className="font-mono text-[10px] uppercase tracking-[0.13em] text-muted-foreground/70">
+            {project.category}
           </p>
+          <p className="mt-0.5 truncate font-display text-[14px] font-semibold leading-snug text-foreground">
+            {project.name}
+          </p>
+          {hero && (
+            <p className="mt-1 line-clamp-2 max-w-lg text-[12px] leading-relaxed text-muted-foreground">
+              {project.tagline}
+            </p>
+          )}
         </div>
-        <div className="flex shrink-0 flex-wrap items-center gap-3 text-xs md:flex-col md:items-end md:gap-1.5">
-          <span className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.16em] text-muted-foreground transition-colors group-hover:text-foreground">
-            Read case study
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-          <span className="font-mono text-[11px] text-muted-foreground/60">{project.role}</span>
-        </div>
+        <ArrowUpRight
+          aria-hidden
+          className="ml-3 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
+        />
       </div>
     </Link>
   );
 }
 
-export function SelectedWorksGrid({
-  projects,
-}: {
-  projects: FeaturedProject[];
-}) {
-  const [lead, ...rest] = projects;
+function wrapperClass(project: FeaturedProject): string {
+  switch (project.bentoSize) {
+    case "banner":
+      return "col-span-1 h-[250px] sm:col-span-2 sm:h-[440px]";
+    default:
+      return "h-[290px] sm:h-[390px]";
+  }
+}
+
+export function SelectedWorksGrid({ projects }: { projects: FeaturedProject[] }) {
+  const hero = projects.find((p) => p.bentoSize === "hero");
+  const rest = projects.filter((p) => p.bentoSize !== "hero");
 
   return (
-    <div className="flex flex-col gap-6">
-      {lead ? <LeadFeaturedCard project={lead} /> : null}
-      <div className="grid gap-6 sm:grid-cols-2">
-        {rest.map((project) => {
-          const wide = project.gridSpan === "full";
-          return (
-            <div key={project.id} className={cn(wide && "sm:col-span-2")}>
-              <FeaturedWorkCard project={project} wide={wide} />
-            </div>
-          );
-        })}
+    <div className="flex flex-col gap-3">
+      {/* Hero — full width, taller to avoid bottom crop */}
+      {hero && (
+        <div className="h-[340px] sm:h-[540px] lg:h-[740px]">
+          <BentoCard project={hero} hero />
+        </div>
+      )}
+
+      {/* Remaining — 2-col auto-flow */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {rest.map((project) => (
+          <div key={project.id} className={wrapperClass(project)}>
+            <BentoCard project={project} />
+          </div>
+        ))}
       </div>
     </div>
   );
