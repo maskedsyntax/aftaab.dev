@@ -32,7 +32,7 @@ function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
               src={project.coverImage}
               alt={`${project.name} preview`}
               fill
-              className="object-cover object-center"
+              className="object-cover object-top"
               sizes="100vw"
               priority
             />
