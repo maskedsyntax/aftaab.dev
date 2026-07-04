@@ -25,14 +25,14 @@ function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
       />
 
       {/* Full-width image */}
-      <div className="relative aspect-[21/9] w-full overflow-hidden border-b border-border/50 bg-muted/30">
+      <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border/50 bg-muted/30">
         <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.02]">
           {project.coverImage ? (
             <Image
               src={project.coverImage}
               alt={`${project.name} preview`}
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               sizes="100vw"
               priority
             />
