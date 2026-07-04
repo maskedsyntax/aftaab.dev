@@ -47,22 +47,23 @@ export const heroCopy = {
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    id: "steepr",
-    name: "Steepr",
-    role: "Designer & iOS Developer",
+    id: "patterns",
+    name: "Patterns",
+    role: "Designer & Mobile Developer",
     tagline:
-      "A beautifully crafted tea brewing companion for iPhone and Apple Watch. Curated presets, iCloud sync, and native Watch complications.",
-    category: "iOS · watchOS",
+      "A privacy-first OCD journal and ERP companion. On-device, no cloud. Available on iPhone, iPad, Mac, and Android.",
+    category: "Cross-Platform · iOS · Android · macOS",
     challenge:
-      "Tea brewing is surprisingly precise — different teas, different temperatures, different times. Most timers are generic. Building for Apple Watch means the interaction has to work in a glance, with one tap, while your hands are busy.",
+      "OCD journaling needs a calm, structured surface. Most note apps are either too unstructured to surface patterns over time, or so clinical they raise the cost of writing.",
     solution:
-      "Steepr ships native on iPhone (SwiftUI + SwiftData) and Apple Watch (WatchKit). The iPhone app holds your tea library and brewing history; the Watch face is a single steep timer with haptic feedback when done. CloudKit keeps both in sync. WidgetKit puts your most-brewed tea one tap from the Home Screen.",
+      "Patterns ships as a Flutter app across iOS, iPadOS, macOS, and Android. A dated entry list, a quiet editor, and a privacy-first local model. All data stays on-device via Drift/SQLite — no account, no sync, no exposure. The interface is designed to make starting an entry effortless, and to make trends visible across days without turning reflection into a dashboard.",
     impact:
-      "A polished App Store app that demonstrates native Swift platform depth — SwiftUI, WatchKit, SwiftData, WidgetKit, and CloudKit all working together in a single cohesive product.",
-    liveUrl: "https://steepr.maskedsyntax.com",
-    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
-    coverImage: "/images/projects/steepr.png",
-    accentColor: "#3B7A57",
+      "A private companion for people working through OCD-style thinking, useful on its own and as preparation for clinical conversations.",
+    liveUrl: "https://patterns.maskedsyntax.com",
+    appStoreUrl: "https://apps.apple.com/us/app/patterns-ocd-journaling/id6762611172",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.maskedsyntax.patterns",
+    coverImage: "/images/projects/patterns.png",
+    accentColor: "#E6A817",
     mediaOrientation: "landscape",
   },
   {
@@ -104,6 +105,25 @@ export const featuredProjects: FeaturedProject[] = [
     mediaOrientation: "landscape",
   },
   {
+    id: "steepr",
+    name: "Steepr",
+    role: "Designer & iOS Developer",
+    tagline:
+      "A beautifully crafted tea brewing companion for iPhone and Apple Watch. Curated presets, iCloud sync, and native Watch complications.",
+    category: "iOS · watchOS",
+    challenge:
+      "Tea brewing is surprisingly precise — different teas, different temperatures, different times. Most timers are generic. Building for Apple Watch means the interaction has to work in a glance, with one tap, while your hands are busy.",
+    solution:
+      "Steepr ships native on iPhone (SwiftUI + SwiftData) and Apple Watch (WatchKit). The iPhone app holds your tea library and brewing history; the Watch face is a single steep timer with haptic feedback when done. CloudKit keeps both in sync. WidgetKit puts your most-brewed tea one tap from the Home Screen.",
+    impact:
+      "A polished App Store app that demonstrates native Swift platform depth — SwiftUI, WatchKit, SwiftData, WidgetKit, and CloudKit all working together in a single cohesive product.",
+    liveUrl: "https://steepr.maskedsyntax.com",
+    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
+    coverImage: "/images/projects/steepr.png",
+    accentColor: "#3B7A57",
+    mediaOrientation: "landscape",
+  },
+  {
     id: "queriously",
     name: "Queriously",
     role: "Designer & Engineer",
@@ -119,26 +139,6 @@ export const featuredProjects: FeaturedProject[] = [
     liveUrl: "https://queriously.app",
     coverImage: "/images/projects/queriously.png",
     accentColor: "#CC3333",
-    mediaOrientation: "landscape",
-  },
-  {
-    id: "patterns",
-    name: "Patterns",
-    role: "Designer & Mobile Developer",
-    tagline:
-      "A privacy-first OCD journal and ERP companion. On-device, no cloud. Available on iPhone, iPad, Mac, and Android.",
-    category: "Cross-Platform · iOS · Android · macOS",
-    challenge:
-      "OCD journaling needs a calm, structured surface. Most note apps are either too unstructured to surface patterns over time, or so clinical they raise the cost of writing.",
-    solution:
-      "Patterns ships as a Flutter app across iOS, iPadOS, macOS, and Android. A dated entry list, a quiet editor, and a privacy-first local model. All data stays on-device via Drift/SQLite — no account, no sync, no exposure. The interface is designed to make starting an entry effortless, and to make trends visible across days without turning reflection into a dashboard.",
-    impact:
-      "A private companion for people working through OCD-style thinking, useful on its own and as preparation for clinical conversations.",
-    liveUrl: "https://patterns.maskedsyntax.com",
-    appStoreUrl: "https://apps.apple.com/us/app/patterns-ocd-journaling/id6762611172",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.maskedsyntax.patterns",
-    coverImage: "/images/projects/patterns.png",
-    accentColor: "#E6A817",
     mediaOrientation: "landscape",
   },
   {
