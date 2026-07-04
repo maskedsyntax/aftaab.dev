@@ -1,69 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
-import { BotttleCardPreview } from "@/components/portfolio/previews/botttle-card-preview";
-import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-preview";
-import { RepogrepCardPreview } from "@/components/portfolio/previews/repogrep-card-preview";
-import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-card-preview";
-import { EiraFocusCardPreview } from "@/components/portfolio/previews/eirafocus-card-preview";
-import { PatternsCardPreview } from "@/components/portfolio/previews/patterns-card-preview";
-import { OpenConduitCardPreview } from "@/components/portfolio/previews/openconduit-card-preview";
-import { SteeprCardPreview } from "@/components/portfolio/previews/steepr-card-preview";
-import { QueriouslyCardPreview } from "@/components/portfolio/previews/queriously-card-preview";
-import { CairnlyCardPreview } from "@/components/portfolio/previews/cairnly-card-preview";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 
-function resolvePreview(project: FeaturedProject, className: string, layout?: "portrait" | "landscape") {
-  switch (project.coverVariant) {
-    case "eirafocus-preview":
-      return <EiraFocusCardPreview className={className} layout={layout ?? "landscape"} />;
-    case "botttle-preview":
-      return <BotttleCardPreview className={className} />;
-    case "trelay-preview":
-      return <TrelayCardPreview className={className} />;
-    case "repogrep-preview":
-      return <RepogrepCardPreview className={className} />;
-    case "hashprep-preview":
-      return <HashprepCardPreview className={className} />;
-    case "patterns-preview":
-      return <PatternsCardPreview className={className} />;
-    case "openconduit-preview":
-      return <OpenConduitCardPreview className={className} />;
-    case "steepr-preview":
-      return <SteeprCardPreview className={className} />;
-    case "queriously-preview":
-      return <QueriouslyCardPreview className={className} />;
-    case "cairnly-preview":
-      return <CairnlyCardPreview className={className} />;
-    default:
-      return project.coverImage ? (
-        <Image
-          src={project.coverImage}
-          alt={`${project.name} preview`}
-          fill
-          unoptimized
-          className="object-cover object-center"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
-      ) : null;
-  }
-}
-
 function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
   const href = `/projects/${project.id}`;
-  const preview = resolvePreview(project, "h-full w-full rounded-xl", "portrait");
+  const accent = project.accentColor ?? "#6366f1";
 
   return (
     <Link
       href={href}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.24)]"
     >
+      {/* Per-project accent glow on hover */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-px -z-0 rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-warm/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px -z-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(135deg, ${accent}28 0%, transparent 50%, ${accent}14 100%)`,
+        }}
       />
+
       <div className="relative grid gap-0 md:grid-cols-[1.1fr_1fr]">
         <div className="flex flex-col justify-between gap-6 p-6 md:p-8 lg:p-10">
           <div className="space-y-3">
@@ -99,7 +58,21 @@ function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
 
         <div className="relative min-h-[280px] overflow-hidden border-t border-border/50 bg-muted/30 md:min-h-[360px] md:border-l md:border-t-0">
           <div className="absolute inset-0 overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
-            {preview}
+            {project.coverImage ? (
+              <Image
+                src={project.coverImage}
+                alt={`${project.name} preview`}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <span className="font-mono text-sm text-muted-foreground/50">
+                  {project.name}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

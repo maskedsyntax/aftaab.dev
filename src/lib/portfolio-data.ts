@@ -18,6 +18,8 @@ export type FeaturedProject = {
     | "steepr-preview"
     | "queriously-preview"
     | "cairnly-preview";
+  /** Hex accent color extracted from the thumbnail, used for the card hover glow */
+  accentColor?: string;
   /** Hint to the layout about the preview's natural orientation */
   mediaOrientation?: "landscape" | "portrait";
   challenge: string;
@@ -57,7 +59,8 @@ export const featuredProjects: FeaturedProject[] = [
       "A polished App Store app that demonstrates native Swift platform depth — SwiftUI, WatchKit, SwiftData, WidgetKit, and CloudKit all working together in a single cohesive product.",
     liveUrl: "https://steepr.maskedsyntax.com",
     appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
-    coverVariant: "steepr-preview",
+    coverImage: "/images/projects/steepr.png",
+    accentColor: "#3B7A57",
     mediaOrientation: "landscape",
   },
   {
@@ -74,7 +77,8 @@ export const featuredProjects: FeaturedProject[] = [
     impact:
       "A production CRM that a solo founder can spin up, own completely, and trust with their pipeline data.",
     liveUrl: "https://cairnly.app",
-    coverVariant: "cairnly-preview",
+    coverImage: "/images/projects/cairnly.png",
+    accentColor: "#C2714F",
     mediaOrientation: "landscape",
   },
   {
@@ -92,7 +96,8 @@ export const featuredProjects: FeaturedProject[] = [
       "A complete MVP that replaces several SaaS tools with one owned system, and a design language I now reuse across my product work.",
     liveUrl: "https://botttle.dev",
     repoUrl: "https://github.com/growvth/botttle",
-    coverVariant: "botttle-preview",
+    coverImage: "/images/projects/botttle.png",
+    accentColor: "#2563EB",
     mediaOrientation: "landscape",
   },
   {
@@ -109,7 +114,8 @@ export const featuredProjects: FeaturedProject[] = [
     impact:
       "A research environment where answers are traceable and everything stays private — no API keys required for the core experience.",
     liveUrl: "https://queriously.app",
-    coverVariant: "queriously-preview",
+    coverImage: "/images/projects/queriously.png",
+    accentColor: "#CC3333",
     mediaOrientation: "landscape",
   },
   {
@@ -128,7 +134,8 @@ export const featuredProjects: FeaturedProject[] = [
     liveUrl: "https://patterns.maskedsyntax.com",
     appStoreUrl: "https://apps.apple.com/us/app/patterns-ocd-journaling/id6762611172",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.maskedsyntax.patterns",
-    coverVariant: "patterns-preview",
+    coverImage: "/images/projects/patterns.png",
+    accentColor: "#E6A817",
     mediaOrientation: "landscape",
   },
   {
@@ -146,7 +153,8 @@ export const featuredProjects: FeaturedProject[] = [
       "Teams can manage links as part of their own infrastructure, with the polish of a hosted service.",
     liveUrl: "https://trelay.dev",
     repoUrl: "https://github.com/trelay-dev/trelay",
-    coverVariant: "trelay-preview",
+    coverImage: "/images/projects/trelay.png",
+    accentColor: "#E91E8C",
     mediaOrientation: "landscape",
   },
   {
@@ -164,7 +172,8 @@ export const featuredProjects: FeaturedProject[] = [
       "A privacy-respecting CRM that scales from a single operator to a small team, without monthly per-seat costs.",
     liveUrl: "https://openconduit.dev",
     repoUrl: "https://github.com/growvth/openconduit",
-    coverVariant: "openconduit-preview",
+    coverImage: "/images/projects/openconduit.png",
+    accentColor: "#16A34A",
     mediaOrientation: "landscape",
   },
 ];
