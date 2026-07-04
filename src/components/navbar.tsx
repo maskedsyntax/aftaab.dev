@@ -30,12 +30,29 @@ export default function Navbar() {
   React.useEffect(() => setMounted(true), []);
   const isDark = mounted && resolvedTheme === "dark";
 
+  const listRef = React.useRef<HTMLUListElement>(null);
+  const itemRefs = React.useRef<(HTMLLIElement | null)[]>([]);
+
+  const [pill, setPill] = React.useState({ left: 0, width: 0 });
+  const hasMeasured = React.useRef(false);
+
+  React.useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const listRect = list.getBoundingClientRect();
+    const activeIdx = routes.findIndex((r) => r.href === active);
+    const el = itemRefs.current[activeIdx];
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    setPill({ left: r.left - listRect.left, width: r.width });
+    hasMeasured.current = true;
+  }, [active]);
+
   return (
     <div
       className="fixed bottom-6 left-1/2 z-30 -translate-x-1/2 pb-[env(safe-area-inset-bottom)]"
       style={{ willChange: "transform" }}
     >
-      {/* Soft halo behind the pill */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[radial-gradient(60%_80%_at_50%_50%,hsl(var(--warm)/0.18),transparent_70%)] blur-2xl"
@@ -45,17 +62,30 @@ export default function Navbar() {
         aria-label="Primary navigation"
         className="relative flex items-center gap-1 rounded-full border border-border/60 bg-background/70 p-1 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.25)] ring-1 ring-foreground/[0.03] backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6)]"
       >
-        {/* Top inner highlight for glass feel */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-2 top-px h-px rounded-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent dark:via-white/15"
         />
 
-        <ul className="relative flex items-center gap-0.5">
-          {routes.map((route) => {
+        <ul ref={listRef} className="relative flex items-center gap-1">
+          {/* Active pill */}
+          {hasMeasured.current && (
+            <motion.span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 -z-[1] my-auto rounded-full bg-foreground/[0.09] ring-1 ring-inset ring-foreground/10 dark:bg-foreground/[0.11]"
+              animate={{ left: pill.left, width: pill.width }}
+              transition={{ type: "spring", stiffness: 400, damping: 34, mass: 0.8 }}
+            />
+          )}
+
+          {routes.map((route, idx) => {
             const isActive = active === route.href;
             return (
-              <li key={route.href} className="relative">
+              <li
+                key={route.href}
+                ref={(el) => { itemRefs.current[idx] = el; }}
+                className="relative"
+              >
                 <Link
                   href={route.href}
                   aria-current={isActive ? "page" : undefined}
@@ -66,29 +96,7 @@ export default function Navbar() {
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {isActive ? (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      className="absolute inset-0 -z-[1] rounded-full bg-foreground/[0.07] ring-1 ring-inset ring-foreground/10 dark:bg-foreground/[0.09]"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 32,
-                      }}
-                    />
-                  ) : null}
-                  <span className="relative">{route.label}</span>
-                  {isActive ? (
-                    <motion.span
-                      layoutId="nav-active-dot"
-                      className="relative ml-1.5 inline-block h-1 w-1 rounded-full bg-warm"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 32,
-                      }}
-                    />
-                  ) : null}
+                  {route.label}
                 </Link>
               </li>
             );

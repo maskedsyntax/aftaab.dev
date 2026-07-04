@@ -14,7 +14,10 @@ export type FeaturedProject = {
     | "hashprep-preview"
     | "eirafocus-preview"
     | "patterns-preview"
-    | "openconduit-preview";
+    | "openconduit-preview"
+    | "steepr-preview"
+    | "queriously-preview"
+    | "cairnly-preview";
   /** Hint to the layout about the preview's natural orientation */
   mediaOrientation?: "landscape" | "portrait";
   challenge: string;
@@ -22,42 +25,56 @@ export type FeaturedProject = {
   impact: string;
   liveUrl: string;
   repoUrl?: string;
+  appStoreUrl?: string;
+  playStoreUrl?: string;
 };
 
 export const heroCopy = {
-  /** Short display-headline phrase that sits above the name */
-  eyebrow: "Product designer · Full-stack engineer",
-  /** Sub-name tagline */
+  eyebrow: "iOS engineer · Flutter developer · Product designer",
   tagline:
-    "I design and build products for the web and mobile, from the first interface sketch to shipped code.",
-  /** Paired with the tagline */
+    "I design and build mobile apps for iOS and Android, and ship web products from first sketch to production code.",
   intro:
-    "Most of my time sits between Figma and the editor. I work across design, frontend, and the full stack.",
-  /** Secondary line under the hero */
+    "Most of my time sits between Xcode, Figma, and the editor. I build native Swift/SwiftUI apps, cross-platform Flutter apps, and the occasional full-stack web product.",
   subline:
-    "Currently taking on select client work and a couple of personal products.",
-  /** Status chip shown in the contact surface */
+    "Currently taking on select client work. Mobile-first, but comfortable across the stack.",
   availability: "Available for new projects",
-  /** Short caption beneath the contact card */
   location: "Based in India · Works worldwide",
 };
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    id: "eirafocus",
-    name: "EiraFocus",
-    role: "Designer & Mobile Developer",
+    id: "steepr",
+    name: "Steepr",
+    role: "Designer & iOS Developer",
     tagline:
-      "A calm mobile companion for deep work. Focus sessions, rituals, and gentle accountability.",
-    category: "Mobile · Design",
+      "A beautifully crafted tea brewing companion for iPhone and Apple Watch. Curated presets, iCloud sync, and native Watch complications.",
+    category: "iOS · watchOS",
     challenge:
-      "Most focus apps feel like productivity equipment. Aggressive timers, streak pressure, cluttered dashboards. People who actually struggle with focus need something calmer: an interface that makes it easy to start, and a rhythm that's easy to come back to.",
+      "Tea brewing is surprisingly precise — different teas, different temperatures, different times. Most timers are generic. Building for Apple Watch means the interaction has to work in a glance, with one tap, while your hands are busy.",
     solution:
-      "EiraFocus is built around a single breathing ring, the visual anchor for each session, with a thin routine layer for the rituals before and after. The palette is warm and low-contrast so it reads as calm. Type and motion are tuned to feel unhurried. The app is mobile-first in Flutter, with native haptics and transitions. Every interaction is designed to lower the cost of starting a session.",
+      "Steepr ships native on iPhone (SwiftUI + SwiftData) and Apple Watch (WatchKit). The iPhone app holds your tea library and brewing history; the Watch face is a single steep timer with haptic feedback when done. CloudKit keeps both in sync. WidgetKit puts your most-brewed tea one tap from the Home Screen.",
     impact:
-      "Shipping as an MVP with the core focus loop, session history, and rituals. The design language and motion system will guide everything that follows.",
-    liveUrl: "https://eirafocus.com",
-    coverVariant: "eirafocus-preview",
+      "A polished App Store app that demonstrates native Swift platform depth — SwiftUI, WatchKit, SwiftData, WidgetKit, and CloudKit all working together in a single cohesive product.",
+    liveUrl: "https://steepr.maskedsyntax.com",
+    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
+    coverVariant: "steepr-preview",
+    mediaOrientation: "landscape",
+  },
+  {
+    id: "cairnly",
+    name: "Cairnly",
+    role: "Designer & Full-Stack Developer",
+    tagline:
+      "A self-hosted CRM for founders and small teams. Contacts, deal pipelines, and activity, all on your own server.",
+    category: "Product · SaaS · Self-hosted",
+    challenge:
+      "Hosted CRMs are expensive, opinionated, and hand your data to a third party. Founders running lean sales processes don't need fifty integrations — they need a clean contacts view, a simple pipeline, and full ownership of their data.",
+    solution:
+      "Cairnly is a self-hosted CRM built with Next.js, tRPC, Drizzle ORM, and PostgreSQL. Docker-friendly deployment means it runs on any VPS in minutes. The interface is intentionally minimal — contacts, pipeline stages, and activity logs without the bloat.",
+    impact:
+      "A production CRM that a solo founder can spin up, own completely, and trust with their pipeline data.",
+    liveUrl: "https://cairnly.app",
+    coverVariant: "cairnly-preview",
     mediaOrientation: "landscape",
   },
   {
@@ -79,6 +96,42 @@ export const featuredProjects: FeaturedProject[] = [
     mediaOrientation: "landscape",
   },
   {
+    id: "queriously",
+    name: "Queriously",
+    role: "Designer & Engineer",
+    tagline:
+      "Local-first macOS PDF reader and research copilot. Cited Q&A, marginalia, and session trails. No cloud required.",
+    category: "macOS · AI Tooling",
+    challenge:
+      "Academic and technical research is scattered: PDFs in one place, notes in another, AI answers with no provenance. You can't trust a summary you can't trace back to the source.",
+    solution:
+      "Queriously indexes papers locally and lets you ask questions with citations. Every answer traces to a page and sentence. Marginalia, sessions, and evidence trails stay on disk. Built with Tauri 2 and Rust for the shell, React for the UI, and a Python sidecar (FastAPI + sentence-transformers + ChromaDB) for the AI layer.",
+    impact:
+      "A research environment where answers are traceable and everything stays private — no API keys required for the core experience.",
+    liveUrl: "https://queriously.app",
+    coverVariant: "queriously-preview",
+    mediaOrientation: "landscape",
+  },
+  {
+    id: "patterns",
+    name: "Patterns",
+    role: "Designer & Mobile Developer",
+    tagline:
+      "A privacy-first OCD journal and ERP companion. On-device, no cloud. Available on iPhone, iPad, Mac, and Android.",
+    category: "Cross-Platform · iOS · Android · macOS",
+    challenge:
+      "OCD journaling needs a calm, structured surface. Most note apps are either too unstructured to surface patterns over time, or so clinical they raise the cost of writing.",
+    solution:
+      "Patterns ships as a Flutter app across iOS, iPadOS, macOS, and Android. A dated entry list, a quiet editor, and a privacy-first local model. All data stays on-device via Drift/SQLite — no account, no sync, no exposure. The interface is designed to make starting an entry effortless, and to make trends visible across days without turning reflection into a dashboard.",
+    impact:
+      "A private companion for people working through OCD-style thinking, useful on its own and as preparation for clinical conversations.",
+    liveUrl: "https://patterns.maskedsyntax.com",
+    appStoreUrl: "https://apps.apple.com/us/app/patterns-ocd-journaling/id6762611172",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.maskedsyntax.patterns",
+    coverVariant: "patterns-preview",
+    mediaOrientation: "landscape",
+  },
+  {
     id: "trelay",
     name: "Trelay",
     role: "Full-Stack Developer & Systems Engineer",
@@ -94,57 +147,6 @@ export const featuredProjects: FeaturedProject[] = [
     liveUrl: "https://trelay.dev",
     repoUrl: "https://github.com/trelay-dev/trelay",
     coverVariant: "trelay-preview",
-    mediaOrientation: "landscape",
-  },
-  {
-    id: "repogrep",
-    name: "RepoGrep",
-    role: "Full-Stack Developer",
-    tagline: "Structured, fast code search across repositories.",
-    category: "Developer Tooling",
-    challenge:
-      "Cross-repository search is usually slow, fragmented, or stuck at basic keyword match. Developers need something that respects how codebases actually get explored.",
-    solution:
-      "RepoGrep pairs a clean query UI with a performance-focused backend. The interface is deliberately small, built for developers who live in a terminal. Search is tuned for real exploration, with structured queries and fast lookups.",
-    impact:
-      "A practical utility that makes large or unfamiliar codebases faster to understand.",
-    liveUrl: "https://repogrep.maskedsyntax.com",
-    repoUrl: "https://github.com/maskedsyntax/repogrep",
-    coverVariant: "repogrep-preview",
-    mediaOrientation: "landscape",
-  },
-  {
-    id: "hashprep",
-    name: "HashPrep",
-    role: "Full-Stack Developer & System Designer",
-    tagline: "Structured interview prep with ML-ready foundations.",
-    category: "ML Systems",
-    challenge:
-      "Most interview-prep tools either lack structure or don't adapt to how people actually study. Layering in intelligent features means bridging product design with machine learning from day one.",
-    solution:
-      "A structured prep platform that tracks progress, organises problems, and guides study. Alongside the app, it ships ML components, CLI tools, and libraries so it can grow into a data-driven learning platform.",
-    impact:
-      "A foundation for a scalable, ML-integrated learning product that stays structured and extensible as it grows.",
-    liveUrl: "https://hashprep.com",
-    repoUrl: "https://github.com/cachevector/hashprep",
-    coverVariant: "hashprep-preview",
-    mediaOrientation: "landscape",
-  },
-  {
-    id: "patterns",
-    name: "Patterns",
-    role: "Designer & Desktop Developer",
-    tagline:
-      "A focused desktop app for daily journaling and tracking obsessive-compulsive patterns.",
-    category: "Desktop · Wellbeing",
-    challenge:
-      "OCD journaling needs a calm, structured surface. Most note apps are either too unstructured to surface patterns over time, or so clinical they raise the cost of writing.",
-    solution:
-      "Patterns is a small, focused desktop app. A dated entry list, a quiet editor, and a privacy-first local model. The interface is designed to make starting an entry effortless, and to make trends visible across days without turning reflection into a dashboard.",
-    impact:
-      "A private companion for people working through OCD-style thinking, useful on its own and as preparation for clinical conversations.",
-    liveUrl: "https://patterns.maskedsyntax.com",
-    coverVariant: "patterns-preview",
     mediaOrientation: "landscape",
   },
   {
@@ -168,7 +170,7 @@ export const featuredProjects: FeaturedProject[] = [
 ];
 
 export const selectedWorksIntro =
-  "Products I've designed and built end to end. Mobile companions, client tools, and developer infrastructure. Each one starts with the interface people touch.";
+  "Products I've designed and built end to end. Native iOS apps, cross-platform mobile, and web products. Each one starts with the interface people touch.";
 
 /** Full catalog on `/projects` — everything not covered by `featuredProjects` case studies */
 export type WorkListStatus = "live" | "in-progress" | "future";
@@ -183,22 +185,16 @@ export type WorkListItem = {
 
 export const additionalWorkProjects: WorkListItem[] = [
   {
-    id: "lofikofi",
-    name: "LofiKofi",
-    url: "https://lofikofi.space",
+    id: "hashprep",
+    name: "HashPrep",
+    url: "https://hashprep.com",
     status: "live",
   },
   {
-    id: "foliomint",
-    name: "FolioMint",
-    url: "https://foliomint.site",
-    status: "in-progress",
-  },
-  {
-    id: "queriously",
-    name: "Queriously",
-    url: "https://queriously.app",
-    status: "future",
+    id: "repogrep",
+    name: "RepoGrep",
+    url: "https://repogrep.maskedsyntax.com",
+    status: "live",
   },
 ];
 
@@ -212,17 +208,17 @@ export const workPageExternalLinks = {
 
 export const specializations = {
   items: [
-    "UI/UX design for web and mobile",
-    "Frontend engineering with React, Next.js, Svelte, and Tailwind",
-    "Mobile apps in Flutter",
-    "Full-stack product development from idea to release",
-    "Developer tools and ML-integrated systems",
+    "Native iOS development with Swift & SwiftUI",
+    "Cross-platform mobile apps with Flutter (iOS & Android)",
+    "UI/UX design for mobile and web",
+    "Full-stack web development (React, Next.js, Node)",
+    "Self-hosted tools and developer infrastructure",
   ],
   whyMe: {
-    title: "Why me over an agency?",
+    title: "One person. Design and code.",
     body: [
       "You get one person across the whole product. Research, interface, and the system underneath all live in the same head. Nothing gets lost in a handoff. No account managers sit between the decision and the pixel.",
-      "I care about typography, motion, and restraint on the design side. I care about code that holds up as the product grows on the build side. It's the same pair of hands across both.",
+      "I care about native platform conventions on mobile and about code that holds up as the product grows. Design and engineering aren't two phases. They happen together.",
     ],
   },
 };
@@ -238,7 +234,7 @@ export const processSteps = [
   },
   {
     title: "Build with intent",
-    text: "Design and code keep informing each other as I go. React or Flutter on the surface, clean services behind them. Motion and state are built in from the start.",
+    text: "Design and code keep informing each other as I go. SwiftUI or Flutter on the surface, clean services behind them. Motion and state are built in from the start.",
   },
   {
     title: "Iterate in the open",
@@ -250,12 +246,29 @@ export const processPolish =
   "Close attention to state, loading, and interaction feedback. The small details turn a working product into one that feels right.";
 
 export const aboutShort = [
-  "I'm a product designer and full-stack engineer.",
-  "Most of my time is spent between Figma and the editor. I design interfaces and motion, then build them across web and mobile.",
+  "I'm a mobile engineer and product designer.",
+  "Most of my time is spent between Xcode, Figma, and the editor. I build native iOS apps in Swift and cross-platform apps in Flutter, then design the interfaces they need.",
   "I like working with founders and small teams where design and engineering share one head.",
 ];
 
+export const aboutFull = {
+  paragraphs: [
+    "I'm a mobile engineer and product designer based in India. I build native iOS apps with Swift and SwiftUI, cross-platform apps with Flutter, and the occasional full-stack web product, usually for founders who need one person to hold the whole thing together.",
+    "I started out in design. Figma, flows, components, the whole pipeline. But the handoff kept losing something: the feel, the detail, the intention. So I learned to code, and somewhere along the way realized I preferred being the person who does both. These days I'm most at home in Xcode, but I still care about how things look and feel down to the animation curve.",
+    "I like working with small teams where design and engineering aren't separate departments. If you need someone who can take an app from first sketch to the App Store without a translation layer in the middle, that's the work I'm built for.",
+  ],
+  meta: [
+    { label: "Based in", value: "India" },
+    { label: "Available for", value: "iOS · Flutter · Product design" },
+    { label: "Shipped", value: "5 apps on the App Store" },
+  ],
+};
+
 export const stackCategories = [
+  {
+    name: "Mobile",
+    items: ["Flutter", "SwiftUI", "Swift", "Kotlin Multiplatform", "Jetpack Compose", "React Native", "Expo"],
+  },
   {
     name: "Design & interface",
     items: ["Figma", "Framer Motion", "Shadcn UI", "Tailwind CSS", "Design tokens"],
@@ -265,23 +278,12 @@ export const stackCategories = [
     items: ["React", "Next.js", "Svelte"],
   },
   {
-    name: "Mobile",
-    items: [
-      "Flutter",
-      "React Native",
-      "SwiftUI",
-      "Kotlin Multiplatform",
-      "Jetpack Compose",
-      "Expo",
-    ],
-  },
-  {
     name: "Backend & APIs",
     items: ["Flask", "FastAPI", "Django", "Express", "Fastify", "Go"],
   },
   {
     name: "Systems & languages",
-    items: ["C++", "Python", "Rust"],
+    items: ["Rust", "C++", "Python"],
   },
   {
     name: "Runtime & tooling",
@@ -292,9 +294,8 @@ export const stackCategories = [
 export const stackNote =
   "I pick tools by what the product needs and what the team can maintain.";
 
-/** Short intro under the Contact heading—invite work and conversation. */
 export const contactIntro =
-  "I work with founders and small teams on web and mobile products, from first design to shipped code. If you have a project in mind, or just want to say hello, drop me a line.";
+  "I work with founders and small teams on mobile and web products, from first design to shipped code. If you have a project in mind, or just want to say hello, drop me a line.";
 
 export const contactLinks = [
   {
@@ -324,3 +325,74 @@ export const contactLinks = [
 ] as const;
 
 export const contactGithubUrl = contactLinks.find((l) => l.key === "github")!.href;
+
+/** Apps published on the App Store, Mac App Store, and Google Play */
+export type AppStoreApp = {
+  id: string;
+  name: string;
+  tagline: string;
+  /** Platforms the app is available on */
+  platforms: string[];
+  /** One-line tech callout e.g. "Swift · SwiftUI · WatchKit" */
+  tech: string;
+  /** Path under public/ e.g. /images/apps/steepr-icon.png */
+  iconPath: string;
+  appStoreUrl?: string;
+  macAppStoreUrl?: string;
+  playStoreUrl?: string;
+  websiteUrl?: string;
+};
+
+export const appleApps: AppStoreApp[] = [
+  {
+    id: "steepr",
+    name: "Steepr",
+    tagline: "Tea brewing companion with curated presets, Apple Watch support, and iCloud sync.",
+    platforms: ["iOS", "iPadOS", "Apple Watch"],
+    tech: "Swift · SwiftUI · WatchKit · SwiftData · CloudKit",
+    iconPath: "/images/apps/steepr-icon.png",
+    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
+    websiteUrl: "https://steepr.maskedsyntax.com",
+  },
+  {
+    id: "splashy",
+    name: "Splashy Sketchpad",
+    tagline: "Native macOS infinite whiteboard for ideas, diagrams, and architecture sketches.",
+    platforms: ["macOS"],
+    tech: "Swift · SwiftUI · AppKit · C",
+    iconPath: "/images/apps/splashy-icon.png",
+    macAppStoreUrl: "https://apps.apple.com/us/app/splashy-sketchpad/id6780165807?mt=12",
+    websiteUrl: "https://splashy.maskedsyntax.com",
+  },
+  {
+    id: "patterns-app",
+    name: "Patterns",
+    tagline: "Privacy-first OCD journal and ERP companion. Everything stays on-device.",
+    platforms: ["iOS", "iPadOS", "macOS", "Android"],
+    tech: "Flutter · Dart · Riverpod · Drift",
+    iconPath: "/images/apps/patterns-icon.png",
+    appStoreUrl: "https://apps.apple.com/us/app/patterns-ocd-journaling/id6762611172",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.maskedsyntax.patterns",
+    websiteUrl: "https://patterns.maskedsyntax.com",
+  },
+  {
+    id: "lofikofi",
+    name: "Lofikofi",
+    tagline: "Offline-first focus workspace: Pomodoro timers, ambient sounds, Kanban, and notes.",
+    platforms: ["macOS"],
+    tech: "Flutter · Dart · Riverpod · Drift",
+    iconPath: "/images/apps/lofikofi-icon.png",
+    macAppStoreUrl: "https://apps.apple.com/us/app/lofikofi-focus-timer/id6778009453?mt=12",
+    websiteUrl: "https://lofikofi.space",
+  },
+  {
+    id: "rise-and-rattle",
+    name: "Rise & Rattle",
+    tagline: "Modern Snakes & Ladders with colorful visuals and local multiplayer.",
+    platforms: ["iOS", "iPadOS"],
+    tech: "Flutter · Dart · Riverpod",
+    iconPath: "/images/apps/rise-and-rattle-icon.png",
+    appStoreUrl: "https://apps.apple.com/us/app/rise-rattle/id6781202438",
+    websiteUrl: "https://riseandrattle.maskedsyntax.com",
+  },
+];

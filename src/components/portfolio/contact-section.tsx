@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siX } from "simple-icons";
 import { SectionReveal } from "@/components/portfolio/section-reveal";
@@ -14,56 +15,85 @@ const CONTACT_ICONS_LUCIDE: Partial<
   github: Github,
 };
 
+const emailLink = contactLinks.find((l) => l.key === "email")!;
+const socialLinks = contactLinks.filter((l) => l.key !== "email");
+
 export function ContactSection() {
   return (
     <SectionReveal
       id="contact"
       className="scroll-mt-8 border-t border-border py-12 md:py-14 md:pb-20"
     >
-      <div className="max-w-xl">
-        <h2 className="text-[1.4rem] font-semibold tracking-tight text-foreground md:text-[1.7rem]">
-          Contact
-        </h2>
-        <div className="mt-3 h-px w-10 bg-primary/40" />
-        <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">
-          {contactIntro}
-        </p>
-      </div>
-      <ul className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3">
-        {contactLinks.map((item) => {
-          const Icon = CONTACT_ICONS_LUCIDE[item.key];
-          const isExternal = item.external;
-          return (
-            <li key={item.key}>
-              <Link
-                href={item.href}
-                {...(isExternal
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="group flex w-full items-center gap-3 text-sm font-medium text-foreground transition-colors sm:inline-flex sm:w-auto sm:gap-2"
-              >
-                <span
-                  className="inline-flex h-6 w-6 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover:text-primary"
-                  aria-hidden
+      <div className="flex flex-col items-start gap-8 md:flex-row md:items-start md:gap-16">
+        {/* Left — CTA statement */}
+        <div className="min-w-0 flex-1">
+          {/* Profile image */}
+          <div className="relative mb-5 h-12 w-12 overflow-hidden rounded-full">
+            <Image
+              src="/assets/profile.png"
+              alt="Aftaab Siddiqui"
+              fill
+              className="object-contain"
+              sizes="48px"
+            />
+          </div>
+
+          <h2 className="font-serif italic font-normal text-[2rem] leading-[1.06] tracking-serif-tight text-foreground md:text-[2.5rem]">
+            Let&apos;s build
+            <br />
+            something.
+          </h2>
+          <div className="mt-4 h-px w-14 bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
+          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+            {contactIntro}
+          </p>
+        </div>
+
+        {/* Right — contact links */}
+        <div className="flex w-full flex-col gap-4 md:max-w-[280px]">
+          {/* Email — primary CTA */}
+          <a
+            href={emailLink.href}
+            className="group flex w-full items-center justify-between gap-2 rounded-full border border-border/70 bg-card/80 py-2.5 pl-5 pr-2 text-[13px] font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
+          >
+            <span className="truncate">{emailLink.label}</span>
+            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
+          </a>
+
+          {/* Social links */}
+          <div className="flex flex-col gap-2">
+            {socialLinks.map((item) => {
+              const Icon = CONTACT_ICONS_LUCIDE[item.key];
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 rounded-xl border border-border/50 bg-card/50 px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-border hover:bg-card"
                 >
-                  {item.key === "x" ? (
-                    <SimpleIconGlyph icon={siX} className="h-4 w-4" />
-                  ) : Icon ? (
-                    <Icon className="h-4 w-4" />
-                  ) : null}
-                </span>
-                <span className="inline-flex min-w-0 items-center gap-1.5">
-                  <span className="min-w-0 break-words">{item.label}</span>
-                  <ArrowUpRight
-                    className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
-                    aria-hidden
-                  />
-                </span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover:text-foreground">
+                    {item.key === "x" ? (
+                      <SimpleIconGlyph icon={siX} className="h-4 w-4" />
+                    ) : Icon ? (
+                      <Icon className="h-4 w-4" />
+                    ) : null}
+                  </span>
+                  <span className="flex-1">{item.label}</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-muted-foreground" />
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Location chip */}
+          <p className="pt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
+            Based in India · Works worldwide
+          </p>
+        </div>
+      </div>
     </SectionReveal>
   );
 }

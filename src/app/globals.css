@@ -139,14 +139,16 @@ blockquote p {
     pointer-events: none;
     z-index: 0;
     background:
-        radial-gradient(ellipse 28% 45% at 32% 32%, hsl(var(--primary) / 0.10) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 48% at 68% 36%, hsl(var(--warm) / 0.09) 0%, transparent 72%);
+        radial-gradient(ellipse 40% 60% at 15% 20%, hsl(var(--primary) / 0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 25% 40% at 78% 50%, hsl(var(--warm) / 0.10) 0%, transparent 68%),
+        radial-gradient(ellipse 18% 30% at 60% 10%, hsl(var(--primary) / 0.06) 0%, transparent 60%);
 }
 
 .dark .hero-aurora {
     background:
-        radial-gradient(ellipse 28% 45% at 32% 32%, hsl(var(--primary) / 0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 48% at 68% 36%, hsl(var(--warm) / 0.10) 0%, transparent 72%);
+        radial-gradient(ellipse 40% 60% at 15% 20%, hsl(var(--primary) / 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 25% 40% at 78% 50%, hsl(var(--warm) / 0.12) 0%, transparent 68%),
+        radial-gradient(ellipse 18% 30% at 60% 10%, hsl(var(--primary) / 0.07) 0%, transparent 60%);
 }
 
 /* ── grain overlay for a softer, more tactile surface ── */

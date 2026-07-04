@@ -1,9 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useHydrationSafeReducedMotion } from "@/hooks/use-hydration-safe-reduced-motion";
 import { FeaturedWorkCard } from "@/components/portfolio/featured-work-card";
 import { BotttleCardPreview } from "@/components/portfolio/previews/botttle-card-preview";
 import { TrelayCardPreview } from "@/components/portfolio/previews/trelay-card-preview";
@@ -12,62 +8,52 @@ import { HashprepCardPreview } from "@/components/portfolio/previews/hashprep-ca
 import { EiraFocusCardPreview } from "@/components/portfolio/previews/eirafocus-card-preview";
 import { PatternsCardPreview } from "@/components/portfolio/previews/patterns-card-preview";
 import { OpenConduitCardPreview } from "@/components/portfolio/previews/openconduit-card-preview";
+import { SteeprCardPreview } from "@/components/portfolio/previews/steepr-card-preview";
+import { QueriouslyCardPreview } from "@/components/portfolio/previews/queriously-card-preview";
+import { CairnlyCardPreview } from "@/components/portfolio/previews/cairnly-card-preview";
 import type { FeaturedProject } from "@/lib/portfolio-data";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.42, ease },
-  },
-};
+function resolvePreview(project: FeaturedProject, className: string, layout?: "portrait" | "landscape") {
+  switch (project.coverVariant) {
+    case "eirafocus-preview":
+      return <EiraFocusCardPreview className={className} layout={layout ?? "landscape"} />;
+    case "botttle-preview":
+      return <BotttleCardPreview className={className} />;
+    case "trelay-preview":
+      return <TrelayCardPreview className={className} />;
+    case "repogrep-preview":
+      return <RepogrepCardPreview className={className} />;
+    case "hashprep-preview":
+      return <HashprepCardPreview className={className} />;
+    case "patterns-preview":
+      return <PatternsCardPreview className={className} />;
+    case "openconduit-preview":
+      return <OpenConduitCardPreview className={className} />;
+    case "steepr-preview":
+      return <SteeprCardPreview className={className} />;
+    case "queriously-preview":
+      return <QueriouslyCardPreview className={className} />;
+    case "cairnly-preview":
+      return <CairnlyCardPreview className={className} />;
+    default:
+      return project.coverImage ? (
+        <Image
+          src={project.coverImage}
+          alt={`${project.name} preview`}
+          fill
+          unoptimized
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+      ) : null;
+  }
+}
 
 function LeadFeaturedCard({ project }: { project: FeaturedProject }) {
   const href = `/projects/${project.id}`;
-
-  const preview =
-    project.coverVariant === "eirafocus-preview" ? (
-      <EiraFocusCardPreview
-        className="h-full w-full rounded-xl"
-        layout="portrait"
-      />
-    ) : project.coverVariant === "botttle-preview" ? (
-      <BotttleCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverVariant === "trelay-preview" ? (
-      <TrelayCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverVariant === "repogrep-preview" ? (
-      <RepogrepCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverVariant === "hashprep-preview" ? (
-      <HashprepCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverVariant === "patterns-preview" ? (
-      <PatternsCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverVariant === "openconduit-preview" ? (
-      <OpenConduitCardPreview className="h-full w-full rounded-xl" />
-    ) : project.coverImage ? (
-      <Image
-        src={project.coverImage}
-        alt={`${project.name} preview`}
-        fill
-        unoptimized
-        className="object-cover object-center"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-    ) : null;
+  const preview = resolvePreview(project, "h-full w-full rounded-xl", "portrait");
 
   return (
     <Link
@@ -126,42 +112,16 @@ export function SelectedWorksGrid({
 }: {
   projects: FeaturedProject[];
 }) {
-  const reduceMotion = useHydrationSafeReducedMotion();
   const [lead, ...rest] = projects;
 
-  const leadEl = lead ? <LeadFeaturedCard project={lead} /> : null;
-
-  if (reduceMotion) {
-    return (
-      <div className="flex flex-col gap-6">
-        {leadEl}
-        <div className="grid gap-6 sm:grid-cols-2">
-          {rest.map((project) => (
-            <FeaturedWorkCard key={project.id} project={project} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <motion.div
-      className="flex flex-col gap-6"
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-10% 0px" }}
-    >
-      {lead ? (
-        <motion.div variants={item}>{leadEl}</motion.div>
-      ) : null}
+    <div className="flex flex-col gap-6">
+      {lead ? <LeadFeaturedCard project={lead} /> : null}
       <div className="grid gap-6 sm:grid-cols-2">
         {rest.map((project) => (
-          <motion.div key={project.id} variants={item}>
-            <FeaturedWorkCard project={project} />
-          </motion.div>
+          <FeaturedWorkCard key={project.id} project={project} />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
