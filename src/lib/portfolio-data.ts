@@ -378,16 +378,6 @@ export type AppStoreApp = {
 
 export const appleApps: AppStoreApp[] = [
   {
-    id: "steepr",
-    name: "Steepr",
-    tagline: "Tea brewing companion with curated presets, Apple Watch support, and iCloud sync.",
-    platforms: ["iOS", "iPadOS", "Apple Watch"],
-    tech: "Swift · SwiftUI · WatchKit · SwiftData · CloudKit",
-    iconPath: "/images/apps/steepr-icon.png",
-    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
-    websiteUrl: "https://steepr.maskedsyntax.com",
-  },
-  {
     id: "splashy",
     name: "Splashy Sketchpad",
     tagline: "Native macOS infinite whiteboard for ideas, diagrams, and architecture sketches.",
@@ -413,7 +403,7 @@ export const appleApps: AppStoreApp[] = [
     name: "Lofikofi",
     tagline: "Offline-first focus workspace: Pomodoro timers, ambient sounds, Kanban, and notes.",
     platforms: ["macOS"],
-    tech: "Flutter · Dart · Riverpod · Drift",
+    tech: "Swift · SwiftUI · AppKit",
     iconPath: "/images/apps/lofikofi-icon.png",
     macAppStoreUrl: "https://apps.apple.com/us/app/lofikofi-focus-timer/id6778009453?mt=12",
     websiteUrl: "https://lofikofi.space",
@@ -427,5 +417,15 @@ export const appleApps: AppStoreApp[] = [
     iconPath: "/images/apps/rise-and-rattle-icon.png",
     appStoreUrl: "https://apps.apple.com/us/app/rise-rattle/id6781202438",
     websiteUrl: "https://riseandrattle.maskedsyntax.com",
+  },
+  {
+    id: "steepr",
+    name: "Steepr",
+    tagline: "Tea brewing companion with curated presets, Apple Watch support, and iCloud sync.",
+    platforms: ["iOS", "iPadOS", "Apple Watch"],
+    tech: "Swift · SwiftUI · WatchKit · SwiftData · CloudKit",
+    iconPath: "/images/apps/steepr-icon.png",
+    appStoreUrl: "https://apps.apple.com/us/app/steepr/id6775478425",
+    websiteUrl: "https://steepr.maskedsyntax.com",
   },
 ];
