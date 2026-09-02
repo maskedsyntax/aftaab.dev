@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { PageTransition } from "@/components/page-transition";
 import { siteUrl } from "@/lib/site";
 import { HeroSection } from "@/components/portfolio/hero-section";
+import { LabelsSection } from "@/components/portfolio/labels-section";
 import { AboutSection } from "@/components/portfolio/about-section";
 import { SelectedWorks } from "@/components/portfolio/selected-works";
 import { AppleAppsSection } from "@/components/portfolio/apple-apps-section";
+import { AiSystemsSection } from "@/components/portfolio/ai-systems-section";
 import { SpecializationsSection } from "@/components/portfolio/specializations-section";
 import { ProcessSection } from "@/components/portfolio/process-section";
 import { StackSection } from "@/components/portfolio/stack-section";
@@ -23,9 +25,11 @@ export default function Home() {
       <div className="min-h-screen bg-background">
         <main className="container mx-auto max-w-5xl px-5 pb-6 pt-5 sm:px-6 md:pt-6">
           <HeroSection />
+          <LabelsSection />
           <AboutSection />
           <SelectedWorks />
           <AppleAppsSection />
+          <AiSystemsSection />
           <SpecializationsSection />
           <ProcessSection />
           <StackSection />

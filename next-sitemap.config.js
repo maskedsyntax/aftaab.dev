@@ -15,8 +15,10 @@ function readJSONFromTs(file) {
   // Lightweight extractor: pulls `id: "..."` literals from portfolio-data.ts so
   // we don't need to compile TS at sitemap time.
   const src = fs.readFileSync(file, "utf8");
+  // Terminator is anchored to column 0 so a nested array inside an entry
+  // can't end the match early.
   const featuredBlock = src.match(
-    /export const featuredProjects[^[]*\[([\s\S]*?)\];/
+    /export const featuredProjects:\s*FeaturedProject\[\]\s*=\s*\[([\s\S]*?)\n\];/
   );
   if (!featuredBlock) return [];
   const ids = [...featuredBlock[1].matchAll(/id:\s*"([^"]+)"/g)].map(

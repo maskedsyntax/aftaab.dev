@@ -60,7 +60,7 @@ export function MoreWorkList({ items }: { items: WorkListItem[] }) {
 export function WorkPageExternalLinks() {
   return (
     <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-[15px]">
-      For more experiments, repositories, and release history, see{" "}
+      For experiments, repositories, and release history, see{" "}
       <Link
         href={workPageExternalLinks.github}
         target="_blank"
@@ -68,15 +68,6 @@ export function WorkPageExternalLinks() {
         className="font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 transition-colors hover:decoration-foreground"
       >
         GitHub
-      </Link>
-      . A broader project portfolio lives at{" "}
-      <Link
-        href={workPageExternalLinks.portfolio}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-4 transition-colors hover:decoration-foreground"
-      >
-        maskedsyntax.com
       </Link>
       .
     </p>

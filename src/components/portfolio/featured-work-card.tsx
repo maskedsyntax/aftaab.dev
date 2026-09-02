@@ -18,6 +18,7 @@ export function FeaturedWorkCard({
 }) {
   const href = caseStudyHref ?? `/projects/${project.id}`;
   const accent = project.accentColor ?? "#6366f1";
+  const contain = project.coverFit === "contain";
 
   return (
     <Link
@@ -34,18 +35,50 @@ export function FeaturedWorkCard({
       />
 
       {/* Thumbnail */}
-      <div className={cn(
-        "relative mb-5 w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm",
-        wide ? "aspect-[21/9]" : "aspect-[16/10]",
-      )}>
+      <div
+        className={cn(
+          "relative mb-5 w-full overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm",
+          wide ? "aspect-[21/9]" : "aspect-[16/10]",
+        )}
+        style={
+          contain
+            ? {
+                background: `linear-gradient(160deg, ${accent}14 0%, transparent 70%)`,
+              }
+            : undefined
+        }
+      >
         {project.coverImage ? (
-          <Image
-            src={project.coverImage}
-            alt={`${project.name} preview`}
-            fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            sizes="(max-width: 640px) 100vw, 50vw"
-          />
+          <div className={contain ? "absolute inset-3" : "absolute inset-0"}>
+            <Image
+              src={project.coverImage}
+              alt={`${project.name} preview`}
+              fill
+              className={cn(
+                "transition-transform duration-500",
+                contain
+                  ? "object-contain object-center group-hover:scale-[1.02]"
+                  : "object-cover object-top group-hover:scale-[1.03]",
+              )}
+              sizes="(max-width: 640px) 100vw, 50vw"
+            />
+          </div>
+        ) : project.iconPath ? (
+          <div
+            className="flex h-full w-full items-center justify-center"
+            style={{
+              background: `linear-gradient(160deg, ${accent}1f 0%, transparent 65%)`,
+            }}
+          >
+            <Image
+              src={project.iconPath}
+              alt=""
+              width={80}
+              height={80}
+              sizes="80px"
+              className="rounded-[20px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.32)]"
+            />
+          </div>
         ) : (
           <div className="flex h-full w-full items-center justify-center px-6">
             <span className="text-center font-mono text-sm font-medium tracking-tight text-muted-foreground/70 transition-colors group-hover:text-foreground/80">

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ExternalLink, Github, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 import { SiteFooter } from "@/components/site-footer";
 import {
   ProjectMedia,
   EditorialRows,
 } from "@/components/portfolio/case-studies";
+import { ProjectLinks } from "@/components/portfolio/project-links";
+import { StudioChip } from "@/components/portfolio/studio-badge";
 import { featuredProjects } from "@/lib/portfolio-data";
 import { siteName, siteUrl } from "@/lib/site";
 
@@ -70,7 +72,13 @@ export default async function ProjectPage({ params }: PageProps) {
     image: `${siteUrl}/projects/${slug}/opengraph-image`,
     creator: { "@type": "Person", name: siteName, url: siteUrl },
     author: { "@type": "Person", name: siteName, url: siteUrl },
-    sameAs: [project.liveUrl, project.repoUrl].filter(Boolean),
+    sameAs: [
+      project.liveUrl,
+      project.appStoreUrl,
+      project.macAppStoreUrl,
+      project.playStoreUrl,
+      project.repoUrl,
+    ].filter(Boolean),
   };
 
   const breadcrumbJsonLd = {
@@ -125,9 +133,12 @@ export default async function ProjectPage({ params }: PageProps) {
           </nav>
 
           <header className="max-w-2xl">
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              {project.category}
-            </span>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                {project.category}
+              </span>
+              <StudioChip studio={project.studio} />
+            </div>
             <h1 className="mt-3 font-display text-[2.1rem] font-semibold tracking-display-tight text-foreground md:text-[2.6rem]">
               {project.name}
             </h1>
@@ -138,28 +149,7 @@ export default async function ProjectPage({ params }: PageProps) {
               {project.role}
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-[13px] font-medium text-background shadow-sm transition-transform hover:-translate-y-0.5"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                Live
-              </a>
-              {project.repoUrl ? (
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-[13px] font-medium transition-colors hover:bg-accent/60"
-                >
-                  <Github className="h-3.5 w-3.5" />
-                  Source
-                </a>
-              ) : null}
-            </div>
+            <ProjectLinks p={project} />
           </header>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_minmax(320px,440px)] lg:items-start lg:gap-12">

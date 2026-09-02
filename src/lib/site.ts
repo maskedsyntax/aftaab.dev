@@ -7,7 +7,7 @@ export const siteName = "Aftaab Siddiqui";
 export const siteTagline = "From idea to product." as const;
 
 export const defaultDescription =
-  "Aftaab Siddiqui — product designer and full-stack engineer based in India. Building web and mobile products end to end, from interface design to shipped code. Available for client work.";
+  "Aftaab Siddiqui — indie iOS and mobile engineer based in India. Native Swift and SwiftUI apps, cross-platform Flutter apps, designed and shipped to the App Store end to end. Available for client work.";
 
 /** Social handles — used by Twitter card metadata + JSON-LD sameAs */
 export const socials = {

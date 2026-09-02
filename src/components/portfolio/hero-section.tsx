@@ -131,7 +131,7 @@ export function HeroSection() {
           </p>
 
           <p className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground/55">
-            5 apps shipped · iOS · Android · macOS · Web
+            {heroCopy.stats}
           </p>
         </div>
 

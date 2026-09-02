@@ -16,7 +16,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Case studies and ongoing builds by Aftaab Siddiqui — EiraFocus, Botttle, Trelay, OpenConduit, Patterns, RepoGrep, HashPrep, and more.",
+    "Work by Aftaab Siddiqui — iOS and macOS app case studies (Patterns, Tumble, Cambium, Glowe, Lofikofi, Splashy, Steepr) plus web products and developer tools.",
   alternates: { canonical: "/projects" },
   openGraph: { url: `${siteUrl}/projects` },
 };

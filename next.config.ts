@@ -9,6 +9,25 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  /**
+   * Case studies retired when the site refocused on the apps. Each product
+   * still appears on /projects, so send the old slugs there rather than 404.
+   */
+  async redirects() {
+    const retired = [
+      "cairnly",
+      "botttle",
+      "apimask",
+      "queriously",
+      "trelay",
+      "openconduit",
+    ];
+    return retired.map((slug) => ({
+      source: `/projects/${slug}`,
+      destination: "/projects",
+      permanent: true,
+    }));
+  },
   /** Reduces dev rebuild thrash (webpack fallback only; default dev uses Turbopack). */
   webpack: (config, { dev }) => {
     if (dev) {
