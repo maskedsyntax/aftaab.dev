@@ -25,8 +25,13 @@ function DisplayHeadline({
 }) {
   const renderWord = (w: string) => {
     if (w === "open.") {
+      // The gradient is painted through bg-clip-text, so it only covers this
+      // span's own box. leading-[1.12] is tighter than the font's natural box,
+      // which leaves descenders hanging outside it with no background to paint
+      // them — they read as cut off. Pad the box out, pull it back with
+      // negative margins so layout is unchanged.
       return (
-        <span className="inline-block bg-gradient-to-br from-primary via-primary to-warm bg-clip-text text-transparent">
+        <span className="inline-block bg-gradient-to-br from-primary via-primary to-warm bg-clip-text px-[0.07em] pb-[0.26em] pt-[0.06em] text-transparent -mx-[0.07em] -mb-[0.26em] -mt-[0.06em]">
           {w}
         </span>
       );
@@ -43,8 +48,12 @@ function DisplayHeadline({
 
   const headingClass =
     "font-serif italic font-normal text-[3rem] leading-[1.12] tracking-serif-tight text-foreground sm:text-[3.9rem] md:text-[4.75rem]";
+  // The reveal leaves a clip-path applied for good, and it clips to the box.
+  // Instrument Serif italic hangs well past that box — descenders below,
+  // swashes to the sides — so the box is padded out to contain the glyphs and
+  // pulled back with negative margins to leave layout untouched.
   const revealClass =
-    "inline-block pb-[0.08em] -mb-[0.08em] will-change-[clip-path]";
+    "inline-block pb-[0.26em] -mb-[0.26em] pt-[0.06em] -mt-[0.06em] px-[0.07em] -mx-[0.07em] will-change-[clip-path]";
 
   const wordReveal = {
     initial: {
