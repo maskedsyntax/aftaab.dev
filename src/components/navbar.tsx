@@ -10,13 +10,14 @@ import { cn } from "@/lib/utils";
 
 const routes = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Work" },
   { href: "/blog", label: "Writing" },
 ];
 
 function getActiveRoute(path: string) {
   if (path.startsWith("/blog")) return "/blog";
-  if (path.startsWith("/projects")) return "/projects";
+  // /projects has no nav entry of its own; the apps it holds live on the home
+  // page, so keep Home lit rather than leaving the pill stranded.
+  if (path.startsWith("/projects")) return "/";
   if (path.startsWith("/fun")) return "/";
   return path;
 }
