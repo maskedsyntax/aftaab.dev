@@ -5,7 +5,6 @@ import { HeroSection } from "@/components/portfolio/hero-section";
 import { LabelsSection } from "@/components/portfolio/labels-section";
 import { AboutSection } from "@/components/portfolio/about-section";
 import { SelectedWorks } from "@/components/portfolio/selected-works";
-import { AppleAppsSection } from "@/components/portfolio/apple-apps-section";
 import { AiSystemsSection } from "@/components/portfolio/ai-systems-section";
 import { SpecializationsSection } from "@/components/portfolio/specializations-section";
 import { ProcessSection } from "@/components/portfolio/process-section";
@@ -28,7 +27,6 @@ export default function Home() {
           <LabelsSection />
           <AboutSection />
           <SelectedWorks />
-          <AppleAppsSection />
           <AiSystemsSection />
           <SpecializationsSection />
           <ProcessSection />

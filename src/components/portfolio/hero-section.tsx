@@ -121,7 +121,7 @@ export function HeroSection() {
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-transform duration-200 ease-out hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary via-warm to-primary opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
-              <span className="relative">View selected work</span>
+              <span className="relative">View shipped apps</span>
               <ArrowDown className="relative h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />
             </a>
           </div>

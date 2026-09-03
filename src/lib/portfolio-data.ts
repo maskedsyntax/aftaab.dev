@@ -23,7 +23,7 @@ export const studios: Record<StudioId, Studio> = {
     focus: "Everyday apps",
     blurb:
       "Cameras, timers, plant care, whiteboards. Small apps with one job each, built native when the platform pays for it and cross-platform when it doesn't.",
-    url: "https://github.com/MaskedSyntax",
+    url: "https://maskedsyntax.com",
   },
   gentleloop: {
     id: "gentleloop",
@@ -52,6 +52,10 @@ export type AppStoreApp = {
   platforms: string[];
   /** One-line tech callout e.g. "Swift · SwiftUI · WatchKit" */
   tech: string;
+  /** Shown on the card when the app has no case study of its own */
+  category?: string;
+  /** Card wash colour, for apps without a case study */
+  accentColor?: string;
   /** Absent means live. */
   status?: "live" | "coming-soon";
   /** Short qualifier shown in place of a store pill when not yet live */
@@ -115,6 +119,8 @@ export const appleApps: AppStoreApp[] = [
     studio: "maskedsyntax",
     platforms: ["iOS", "iPadOS"],
     tech: "Flutter · Dart · Riverpod",
+    category: "iOS · Game",
+    accentColor: "#C8A22E",
     iconPath: "/images/apps/rise-and-rattle-icon.png",
     appStoreUrl: "https://apps.apple.com/us/app/rise-rattle/id6781202438",
     websiteUrl: "https://riseandrattle.maskedsyntax.com",
@@ -179,6 +185,8 @@ export const appleApps: AppStoreApp[] = [
     studio: "gentleloop",
     platforms: ["iOS"],
     tech: "Swift · SwiftUI",
+    category: "iOS · ADHD",
+    accentColor: "#E8632A",
     status: "coming-soon",
     note: "In review",
     iconPath: "/images/apps/kindling-icon.png",
@@ -204,6 +212,11 @@ export const shippedCounts = {
   pending: appleApps.filter((a) => a.status === "coming-soon").length,
 } as const;
 
+/** The shipped-app record behind a case study, when there is one. */
+export function appForId(appId?: string): AppStoreApp | undefined {
+  return appId ? appleApps.find((a) => a.id === appId) : undefined;
+}
+
 /** Apps a given label has shipped — used by the Labels cards. */
 export function appCountForStudio(id: StudioId): number {
   return appleApps.filter((a) => a.studio === id).length;
@@ -219,6 +232,8 @@ export type FeaturedProject = {
   id: string;
   name: string;
   studio: StudioId;
+  /** id of the matching `appleApps` entry — platforms, tech, icon, store links */
+  appId?: string;
   role: string;
   tagline: string;
   category: string;
@@ -250,6 +265,7 @@ export type FeaturedProject = {
 export const featuredProjects: FeaturedProject[] = [
   {
     id: "patterns",
+    appId: "patterns-app",
     name: "Patterns",
     studio: "gentleloop",
     role: "Designer & Mobile Developer",
@@ -276,6 +292,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "tumble",
+    appId: "tumble",
     name: "Tumble",
     studio: "maskedsyntax",
     role: "Designer & iOS Developer",
@@ -298,6 +315,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "steepr",
+    appId: "steepr",
     name: "Steepr",
     studio: "maskedsyntax",
     role: "Designer & iOS Developer",
@@ -319,6 +337,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "cambium",
+    appId: "cambium",
     name: "Cambium",
     studio: "maskedsyntax",
     role: "Designer & iOS Developer",
@@ -341,6 +360,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "glowe",
+    appId: "glowe",
     name: "Glowe",
     studio: "gentleloop",
     role: "Designer & Mobile Developer",
@@ -362,7 +382,31 @@ export const featuredProjects: FeaturedProject[] = [
     mediaOrientation: "landscape",
   },
   {
+    id: "rezumate",
+    appId: "rezumate",
+    name: "Rezumate",
+    studio: "maskedsyntax",
+    role: "Designer & iOS Developer",
+    tagline:
+      "Native resume optimization for iPhone, scored the way applicant tracking systems actually read a CV.",
+    category: "iOS · Careers",
+    challenge:
+      "Resume advice is written for human readers, but the first reader is usually software. Applicants rewrite for tone and phrasing, then get filtered by a parser that never tells them what it failed to read.",
+    solution:
+      "Rezumate parses a resume the way an applicant tracking system does, scores it against the role being applied for, and points at the specific lines costing points rather than handing back a grade. The app is native Swift and SwiftUI; parsing and scoring run in a FastAPI service, so the analysis can be corrected without shipping a new build through review.",
+    impact:
+      "On the App Store at 1.0.3, with purchase verification handled server-side. Splitting a native client from a serviced analysis layer is what lets the scoring keep improving after release.",
+    liveUrl: "https://rezumate.app",
+    appStoreUrl:
+      "https://apps.apple.com/us/app/rezumate-ats-resume-ai/id6787700238",
+    repoUrl: "https://github.com/maskedsyntax/rezumate",
+    iconPath: "/images/apps/rezumate-icon.png",
+    accentColor: "#64748B",
+    mediaOrientation: "landscape",
+  },
+  {
     id: "lofikofi",
+    appId: "lofikofi",
     name: "Lofikofi",
     studio: "maskedsyntax",
     role: "Designer & macOS Developer",
@@ -384,6 +428,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "splashy",
+    appId: "splashy",
     name: "Splashy Sketchpad",
     studio: "maskedsyntax",
     role: "Designer & macOS Developer",
@@ -403,7 +448,85 @@ export const featuredProjects: FeaturedProject[] = [
     accentColor: "#4C5C6B",
     mediaOrientation: "landscape",
   },
+
 ];
+
+/* ────────────────────────────────────────────────────────────────
+   Shipped cards
+   One list for the Shipped section: the case studies in their curated
+   order, then any remaining app that doesn't have a write-up yet.
+   ──────────────────────────────────────────────────────────────── */
+
+export type ShippedCard = {
+  key: string;
+  name: string;
+  studio: StudioId;
+  category: string;
+  tagline: string;
+  tech?: string;
+  platforms: string[];
+  iconPath: string;
+  accentColor?: string;
+  /** Present when there is a case study to read */
+  caseStudySlug?: string;
+  /** Where the card points when there is no case study */
+  externalHref?: string;
+  status?: "live" | "coming-soon";
+  note?: string;
+  appStoreUrl?: string;
+  macAppStoreUrl?: string;
+  playStoreUrl?: string;
+};
+
+export const shippedCards: ShippedCard[] = (() => {
+  const claimed = new Set(
+    featuredProjects.map((p) => p.appId).filter(Boolean) as string[],
+  );
+
+  const fromCaseStudies: ShippedCard[] = featuredProjects.map((p) => {
+    const app = appForId(p.appId);
+    return {
+      key: p.id,
+      name: p.name,
+      studio: p.studio,
+      category: p.category,
+      tagline: p.tagline,
+      tech: app?.tech,
+      platforms: app?.platforms ?? [],
+      iconPath: p.iconPath ?? app?.iconPath ?? "",
+      accentColor: p.accentColor,
+      caseStudySlug: p.id,
+      status: app?.status,
+      note: app?.note,
+      appStoreUrl: app?.appStoreUrl ?? p.appStoreUrl,
+      macAppStoreUrl: app?.macAppStoreUrl ?? p.macAppStoreUrl,
+      playStoreUrl: app?.playStoreUrl ?? p.playStoreUrl,
+    };
+  });
+
+  const rest: ShippedCard[] = appleApps
+    .filter((a) => !claimed.has(a.id))
+    .map((a) => ({
+      key: a.id,
+      name: a.name,
+      studio: a.studio,
+      category: a.category ?? a.platforms.join(" · "),
+      tagline: a.tagline,
+      tech: a.tech,
+      platforms: a.platforms,
+      iconPath: a.iconPath,
+      accentColor: a.accentColor,
+      externalHref:
+        a.appStoreUrl ?? a.macAppStoreUrl ?? a.playStoreUrl ?? a.websiteUrl,
+      status: a.status,
+      note: a.note,
+      appStoreUrl: a.appStoreUrl,
+      macAppStoreUrl: a.macAppStoreUrl,
+      playStoreUrl: a.playStoreUrl,
+    }));
+
+  return [...fromCaseStudies, ...rest];
+})();
 
 /* ────────────────────────────────────────────────────────────────
    AI & systems tooling
@@ -473,12 +596,9 @@ export const heroCopy = {
 export const labelsIntro =
   "The apps ship under two names. Which one depends on what the app is for.";
 
-export const selectedWorksIntro =
-  "Apps I designed and built end to end, from the first sketch to the App Store listing.";
-
-export const shippedIntro = `Live on the App Store, Mac App Store, and Google Play${
-  shippedCounts.pending > 0 ? ", with one more in review" : ""
-}.`;
+export const shippedIntro = `${appleApps.length} apps on the App Store, Mac App Store, and Google Play${
+  shippedCounts.pending > 0 ? ", one of them still in review" : ""
+}. The ones I've written up link through to the case study.`;
 
 export const aiSystemsIntro =
   "Local-first speech tooling built under Cachevector. Rust and Python rather than Swift, and the reason the AI work in the apps above isn't guesswork.";
