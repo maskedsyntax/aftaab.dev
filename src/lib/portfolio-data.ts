@@ -544,8 +544,6 @@ export type AiTool = {
   version?: string;
   url: string;
   repoUrl?: string;
-  /** When absent the card falls back to a typographic terminal panel */
-  coverImage?: string;
   credit: string;
 };
 
@@ -560,7 +558,6 @@ export const aiTools: AiTool[] = [
     version: "v0.1.0 alpha",
     url: "https://voxflow.cachevector.com",
     repoUrl: "https://github.com/cachevector/voxflow",
-    coverImage: "/images/projects/voxflow.png",
     credit: "Cachevector",
   },
   {

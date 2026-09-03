@@ -1,36 +1,10 @@
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { SectionReveal } from "@/components/portfolio/section-reveal";
 import { SectionHeader } from "@/components/portfolio/section-header";
 import { PlatformChip } from "@/components/portfolio/platform-chip";
+import { AiThumbnail } from "@/components/portfolio/ai-thumbnails";
 import { aiSystemsIntro, aiTools, type AiTool } from "@/lib/portfolio-data";
-
-/**
- * Stand-in visual for tools that ship no artwork. Utter is a CLI with no
- * logo anywhere in its repo, so it gets its own output rather than a
- * borrowed glyph.
- */
-function TerminalPanel({ tool }: { tool: AiTool }) {
-  return (
-    <div
-      className="absolute inset-0 flex items-center bg-muted/30 px-5 sm:px-7"
-      role="img"
-      aria-label={`${tool.name} command line output`}
-    >
-      <pre className="font-mono text-[10.5px] leading-[2] text-muted-foreground sm:text-[11.5px]">
-        <span className="text-primary/70">$</span> utter speak &quot;the kettle
-        is on&quot;{"\n"}
-        <span className="text-muted-foreground/50">→</span> qwen3-tts · mlx ·
-        apple silicon{"\n"}
-        <span className="text-muted-foreground/50">→</span> kettle.wav · 48kHz ·
-        local{"\n"}
-        <span className="text-primary/70">$</span>{" "}
-        <span className="inline-block h-3 w-[7px] translate-y-[2px] bg-foreground/40" />
-      </pre>
-    </div>
-  );
-}
 
 function AiToolCard({ tool }: { tool: AiTool }) {
   // Utter's canonical URL is its repo — one pill, not two identical ones.
@@ -38,19 +12,17 @@ function AiToolCard({ tool }: { tool: AiTool }) {
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card">
-      {/* Symmetric visual region — cover art or terminal, both 16:10 */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50">
-        {tool.coverImage ? (
-          <Image
-            src={tool.coverImage}
-            alt={`${tool.name} preview`}
-            fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            sizes="(max-width: 640px) 100vw, 50vw"
-          />
-        ) : (
-          <TerminalPanel tool={tool} />
-        )}
+      {/* Drawn thumbnail — nothing to crop, and it follows the theme */}
+      <div
+        className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/25 p-6 transition-transform duration-500 group-hover:scale-[1.015]"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,hsl(var(--primary)/0.10),transparent_70%)]"
+        />
+        <div className="relative h-full w-full">
+          <AiThumbnail id={tool.id} />
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
