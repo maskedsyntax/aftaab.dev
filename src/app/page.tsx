@@ -10,6 +10,7 @@ import { SpecializationsSection } from "@/components/portfolio/specializations-s
 import { ProcessSection } from "@/components/portfolio/process-section";
 import { StackSection } from "@/components/portfolio/stack-section";
 import { BlogPreviewSection } from "@/components/portfolio/blog-preview-section";
+import { SupportSection } from "@/components/portfolio/support-section";
 import { ContactSection } from "@/components/portfolio/contact-section";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -32,6 +33,7 @@ export default function Home() {
           <ProcessSection />
           <StackSection />
           <BlogPreviewSection />
+          <SupportSection />
           <ContactSection />
         </main>
         <SiteFooter />

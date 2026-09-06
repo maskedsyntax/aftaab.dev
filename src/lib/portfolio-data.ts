@@ -818,6 +818,15 @@ export const stackCategories = [
 export const stackNote =
   "I pick tools by what the product needs and what the team can maintain.";
 
+export const support = {
+  eyebrow: "Support",
+  title: "Buy me a coffee",
+  body: "VoxFlow, Utter, and the smaller tools are free and open source, and they stay that way. If one of them earned a place in your setup, Ko-fi is where you can chip in.",
+  note: "Entirely optional. It goes into the next thing I build.",
+  cta: "Support on Ko-fi",
+  url: "https://ko-fi.com/aftaabsiddiqui",
+} as const;
+
 export const contactIntro =
   "I work with founders and small teams on mobile products, from first design to the App Store listing. If you have a project in mind, or just want to say hello, drop me a line.";
 
