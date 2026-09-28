@@ -51,7 +51,7 @@ export function getAllBlogs(): BlogPost[] {
   }).sort((a, b) => {
     const dateA = new Date(a.date.split("-").reverse().join("-")).getTime();
     const dateB = new Date(b.date.split("-").reverse().join("-")).getTime();
-    return dateB - dateA;
+    return dateB - dateA || Number(a.id) - Number(b.id);
   });
 
   if (process.env.NODE_ENV === "production") {

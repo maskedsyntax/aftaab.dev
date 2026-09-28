@@ -9,7 +9,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes on building products end to end — design systems, Next.js, Flutter, motion, and the bridge between Figma and the editor.",
+    "Notes on building and shipping independent apps — product decisions, platform work, privacy, and the tradeoffs behind each release.",
   alternates: { canonical: "/blog" },
   openGraph: { url: `${siteUrl}/blog` },
 }
@@ -70,4 +70,3 @@ export default function BlogPage() {
     </PageTransition>
   )
 }
-

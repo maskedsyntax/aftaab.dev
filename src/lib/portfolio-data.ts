@@ -105,7 +105,7 @@ export const appleApps: AppStoreApp[] = [
       "Offline-first focus workspace: Pomodoro timers, ambient sounds, Kanban, and notes.",
     studio: "maskedsyntax",
     platforms: ["macOS"],
-    tech: "Swift · SwiftUI · AppKit",
+    tech: "Flutter · Dart · native Swift rebuild in progress",
     iconPath: "/images/apps/lofikofi-icon.png",
     macAppStoreUrl:
       "https://apps.apple.com/us/app/lofikofi-focus-timer/id6778009453?mt=12",
@@ -155,9 +155,9 @@ export const appleApps: AppStoreApp[] = [
     id: "glowe",
     name: "Glowe",
     tagline:
-      "Prayer and reflection journal with a daily affirmation home-screen widget.",
+      "Daily affirmation ritual with mood check-ins, private reflection, and home-screen widgets.",
     studio: "gentleloop",
-    platforms: ["iOS", "iPadOS"],
+    platforms: ["iOS"],
     tech: "Flutter · Dart · WidgetKit",
     iconPath: "/images/apps/glowe-icon.png",
     appStoreUrl:
@@ -168,10 +168,10 @@ export const appleApps: AppStoreApp[] = [
     id: "rezumate",
     name: "Rezumate",
     tagline:
-      "Native resume optimization scored against applicant tracking systems.",
+      "Private, on-device resume analysis with explainable ATS-style feedback.",
     studio: "maskedsyntax",
-    platforms: ["iOS", "iPadOS"],
-    tech: "Swift · SwiftUI · FastAPI",
+    platforms: ["iOS"],
+    tech: "Swift · SwiftUI · PDFKit",
     iconPath: "/images/apps/rezumate-icon.png",
     appStoreUrl:
       "https://apps.apple.com/us/app/rezumate-ats-resume-ai/id6787700238",
@@ -365,14 +365,14 @@ export const featuredProjects: FeaturedProject[] = [
     studio: "gentleloop",
     role: "Designer & Mobile Developer",
     tagline:
-      "A prayer and reflection journal for Christians, with a daily affirmation on the home screen.",
-    category: "iOS · Journaling",
+      "A daily affirmation ritual for iPhone, with mood check-ins, private reflection, and a home-screen widget.",
+    category: "iOS · Wellbeing",
     challenge:
-      "Devotional apps tend toward one of two failures: a content firehose that turns reflection into a reading backlog, or a bare notes field that gives the practice no shape at all.",
+      "A daily wellbeing ritual has to be small enough to return to, without turning reflection into another task to complete.",
     solution:
-      "Glowe keeps the daily surface to one affirmation and one place to write. A WidgetKit home-screen widget puts the day's affirmation where it gets seen without opening anything, which is the difference between a habit and an app you remember on Sundays. Built in Flutter, with entries stored locally and a mascot that carries the tone the typography can't.",
+      "Glowe combines a mood check-in, curated affirmations, and an optional private note. Its home-screen widget can show a daily line without requiring someone to open the app. Built in Flutter, the account-free reflection flow stores personal entries locally.",
     impact:
-      "Shipped on the App Store and now at 1.1 with the affirmation widget. The first Gentleloop Labs release outside the OCD and ADHD work.",
+      "Available on the App Store as a focused daily ritual, with a widget that makes the experience useful at a glance.",
     liveUrl: "https://www.getglowe.app",
     appStoreUrl:
       "https://apps.apple.com/us/app/glowe-daily-affirmations/id6794949733",
@@ -388,14 +388,14 @@ export const featuredProjects: FeaturedProject[] = [
     studio: "maskedsyntax",
     role: "Designer & iOS Developer",
     tagline:
-      "Native resume optimization for iPhone, scored the way applicant tracking systems actually read a CV.",
+      "Private resume analysis for iPhone, with explainable ATS-style scoring and on-device export.",
     category: "iOS · Careers",
     challenge:
-      "Resume advice is written for human readers, but the first reader is usually software. Applicants rewrite for tone and phrasing, then get filtered by a parser that never tells them what it failed to read.",
+      "A resume score is hard to use unless the applicant can see which terms matched, which were missing, and what formatting may be harder to parse.",
     solution:
-      "Rezumate parses a resume the way an applicant tracking system does, scores it against the role being applied for, and points at the specific lines costing points rather than handing back a grade. The app is native Swift and SwiftUI; parsing and scoring run in a FastAPI service, so the analysis can be corrected without shipping a new build through review.",
+      "Rezumate imports PDF and DOCX resumes, compares them with a job description, and explains keyword, structure, and formatting checks. Parsing, deterministic scoring, writing suggestions, saved variants, and PDF export run on the iPhone without sending the resume to an analysis server.",
     impact:
-      "On the App Store at 1.0.3, with purchase verification handled server-side. Splitting a native client from a serviced analysis layer is what lets the scoring keep improving after release.",
+      "Available on the App Store with an account-free workflow that keeps personal career information on the device.",
     liveUrl: "https://rezumate.app",
     appStoreUrl:
       "https://apps.apple.com/us/app/rezumate-ats-resume-ai/id6787700238",
@@ -411,14 +411,14 @@ export const featuredProjects: FeaturedProject[] = [
     studio: "maskedsyntax",
     role: "Designer & macOS Developer",
     tagline:
-      "An offline focus workspace for the Mac. Timers, ambient sound, a board, and notes in one window.",
+      "An offline focus workspace for the Mac. Timers, ambient sound, local music, and a board in one window.",
     category: "macOS · Focus",
     challenge:
       "Focus tools fragment the thing they're meant to protect. A timer in one app, ambient sound in a browser tab, the task list somewhere else. Every context switch to manage focus is a context switch away from work.",
     solution:
-      "One window holds the Pomodoro timer, the ambient mixer, a Kanban board, and notes, and none of it needs an account or a network. Version 2.0 is a full rewrite from Flutter to native Swift and SwiftUI with AppKit underneath, which is what made the drag-and-drop on the board and the audio behaviour feel like a Mac app instead of a port.",
+      "One window holds the Pomodoro timer, ambient mixer, local music, lightweight boards, and micro-todos, with no account or network required. The current Mac App Store release uses Flutter; a native SwiftUI and AppKit rebuild is in progress with migration for existing local workspace data.",
     impact:
-      "On the Mac App Store at 2.0.1. The rewrite is the interesting part: same product, second implementation, and a clear read on what the native layer actually bought.",
+      "Available on the Mac App Store. The native rebuild is being developed without abandoning the local data created in the existing app.",
     liveUrl: "https://lofikofi.space",
     macAppStoreUrl:
       "https://apps.apple.com/us/app/lofikofi-focus-timer/id6778009453?mt=12",

@@ -121,3 +121,4 @@ desktop.ini
 # TypeScript build info
 tsconfig.tsbuildinfo
 tsconfig.*.tsbuildinfo
+.vercel
