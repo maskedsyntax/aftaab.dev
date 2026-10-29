@@ -5,14 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Moon, Sun } from "lucide-react";
+import {
+  ArrowUpRight,
+  House,
+  LayoutGrid,
+  Mail,
+  Moon,
+  PenLine,
+  Sun,
+  UserRound,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
+/** Phones show the icon; the label takes over from sm up. */
 const routes = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/apps", label: "Apps" },
-  { href: "/blog", label: "Writing" },
+  { href: "/", label: "Home", Icon: House },
+  { href: "/about", label: "About", Icon: UserRound },
+  { href: "/apps", label: "Apps", Icon: LayoutGrid },
+  { href: "/blog", label: "Writing", Icon: PenLine },
 ];
 
 function getActiveRoute(path: string) {
@@ -63,9 +73,9 @@ export default function Navbar() {
 
   return (
     <div
-      // Phones: a full-width bar pinned near the bottom edge.
-      // sm and up: the floating centred pill.
-      className="fixed inset-x-3 bottom-3 z-30 pb-[env(safe-area-inset-bottom)] sm:inset-x-auto sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2"
+      // A floating centred pill at every size; on phones it holds icons, so
+      // it stays compact instead of spanning the screen.
+      className="fixed bottom-4 left-1/2 z-30 -translate-x-1/2 pb-[env(safe-area-inset-bottom)] sm:bottom-6"
     >
       <div
         aria-hidden
@@ -74,14 +84,14 @@ export default function Navbar() {
 
       <nav
         aria-label="Primary navigation"
-        className="relative flex w-full items-center gap-1 rounded-full border border-border/60 bg-background/70 p-1 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.25)] ring-1 ring-foreground/[0.03] backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6)]"
+        className="relative flex items-center gap-1 rounded-full border border-border/60 bg-background/70 p-1 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.25)] ring-1 ring-foreground/[0.03] backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6)]"
       >
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-2 top-px h-px rounded-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent dark:via-white/15"
         />
 
-        <ul ref={listRef} className="relative flex flex-1 items-center gap-1 sm:flex-none">
+        <ul ref={listRef} className="relative flex items-center gap-1">
           {/* Active pill */}
           {pill.width > 0 && (
             <motion.span
@@ -98,27 +108,30 @@ export default function Navbar() {
               <li
                 key={route.href}
                 ref={(el) => { itemRefs.current[idx] = el; }}
-                className="relative flex-1 sm:flex-none"
+                className="relative"
               >
                 <Link
                   href={route.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative flex w-full select-none items-center justify-center rounded-full font-medium transition-colors duration-200",
-                    "h-10 px-1 text-[14px] sm:h-auto sm:px-3.5 sm:py-1.5 sm:text-[13px]",
+                    "relative flex select-none items-center justify-center rounded-full font-medium transition-colors duration-200",
+                    // Phones: a square icon target. sm up: a text label.
+                    "h-10 w-11 sm:h-auto sm:w-auto sm:px-3.5 sm:py-1.5 sm:text-[13px]",
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {route.label}
+                  <route.Icon className="h-[18px] w-[18px] sm:hidden" aria-hidden />
+                  {/* Stays readable to screen readers while the icon shows */}
+                  <span className="sr-only sm:not-sr-only">{route.label}</span>
                 </Link>
               </li>
             );
           })}
         </ul>
 
-        {/* Phones get a round mail button; the word fits from sm up */}
+        {/* Phones get a round mail button; the word shows from sm up */}
         <Link
           href="/#contact"
           aria-label="Contact"
