@@ -8,13 +8,14 @@ import {
   PlayStoreIcon,
 } from "@/components/portfolio/store-icons";
 import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/portfolio/reveal";
 import { cn } from "@/lib/utils";
 
 /**
  * Icon-led app card. Apps with a write-up link through to the case study;
  * the rest point at their store listing.
  */
-function WorkCard({ card, wide = false }: { card: ShippedCard; wide?: boolean }) {
+function WorkCard({ card }: { card: ShippedCard }) {
   const accent = card.accentColor ?? "#6366f1";
   const comingSoon = card.status === "coming-soon";
   const hasApple = Boolean(card.appStoreUrl);
@@ -22,9 +23,7 @@ function WorkCard({ card, wide = false }: { card: ShippedCard; wide?: boolean })
   const hasPlay = Boolean(card.playStoreUrl);
 
   const shell = cn(
-    "group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)] md:p-6",
-    // Keeps the last row from leaving a gap when the count is odd
-    wide && "sm:col-span-2",
+    "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)] md:p-6",
   );
 
   const body = (
@@ -150,13 +149,15 @@ export function SelectedWorksGrid({ cards }: { cards: ShippedCard[] }) {
 
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-      {cards.map((card, i) => (
-        <WorkCard
-          key={card.key}
-          card={card}
-          wide={oddCount && i === lastIndex}
-        />
-      ))}
+      {cards.map((card, i) => {
+        const wide = oddCount && i === lastIndex;
+        return (
+          // Stagger within a row only, so a long list doesn't wait on itself
+          <Reveal key={card.key} index={i % 2} className={wide ? "sm:col-span-2" : undefined}>
+            <WorkCard card={card} />
+          </Reveal>
+        );
+      })}
     </div>
   );
 }

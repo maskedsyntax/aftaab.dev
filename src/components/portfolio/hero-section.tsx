@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { useHydrationSafeReducedMotion } from "@/hooks/use-hydration-safe-reduced-motion";
 import { heroCopy, contactLinks } from "@/lib/portfolio-data";
+import { AppIconMarquee } from "@/components/portfolio/app-icon-marquee";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -233,7 +234,9 @@ export function HeroSection() {
         </aside>
       </div>
 
-      <div className="relative z-[1] mt-10 h-px w-full max-w-md bg-gradient-to-r from-primary/40 via-border to-transparent md:mt-12" />
+      <div className="relative z-[1] mt-10 md:mt-14">
+        <AppIconMarquee />
+      </div>
     </section>
   );
 }

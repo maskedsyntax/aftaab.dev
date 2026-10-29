@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   /**
+   * Dev-only badges sit bottom-left, on top of the phone nav bar's first
+   * item. Drop the static-route badge; keep build activity, out of the way.
+   */
+  devIndicators: {
+    appIsrStatus: false,
+    buildActivityPosition: "top-right",
+  },
+  /**
    * Case studies retired when the site refocused on the apps. Each product
    * still appears on /projects, so send the old slugs there rather than 404.
    */

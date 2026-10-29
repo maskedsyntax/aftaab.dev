@@ -62,6 +62,9 @@ export type AppStoreApp = {
   note?: string;
   /** Path under public/ e.g. /images/apps/steepr-icon.png */
   iconPath: string;
+  /** Marketing art for apps without a case study; same rules as FeaturedProject */
+  coverImage?: string;
+  coverFit?: "cover" | "contain";
   appStoreUrl?: string;
   macAppStoreUrl?: string;
   playStoreUrl?: string;
@@ -190,6 +193,8 @@ export const appleApps: AppStoreApp[] = [
     status: "coming-soon",
     note: "In review",
     iconPath: "/images/apps/kindling-icon.png",
+    coverImage: "/images/projects/kindling.png",
+    coverFit: "contain",
     websiteUrl: "https://kindling.gentlelooplabs.com",
   },
   {
@@ -467,6 +472,8 @@ export type ShippedCard = {
   platforms: string[];
   iconPath: string;
   accentColor?: string;
+  coverImage?: string;
+  coverFit?: "cover" | "contain";
   /** Present when there is a case study to read */
   caseStudySlug?: string;
   /** Where the card points when there is no case study */
@@ -496,6 +503,8 @@ export const shippedCards: ShippedCard[] = (() => {
       platforms: app?.platforms ?? [],
       iconPath: p.iconPath ?? app?.iconPath ?? "",
       accentColor: p.accentColor,
+      coverImage: p.coverImage,
+      coverFit: p.coverFit,
       caseStudySlug: p.id,
       status: app?.status,
       note: app?.note,
@@ -517,6 +526,8 @@ export const shippedCards: ShippedCard[] = (() => {
       platforms: a.platforms,
       iconPath: a.iconPath,
       accentColor: a.accentColor,
+      coverImage: a.coverImage,
+      coverFit: a.coverFit,
       externalHref:
         a.appStoreUrl ?? a.macAppStoreUrl ?? a.playStoreUrl ?? a.websiteUrl,
       status: a.status,

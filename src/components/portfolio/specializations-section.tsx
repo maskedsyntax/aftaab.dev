@@ -1,4 +1,5 @@
 import { SectionReveal } from "@/components/portfolio/section-reveal";
+import { Reveal } from "@/components/portfolio/reveal";
 import { StackBadge } from "@/components/portfolio/stack-section";
 import { specializations } from "@/lib/portfolio-data";
 
@@ -20,19 +21,21 @@ export function SpecializationsSection() {
 
       <ul className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {specializations.items.map((item, i) => (
-          <li
-            key={item.title}
-            className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)]"
-          >
-            <span className="font-display text-2xl font-semibold tabular-nums text-foreground/10 transition-colors group-hover:text-primary/40">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className="mt-3 font-display text-[17px] font-semibold tracking-tight text-foreground">
-              {item.title}
-            </h3>
-            <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground">
-              {item.description}
-            </p>
+          <li key={item.title}>
+            <Reveal
+              index={i}
+              className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card p-5 transition-[border-color,box-shadow] duration-300 hover:border-foreground/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)]"
+            >
+              <span className="font-display text-2xl font-semibold tabular-nums text-foreground/10 transition-colors group-hover:text-primary/40">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 font-display text-[17px] font-semibold tracking-tight text-foreground">
+                {item.title}
+              </h3>
+              <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground">
+                {item.description}
+              </p>
+            </Reveal>
           </li>
         ))}
       </ul>
