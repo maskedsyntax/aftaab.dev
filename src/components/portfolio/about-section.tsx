@@ -4,7 +4,7 @@ import { aboutFull } from "@/lib/portfolio-data";
 
 export function AboutSection() {
   return (
-    <SectionReveal className="border-t border-border py-12 md:py-16">
+    <SectionReveal className="pb-12 md:pb-16">
       {/* Name + memoji row */}
       <div className="mb-8 flex items-center gap-4">
         <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full md:h-16 md:w-16">

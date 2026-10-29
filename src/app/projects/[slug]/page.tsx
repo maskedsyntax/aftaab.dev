@@ -94,8 +94,8 @@ export default async function ProjectPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Work",
-        item: `${siteUrl}/projects`,
+        name: "Apps",
+        item: `${siteUrl}/apps`,
       },
       {
         "@type": "ListItem",
@@ -124,11 +124,11 @@ export default async function ProjectPage({ params }: PageProps) {
         <main className="container mx-auto max-w-5xl px-5 pb-6 pt-12 sm:px-6 sm:pt-16">
           <nav aria-label="Breadcrumb" className="mb-8">
             <Link
-              href="/projects"
+              href="/apps"
               className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
-              All work
+              All apps
             </Link>
           </nav>
 

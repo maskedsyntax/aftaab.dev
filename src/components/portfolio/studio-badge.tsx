@@ -4,8 +4,8 @@ import { studios, type StudioId } from "@/lib/portfolio-data";
 /**
  * Studio colour association. Literal class strings (never interpolated)
  * so Tailwind's scanner keeps them. Warm = MaskedSyntax, primary/teal =
- * Gentleloop Labs. The Labels section establishes this key before any
- * dot appears further down the page.
+ * Gentleloop Labs. `StudioLegend` establishes this key above every
+ * grid of cards.
  */
 const STUDIO_STYLES: Record<
   StudioId,

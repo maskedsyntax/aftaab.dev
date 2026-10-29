@@ -5,18 +5,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
+import { ArrowUpRight, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const routes = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/apps", label: "Apps" },
   { href: "/blog", label: "Writing" },
 ];
 
 function getActiveRoute(path: string) {
   if (path.startsWith("/blog")) return "/blog";
-  // /projects has no nav entry of its own; the apps it holds live on the home
-  // page, so keep Home lit rather than leaving the pill stranded.
+  if (path.startsWith("/about")) return "/about";
+  if (path.startsWith("/apps")) return "/apps";
+  // Case studies under /projects are the apps; the /projects index (web
+  // products) and /fun have no entry of their own, so keep Home lit.
+  if (path.startsWith("/projects/")) return "/apps";
   if (path.startsWith("/projects")) return "/";
   if (path.startsWith("/fun")) return "/";
   return path;
@@ -61,14 +66,14 @@ export default function Navbar() {
 
       <nav
         aria-label="Primary navigation"
-        className="relative flex items-center gap-1 rounded-full border border-border/60 bg-background/70 p-1 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.25)] ring-1 ring-foreground/[0.03] backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6)]"
+        className="relative flex items-center gap-0.5 rounded-full border border-border/60 bg-background/70 p-1 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.25)] ring-1 ring-foreground/[0.03] backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6)]"
       >
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-2 top-px h-px rounded-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent dark:via-white/15"
         />
 
-        <ul ref={listRef} className="relative flex items-center gap-1">
+        <ul ref={listRef} className="relative flex items-center gap-0.5 sm:gap-1">
           {/* Active pill */}
           {hasMeasured.current && (
             <motion.span
@@ -91,7 +96,8 @@ export default function Navbar() {
                   href={route.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative inline-flex select-none items-center justify-center rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200",
+                    "relative inline-flex select-none items-center justify-center rounded-full text-[12.5px] font-medium sm:text-[13px] transition-colors duration-200",
+                    "px-2 py-1.5 sm:px-3.5",
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground",
@@ -104,9 +110,17 @@ export default function Navbar() {
           })}
         </ul>
 
+        <Link
+          href="/#contact"
+          className="ml-0.5 inline-flex items-center gap-1 rounded-full bg-foreground px-2.5 py-1.5 text-[12.5px] font-medium sm:text-[13px] text-background shadow-sm transition-transform duration-200 hover:-translate-y-px sm:px-3.5"
+        >
+          Contact
+          <ArrowUpRight className="hidden h-3.5 w-3.5 sm:block" aria-hidden />
+        </Link>
+
         <span
           aria-hidden
-          className="mx-1 h-5 w-px bg-gradient-to-b from-transparent via-border to-transparent"
+          className="mx-0.5 hidden h-5 w-px bg-gradient-to-b from-transparent via-border to-transparent sm:block"
         />
 
         <button

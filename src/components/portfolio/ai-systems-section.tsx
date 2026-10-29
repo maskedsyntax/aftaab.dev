@@ -1,10 +1,15 @@
 import { ArrowUpRight } from "lucide-react";
-import { SiGithub } from "react-icons/si";
+import { SiGithub, SiKofi } from "react-icons/si";
 import { SectionReveal } from "@/components/portfolio/section-reveal";
 import { SectionHeader } from "@/components/portfolio/section-header";
 import { PlatformChip } from "@/components/portfolio/platform-chip";
 import { AiThumbnail } from "@/components/portfolio/ai-thumbnails";
-import { aiSystemsIntro, aiTools, type AiTool } from "@/lib/portfolio-data";
+import {
+  aiSystemsIntro,
+  aiTools,
+  support,
+  type AiTool,
+} from "@/lib/portfolio-data";
 
 function AiToolCard({ tool }: { tool: AiTool }) {
   // Utter's canonical URL is its repo — one pill, not two identical ones.
@@ -12,17 +17,8 @@ function AiToolCard({ tool }: { tool: AiTool }) {
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card">
-      {/* Drawn thumbnail — nothing to crop, and it follows the theme */}
-      <div
-        className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/25 p-6 transition-transform duration-500 group-hover:scale-[1.015]"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,hsl(var(--primary)/0.10),transparent_70%)]"
-        />
-        <div className="relative h-full w-full">
-          <AiThumbnail id={tool.id} />
-        </div>
+      <div className="aspect-[16/10] w-full overflow-hidden border-b border-border/50">
+        <AiThumbnail id={tool.id} />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
@@ -50,11 +46,7 @@ function AiToolCard({ tool }: { tool: AiTool }) {
           {tool.tagline}
         </p>
 
-        <p className="mt-3 font-mono text-[10.5px] text-muted-foreground/60">
-          {tool.tech}
-        </p>
-
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div className="mt-4 flex flex-wrap gap-1.5">
           {tool.platforms.map((p) => (
             <PlatformChip key={p} label={p} />
           ))}
@@ -97,7 +89,21 @@ export function AiSystemsSection() {
       id="ai-systems"
       className="scroll-mt-8 border-t border-border py-12 md:py-16"
     >
-      <SectionHeader title="AI & systems" description={aiSystemsIntro} />
+      <SectionHeader
+        title="Open source"
+        description={aiSystemsIntro}
+        footer={
+          <a
+            href={support.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-warm"
+          >
+            <SiKofi className="h-3.5 w-3.5" aria-hidden />
+            {support.cta}
+          </a>
+        }
+      />
       <div className="grid gap-3 sm:grid-cols-2">
         {aiTools.map((tool) => (
           <AiToolCard key={tool.id} tool={tool} />

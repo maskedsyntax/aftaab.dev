@@ -5,17 +5,14 @@ import { getAllBlogs } from "@/lib/getBlogs";
 import { ArrowRight } from "lucide-react";
 
 export function BlogPreviewSection() {
-  const posts = getAllBlogs().slice(0, 4);
+  const posts = getAllBlogs().slice(0, 3);
 
   return (
     <SectionReveal
       id="writing"
       className="scroll-mt-8 border-t border-border py-12 md:py-16"
     >
-      <SectionHeader
-        title="Writing"
-        description="Long-form notes on product, design, and engineering decisions."
-      />
+      <SectionHeader title="Writing" />
       <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border">
         {posts.map((post) => (
           <li key={`${post.slug}-${post.id}`}>

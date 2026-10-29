@@ -32,6 +32,7 @@ const FREQ_BY_PREFIX = [
   ["/blog", "weekly", 0.6],
   ["/projects/", "monthly", 0.8],
   ["/projects", "weekly", 0.7],
+  ["/apps", "weekly", 0.8],
   ["/fun/", "yearly", 0.4],
   ["/fun", "yearly", 0.4],
 ];

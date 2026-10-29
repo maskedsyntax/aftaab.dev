@@ -116,32 +116,41 @@ export function HeroSection() {
             skip={rm}
           />
 
-          <p className="max-w-xl text-[15px] font-medium leading-relaxed tracking-tight text-foreground md:text-[17px]">
+          <p className="max-w-xl text-[16px] font-medium leading-relaxed tracking-tight text-muted-foreground md:text-[18px]">
             {heroCopy.tagline}
-          </p>
-
-          <p className="max-w-xl text-[14px] leading-relaxed text-muted-foreground md:text-[15px]">
-            {heroCopy.intro}
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <a
-              href="#selected-works"
+              href="#apps"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-transform duration-200 ease-out hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary via-warm to-primary opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
-              <span className="relative">View shipped apps</span>
+              <span className="relative">See the apps</span>
               <ArrowDown className="relative h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/60 px-5 py-2.5 text-sm font-medium text-foreground shadow-sm backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-foreground/25"
+            >
+              Hire me
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </div>
 
-          <p className="max-w-2xl pt-3 text-[13px] leading-relaxed text-muted-foreground/80 md:pt-5 md:text-[14px]">
-            {heroCopy.subline}
-          </p>
-
-          <p className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground/55">
-            {heroCopy.stats}
-          </p>
+          <dl className="flex flex-wrap gap-x-10 gap-y-4 pt-4 md:pt-6">
+            {heroCopy.stats.map(({ value, label }) => (
+              // dt must come first in the DOM; flex-col-reverse puts the number on top
+              <div key={label} className="flex flex-col-reverse">
+                <dt className="mt-2 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground/70">
+                  {label}
+                </dt>
+                <dd className="font-display text-[2.25rem] font-semibold leading-none tracking-display-tight text-foreground tabular-nums md:text-[2.75rem]">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         {/* Contact card — sits alongside body copy */}

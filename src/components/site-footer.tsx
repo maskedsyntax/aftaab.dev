@@ -7,16 +7,30 @@ export function SiteFooter() {
         <p className="text-xs text-muted-foreground/70">
           &copy; {new Date().getFullYear()} Aftaab Siddiqui
         </p>
-        <div className="flex items-center gap-5 font-mono text-xs text-muted-foreground/70">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground/70">
           <Link href="/" className="hover:text-foreground">
             Home
+          </Link>
+          <Link href="/about" className="hover:text-foreground">
+            About
+          </Link>
+          <Link href="/apps" className="hover:text-foreground">
+            Apps
+          </Link>
+          <Link href="/blog" className="hover:text-foreground">
+            Writing
           </Link>
           <Link href="/projects" className="hover:text-foreground">
             Work
           </Link>
-          <Link href="/blog" className="hover:text-foreground">
-            Blog
-          </Link>
+          <a
+            href="https://ko-fi.com/aftaabsiddiqui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground"
+          >
+            Ko-fi
+          </a>
         </div>
       </div>
     </footer>

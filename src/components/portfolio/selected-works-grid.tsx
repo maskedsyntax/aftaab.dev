@@ -69,16 +69,11 @@ function WorkCard({ card, wide = false }: { card: ShippedCard; wide?: boolean })
             <h3 className="mt-1.5 font-display text-[19px] font-semibold leading-snug tracking-tight text-foreground">
               {card.name}
             </h3>
-            {card.tech ? (
-              <p className="mt-1 truncate font-mono text-[10.5px] text-muted-foreground/60">
-                {card.tech}
-              </p>
-            ) : null}
           </div>
         </div>
 
         {/* Tagline */}
-        <p className="mt-4 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">
+        <p className="mt-4 line-clamp-2 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">
           {card.tagline}
         </p>
 

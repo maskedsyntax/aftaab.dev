@@ -87,11 +87,6 @@ export function ContactSection() {
               );
             })}
           </div>
-
-          {/* Location chip */}
-          <p className="pt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
-            Based in India · Works worldwide
-          </p>
         </div>
       </div>
     </SectionReveal>

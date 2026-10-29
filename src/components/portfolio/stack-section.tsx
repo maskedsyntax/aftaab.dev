@@ -1,6 +1,7 @@
 import type { IconType } from "react-icons";
 import {
   SiBun,
+  SiCloudflare,
   SiCplusplus,
   SiDjango,
   SiDocker,
@@ -59,6 +60,7 @@ const STACK_ICONS: Record<string, IconType> = {
   Bun: SiBun,
   "Node.js": SiNodedotjs,
   Docker: SiDocker,
+  "Cloudflare Workers": SiCloudflare,
 };
 
 /** Lucide fallback for tokens that don't have a brand mark */
@@ -95,9 +97,10 @@ const STACK_ICON_COLORS: Record<string, string> = {
   Bun: "text-[#f97316]",
   "Node.js": "text-[#339933]",
   Docker: "text-[#2496ED]",
+  "Cloudflare Workers": "text-[#F38020]",
 };
 
-function StackBadge({ name }: { name: string }) {
+export function StackBadge({ name }: { name: string }) {
   const Icon = STACK_ICONS[name] ?? STACK_LUCIDE[name];
   const iconColor = STACK_ICON_COLORS[name];
   return (

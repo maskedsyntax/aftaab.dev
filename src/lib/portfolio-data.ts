@@ -490,7 +490,8 @@ export const shippedCards: ShippedCard[] = (() => {
       name: p.name,
       studio: p.studio,
       category: p.category,
-      tagline: p.tagline,
+      // The app list's one-liner; the case study keeps its longer tagline.
+      tagline: app?.tagline ?? p.tagline,
       tech: app?.tech,
       platforms: app?.platforms ?? [],
       iconPath: p.iconPath ?? app?.iconPath ?? "",
@@ -528,6 +529,15 @@ export const shippedCards: ShippedCard[] = (() => {
   return [...fromCaseStudies, ...rest];
 })();
 
+/** The short list on the home page, in this order. Everything is on /apps. */
+const homeCardKeys = ["patterns", "tumble", "lofikofi", "kindling"];
+
+export const homeCards: ShippedCard[] = homeCardKeys.map((key) => {
+  const card = shippedCards.find((c) => c.key === key);
+  if (!card) throw new Error(`homeCardKeys: no shipped card "${key}"`);
+  return card;
+});
+
 /* ────────────────────────────────────────────────────────────────
    AI & systems tooling
    Declared after `featuredProjects` so the sitemap's id-scraper
@@ -552,7 +562,7 @@ export const aiTools: AiTool[] = [
     id: "voxflow",
     name: "VoxFlow",
     tagline:
-      "System-wide dictation that transcribes on your own machine. Hold a chord, speak, and the text lands at the cursor.",
+      "Private dictation, anywhere. Hold a chord, speak, and the text lands at the cursor.",
     tech: "Rust · Tauri · Whisper",
     platforms: ["macOS", "Linux", "Windows"],
     version: "v0.1.0 alpha",
@@ -564,7 +574,7 @@ export const aiTools: AiTool[] = [
     id: "utter",
     name: "Utter",
     tagline:
-      "Local text-to-speech on the command line for Apple Silicon. Synthesis text never leaves the machine.",
+      "Local text-to-speech for Apple Silicon, from the command line.",
     tech: "Python · MLX · Qwen3-TTS",
     platforms: ["macOS"],
     url: "https://github.com/cachevector/utter",
@@ -578,27 +588,33 @@ export const aiTools: AiTool[] = [
    ──────────────────────────────────────────────────────────────── */
 
 export const heroCopy = {
-  eyebrow: "iOS engineer · Flutter developer · Product designer",
+  eyebrow: "iOS · Flutter · Product design",
   tagline:
-    "I design and build apps for iPhone, iPad, Apple Watch, and Mac, and ship them to the App Store myself.",
-  intro:
-    "Most of my time sits between Xcode and Figma. Native Swift and SwiftUI where the platform rewards it, Flutter where a second store is worth the trade, and the occasional web product behind them.",
-  subline:
-    "Currently taking on select client work. Mobile-first, comfortable across the stack.",
+    "I design, build, and ship apps for iPhone, iPad, Apple Watch, Mac, and Android.",
   availability: "Available for new projects",
   location: "Based in India · Works worldwide",
-  stats: `${shippedCounts.live} apps shipped · iOS · watchOS · macOS · Android`,
+  /** Big-number row under the hero; counts derive from the app list. */
+  stats: [
+    { value: String(shippedCounts.live), label: "apps live" },
+    {
+      value: String(new Set(appleApps.flatMap((a) => a.platforms)).size),
+      label: "platforms",
+    },
+    { value: String(studioOrder.length), label: "studios" },
+  ],
 };
 
 export const labelsIntro =
   "The apps ship under two names. Which one depends on what the app is for.";
 
-export const shippedIntro = `${appleApps.length} apps on the App Store, Mac App Store, and Google Play${
-  shippedCounts.pending > 0 ? ", one of them still in review" : ""
-}. The ones I've written up link through to the case study.`;
+export const shippedIntro = `${shippedCounts.live} live${
+  shippedCounts.pending > 0 ? `, ${shippedCounts.pending} in review` : ""
+}. Tap one for the story.`;
+
+export const homeAppsIntro = "A few favourites. Tap one for the story.";
 
 export const aiSystemsIntro =
-  "Local-first speech tooling built under Cachevector. Rust and Python rather than Swift, and the reason the AI work in the apps above isn't guesswork.";
+  "Local-first speech tools, free and open source.";
 
 /* ────────────────────────────────────────────────────────────────
    Work list — everything not covered by a case study
@@ -688,43 +704,37 @@ export const specializations = {
   /** Title and description live together so they can't drift apart. */
   items: [
     {
-      title: "Native iOS development with Swift & SwiftUI",
-      description:
-        "iPhone, iPad, Apple Watch, and Mac. Native, performant, and following platform conventions.",
+      title: "Native iOS",
+      description: "Swift and SwiftUI for iPhone, iPad, Watch, and Mac.",
     },
     {
-      title: "Cross-platform mobile apps with Flutter",
-      description:
-        "One codebase, two stores. Pixel-perfect UI with native performance on iOS and Android.",
+      title: "Flutter",
+      description: "One codebase, both stores.",
     },
     {
-      title: "UI/UX design for mobile",
-      description:
-        "From Figma flows to shipped screens. Motion, typography, and interaction, considered together.",
+      title: "Product design",
+      description: "Figma flows to shipped pixels.",
     },
     {
-      title: "App Store submission and release management",
-      description:
-        "Review, pricing, subscriptions, and phased releases. The part that sits between a finished build and a live app.",
-    },
-    {
-      title: "AI features in mobile apps",
-      description:
-        "On-device inference and API-backed models, with the plumbing to keep credentials out of the binary.",
-    },
-    {
-      title: "Web products and self-hosted tools",
-      description:
-        "React and Next.js front ends, and services that run on your own server and stay in your control.",
+      title: "Launch",
+      description: "App Store review, pricing, and subscriptions.",
     },
   ],
   whyMe: {
     title: "One person. Design and code.",
-    body: [
-      "You get one person across the whole product. Research, interface, and the system underneath all live in the same head. Nothing gets lost in a handoff. No account managers sit between the decision and the pixel.",
-      "I care about native platform conventions on mobile and about code that holds up as the product grows. Design and engineering aren't two phases. They happen together.",
-    ],
+    body: "Nothing gets lost in a handoff.",
   },
+  /** The stack row under the tiles — the full breakdown lives on /about. */
+  stack: [
+    "Swift",
+    "Flutter",
+    "Figma",
+    "Next.js",
+    "Rust",
+    "Python",
+    "Go",
+    "Cloudflare Workers",
+  ],
 };
 
 export const processSteps = [
@@ -819,16 +829,12 @@ export const stackNote =
   "I pick tools by what the product needs and what the team can maintain.";
 
 export const support = {
-  eyebrow: "Support",
-  title: "Buy me a coffee",
-  body: "VoxFlow, Utter, and the smaller tools are free and open source, and they stay that way. If one of them earned a place in your setup, Ko-fi is where you can chip in.",
-  note: "Entirely optional. It goes into the next thing I build.",
-  cta: "Support on Ko-fi",
+  cta: "Buy me a coffee",
   url: "https://ko-fi.com/aftaabsiddiqui",
 } as const;
 
 export const contactIntro =
-  "I work with founders and small teams on mobile products, from first design to the App Store listing. If you have a project in mind, or just want to say hello, drop me a line.";
+  "Have an app in mind? I work with founders and small teams, from first sketch to App Store.";
 
 export const contactLinks = [
   {

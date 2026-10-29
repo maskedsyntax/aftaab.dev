@@ -1,49 +1,46 @@
 import { SectionReveal } from "@/components/portfolio/section-reveal";
+import { StackBadge } from "@/components/portfolio/stack-section";
 import { specializations } from "@/lib/portfolio-data";
 
 export function SpecializationsSection() {
   return (
-    <SectionReveal className="border-t border-border py-12 md:py-16">
-      <h2 className="sr-only">Services</h2>
+    <SectionReveal
+      id="services"
+      className="scroll-mt-8 border-t border-border py-12 md:py-16"
+    >
+      <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        What I do
+      </p>
+      <h2 className="mt-4 font-serif italic font-normal leading-[1.06] tracking-serif-tight text-foreground text-[2rem] md:text-[2.6rem]">
+        {specializations.whyMe.title}
+      </h2>
+      <p className="mt-3 text-[15px] text-muted-foreground md:text-base">
+        {specializations.whyMe.body}
+      </p>
 
-      <div className="grid gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-14 lg:gap-16">
-        {/* Left — editorial statement + why me */}
-        <div className="flex flex-col justify-center">
-          <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Services
-          </p>
-          <h3 className="mt-4 font-serif italic font-normal leading-[1.06] tracking-serif-tight text-foreground text-[2rem] md:text-[2.4rem] lg:text-[2.7rem]">
-            {specializations.whyMe.title}
-          </h3>
-          <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-muted-foreground md:text-[15px]">
-            {specializations.whyMe.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-        </div>
+      <ul className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {specializations.items.map((item, i) => (
+          <li
+            key={item.title}
+            className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)]"
+          >
+            <span className="font-display text-2xl font-semibold tabular-nums text-foreground/10 transition-colors group-hover:text-primary/40">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-3 font-display text-[17px] font-semibold tracking-tight text-foreground">
+              {item.title}
+            </h3>
+            <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground">
+              {item.description}
+            </p>
+          </li>
+        ))}
+      </ul>
 
-        {/* Right — service tiles */}
-        <div className="flex flex-col justify-center divide-y divide-border/50">
-          {specializations.items.map((item) => (
-            <div key={item.title} className="group py-4 first:pt-0 last:pb-0">
-              <div className="flex items-start gap-3">
-                <span
-                  className="mt-[3px] h-3.5 w-0.5 shrink-0 rounded-full transition-colors duration-200 group-hover:bg-primary"
-                  style={{ backgroundColor: "hsl(var(--primary) / 0.3)" }}
-                  aria-hidden
-                />
-                <div className="min-w-0">
-                  <p className="font-display text-[14px] font-semibold leading-snug tracking-tight text-foreground md:text-[15px]">
-                    {item.title}
-                  </p>
-                  <p className="mt-1 text-[12.5px] leading-snug text-muted-foreground md:text-[13px]">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="mt-6 flex flex-wrap gap-2">
+        {specializations.stack.map((name) => (
+          <StackBadge key={name} name={name} />
+        ))}
       </div>
     </SectionReveal>
   );
